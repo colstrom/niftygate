@@ -1,0 +1,19 @@
+[package]
+name = "sig-proxy"
+version = "0.1.0"
+authors = ["Chris Olstrom <chris@olstrom.com>"]
+edition = "2018"
+license = "MIT"
+
+[dependencies]
+async-std = { version = "1.9.0", features = ["unstable", "attributes"] }
+base64 = "0.13.0"
+env_logger = "0.8.3"
+hex-literal = "0.3.1"
+nanoid = "0.4.0"
+secp256k1 = "0.20.1"
+structopt = "0.3.21"
+surf = "2.2.0"
+tide = "0.16.0"
+tide-http-auth = "0.4.0"
+web3 = { version = "0.15.0", default-features = false, features = ["signing", "ws-async-std", "ws-tls-async-std", "url", "base64", "typed-headers", "eip-1193"] }
