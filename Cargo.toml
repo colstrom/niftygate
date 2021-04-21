@@ -1,10 +1,11 @@
 [package]
 name = "sig-proxy"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
 repository = "https://github.com/colstrom/sig-proxy/"
+documentation = "https://docs.rs/sig-proxy/"
 description = "Signature-Based (Web3) Authenticating Proxy"
 
 [dependencies]

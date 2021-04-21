@@ -31,7 +31,7 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for Proxy {
     url.set_port(self.backend.port_or_known_default()).unwrap();
     url.set_scheme(self.backend.scheme()).unwrap();
 
-    let mut response: http::Response = surf::client().send(request).await?.into();
+    let mut response: http::Response = self.client.send(request).await?.into();
     response.remove_header(headers::CONNECTION);
     Ok(response.into())
   }
