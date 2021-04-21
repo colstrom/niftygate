@@ -11,17 +11,17 @@ use web3::types::{Address, Recovery};
 
 #[derive(Clone)]
 pub struct ProvidesAccountVerification {
+  pub address_header: HeaderName,
+  pub challenge: Vec<u8>,
   pub signature_header: HeaderName,
-  pub account_header: HeaderName,
   pub status_code: StatusCode,
   pub web3: Web3<WebSocket>,
-  pub message: Vec<u8>,
 }
 
 #[async_trait]
 impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesAccountVerification {
   async fn handle(&self, mut request: Request<State>, next: Next<'_, State>) -> Result {
-    let mut accounts: Vec<web3::types::H160> = vec![];
+    let mut addresses: Vec<web3::types::H160> = vec![];
 
     match request.header(&self.signature_header) {
       None => return Ok(Response::new(self.status_code)),
@@ -33,7 +33,7 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesAccount
         Err(_) => return Ok(Response::new(StatusCode::BadRequest)),
         Ok(raw_signatures) => match raw_signatures
           .into_iter()
-          .map(|raw_signature| Recovery::from_raw_signature(self.message.clone(), raw_signature))
+          .map(|raw_signature| Recovery::from_raw_signature(self.challenge.clone(), raw_signature))
           .collect::<result::Result<Vec<Recovery>, _>>()
         {
           Err(_) => return Ok(Response::new(StatusCode::UnsupportedMediaType)),
@@ -43,9 +43,9 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesAccount
             .collect::<result::Result<Vec<Address>, _>>()
           {
             Err(_) => return Ok(Response::new(StatusCode::UnprocessableEntity)),
-            Ok(recovered_accounts) => {
-              for account in recovered_accounts {
-                accounts.push(account)
+            Ok(recovered) => {
+              for address in recovered {
+                addresses.push(address)
               }
             }
           },
@@ -53,8 +53,8 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesAccount
       },
     }
 
-    for account in accounts {
-      request.append_header(&self.account_header, base64::encode(account))
+    for address in addresses {
+      request.append_header(&self.address_header, hex::encode(address))
     }
 
     Ok(next.run(request).await)

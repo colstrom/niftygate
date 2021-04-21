@@ -9,12 +9,51 @@ pub mod prelude {
 use prelude::*;
 
 use std::{result, str::FromStr};
+use strum::{AsRefStr, EnumString, EnumVariantNames};
 use tide::{utils::async_trait, Middleware, Next, Request, Response, Result};
 use web3::types::{Address, BlockNumber};
 
+#[derive(AsRefStr, Clone, Debug, EnumString, EnumVariantNames)]
+pub enum BalanceScale {
+  Wei,
+  Kwei,
+  Babbage,
+  Mwei,
+  Lovelace,
+  Gwei,
+  Shannon,
+  Twei,
+  Szabo,
+  Pwei,
+  Finney,
+  Ether,
+  Buterin,
+}
+
+impl BalanceScale {
+  pub fn scale(&self) -> U256 {
+    match self {
+      BalanceScale::Wei => U256::exp10(0),
+      BalanceScale::Kwei | BalanceScale::Babbage => U256::exp10(3),
+      BalanceScale::Mwei | BalanceScale::Lovelace => U256::exp10(6),
+      BalanceScale::Gwei | BalanceScale::Shannon => U256::exp10(9),
+      BalanceScale::Twei | BalanceScale::Szabo => U256::exp10(12),
+      BalanceScale::Pwei | BalanceScale::Finney => U256::exp10(15),
+      BalanceScale::Ether | BalanceScale::Buterin => U256::exp10(18),
+    }
+  }
+}
+
+#[derive(Clone, Debug)]
+pub enum BalanceRequirement {
+  AtLeast(U256),
+  AtMost(U256),
+  Between(U256, U256),
+}
+
 #[derive(Clone)]
 pub struct ProvidesBalance {
-  pub account_header: HeaderName,
+  pub address_header: HeaderName,
   pub balance_header: HeaderName,
   pub web3: Web3<WebSocket>,
 }
@@ -22,12 +61,12 @@ pub struct ProvidesBalance {
 #[async_trait]
 impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesBalance {
   async fn handle(&self, mut request: Request<State>, next: Next<'_, State>) -> Result {
-    let addresses = match request.header(&self.account_header) {
+    let addresses = match request.header(&self.address_header) {
       None => return Ok(Response::new(StatusCode::NetworkAuthenticationRequired)),
       Some(header_values) => match header_values
         .into_iter()
-        .map(|input| base64::decode(input.as_str()))
-        .collect::<result::Result<Vec<Vec<u8>>, base64::DecodeError>>()
+        .map(|input| hex::decode(input.as_str()))
+        .collect::<result::Result<Vec<Vec<u8>>, hex::FromHexError>>()
       {
         Err(_) => return Ok(Response::new(StatusCode::BadRequest)),
         Ok(raw_addresses) => raw_addresses
@@ -56,54 +95,17 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesBalance
     Ok(next.run(request).await)
   }
 }
-#[derive(Clone)]
-pub enum BalanceUnit {
-  Wei,
-  Kwei,
-  Babbage,
-  Mwei,
-  Lovelace,
-  Gwei,
-  Shannon,
-  Twei,
-  Szabo,
-  Pwei,
-  Finney,
-  Ether,
-  Buterin,
-}
-
-impl BalanceUnit {
-  pub fn scale(&self) -> U256 {
-    match self {
-      BalanceUnit::Wei => U256::exp10(0),
-      BalanceUnit::Kwei | BalanceUnit::Babbage => U256::exp10(3),
-      BalanceUnit::Mwei | BalanceUnit::Lovelace => U256::exp10(6),
-      BalanceUnit::Gwei | BalanceUnit::Shannon => U256::exp10(9),
-      BalanceUnit::Twei | BalanceUnit::Szabo => U256::exp10(12),
-      BalanceUnit::Pwei | BalanceUnit::Finney => U256::exp10(15),
-      BalanceUnit::Ether | BalanceUnit::Buterin => U256::exp10(18),
-    }
-  }
-}
-
-#[derive(Clone, Debug)]
-pub enum BalanceRequirement {
-  AtLeast(U256),
-  AtMost(U256),
-  Between(U256, U256),
-}
 
 #[derive(Clone)]
 pub struct RequiresBalance {
   pub header: HeaderName,
-  pub required: BalanceRequirement,
+  pub requirement: BalanceRequirement,
 }
 
 impl RequiresBalance {
-  pub fn scale(mut self, unit: BalanceUnit) -> Self {
+  pub fn scale(mut self, unit: BalanceScale) -> Self {
     let scale = unit.scale();
-    let new = match self.required {
+    let new = match self.requirement {
       BalanceRequirement::AtLeast(min) => {
         BalanceRequirement::AtLeast(U256::saturating_mul(min, scale))
       }
@@ -116,7 +118,7 @@ impl RequiresBalance {
       ),
     };
 
-    self.required = new;
+    self.requirement = new;
     self
   }
 }
@@ -134,12 +136,12 @@ impl<State: Clone + Send + Sync + 'static> Middleware<State> for RequiresBalance
         {
           Err(_) => return Ok(Response::new(StatusCode::BadRequest)),
           Ok(balances) => {
-            if balances.into_iter().any(|balance| match self.required {
+            if balances.into_iter().any(|balance| match self.requirement {
               BalanceRequirement::AtLeast(min) => balance.ge(&min),
               BalanceRequirement::AtMost(max) => balance.le(&max),
               BalanceRequirement::Between(min, max) => balance.ge(&min) && balance.le(&max),
             }) {
-              println!("Balance meets requirement of {:?}", self.required);
+              println!("Balance meets requirement of {:?}", self.requirement);
               return Ok(next.run(request).await);
             } else {
               return Ok(Response::new(StatusCode::PaymentRequired));

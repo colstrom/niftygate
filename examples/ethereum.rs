@@ -1,48 +1,48 @@
-use sig_proxy::middleware::{ethereum::prelude::*, *};
+use sig_proxy::{
+  middleware::{
+    ethereum::{prelude::*, *},
+    *,
+  },
+  WrappedResult,
+};
 use std::str::FromStr;
 use tide::{http::Url, log};
 use web3::transports::WebSocket;
-type WrappedError = Box<dyn std::error::Error>;
 
 #[async_std::main]
-async fn main() -> std::result::Result<(), WrappedError> {
+async fn main() -> WrappedResult<()> {
   log::with_level(log::LevelFilter::Debug);
 
-  let secret_key_data =
-    hex_literal::hex!("4bfbe335b56dd7aee5e982b9aba0de4cf3495055b7dfdf538a9ab10ca028035f");
-  std::fs::write("ethereum.key", secret_key_data)?;
-  let secret_key_data = std::fs::read("ethereum.key")?;
-
-  let transport_url = Url::parse("ws://127.0.0.1:7545")?;
-  let transport = WebSocket::new(transport_url.as_str()).await?;
+  let secret_key_data = std::env::var("SECRET_KEY_DATA")?.as_bytes().to_vec();
+  let rpc_url = Url::parse("ws://127.0.0.1:7545")?;
 
   let mut server = tide::new();
   server
     .with(ProvidesForwardedHeader)
-    .with(ethereum::ProvidesSignature {
+    .with(ProvidesSignature {
       signature_header: HeaderName::from_string(String::from("X-Web3-Signature"))?,
       secret_key: SecretKey::from_slice(&secret_key_data)?,
-      web3: Web3::new(transport.clone()),
-      message: b"license".to_vec(),
+      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
+      challenge: b"totes-legit".to_vec(),
     })
-    .with(ethereum::ProvidesAccountVerification {
+    .with(ProvidesAccountVerification {
       signature_header: HeaderName::from_string(String::from("X-Web3-Signature"))?,
-      account_header: HeaderName::from_string(String::from("X-Web3-Account"))?,
+      address_header: HeaderName::from_string(String::from("X-Web3-Account-Address"))?,
       status_code: StatusCode::PaymentRequired,
-      web3: Web3::new(transport.clone()),
-      message: b"license".to_vec(),
+      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
+      challenge: b"totes-legit".to_vec(),
     })
-    .with(ethereum::ProvidesBalance {
-      account_header: HeaderName::from_string(String::from("X-Web3-Account"))?,
-      balance_header: HeaderName::from_string(String::from("X-Web3-Balance"))?,
-      web3: Web3::new(transport.clone()),
+    .with(ProvidesBalance {
+      address_header: HeaderName::from_string(String::from("X-Web3-Account-Address"))?,
+      balance_header: HeaderName::from_string(String::from("X-Web3-Account-Balance"))?,
+      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
     })
     .with(
-      ethereum::RequiresBalance {
-        header: HeaderName::from_string(String::from("X-Web3-Balance"))?,
-        required: ethereum::BalanceRequirement::AtLeast(U256::from_str("5")?),
+      RequiresBalance {
+        header: HeaderName::from_string(String::from("X-Web3-Account-Balance"))?,
+        requirement: BalanceRequirement::AtLeast(U256::from_str("5")?),
       }
-      .scale(ethereum::BalanceUnit::Gwei),
+      .scale(BalanceScale::Gwei),
     )
     .with(proxy::Proxy::new(Url::parse("http://127.0.0.1:8000")?));
   server.listen("127.0.0.1:8002").await?;

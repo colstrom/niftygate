@@ -9,5 +9,5 @@ pub mod prelude {
 }
 
 pub use account::ProvidesAccountVerification;
-pub use balance::{BalanceRequirement, BalanceUnit, ProvidesBalance, RequiresBalance};
+pub use balance::{BalanceRequirement, BalanceScale, ProvidesBalance, RequiresBalance};
 pub use signature::ProvidesSignature;
