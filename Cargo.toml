@@ -5,6 +5,7 @@ authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
 repository = "https://github.com/colstrom/sig-proxy/"
+description = "Signature-Based (Web3) Authenticating Proxy"
 
 [dependencies]
 async-std = { version = "1.9.0", features = ["unstable", "attributes"] }
