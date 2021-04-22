@@ -163,8 +163,8 @@ isahc::agent agent took 312.747µs to start up
 tide::server Server listening on http://0.0.0.0:8000
 ```
 
-If the signature is valid, the account is added to the request using the header
-given by `--account-header`. It is assumed that the backend knows what to do
+If the signature is valid, the address is added to the request using the header
+given by `--address-header`. It is assumed that the backend knows what to do
 with this header. For instance, you could use the `X-Remote-User` header to
 integrate `sig-proxy` with [Dex](https://dexidp.io/docs/connectors/authproxy/).
 
