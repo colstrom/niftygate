@@ -136,7 +136,7 @@ as a file (`--secret-key-file`), or a hex string (`--secret-key-data`). If both
 are given, `--secret-key-file` is ignored. These can also be given via
 environment, which is exactly what we did above.
 
-This key is used to sign a challenge phrase (currently given by `--message`),
+This key is used to sign a challenge phrase (currently given by `--challenge`),
 which should be known to both client and server. It does not need to be private.
 
 This signature is added to the request using the header given by `--signature-header`.
