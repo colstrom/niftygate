@@ -76,7 +76,7 @@ set -x SECRET_KEY_DATA PUT_THE_DATA_HERE
 
 Using vintage shells like `bash`:
 ```shell
-export SECRET_KEY_DATA PUT_THE_DATA_HERE
+export SECRET_KEY_DATA=PUT_THE_DATA_HERE
 ```
 
 Now you're ready to run it! Let's have a look at the help:
