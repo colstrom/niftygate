@@ -20,7 +20,7 @@ impl FromStr for HexData {
 }
 
 #[derive(Debug, StructOpt)]
-#[structopt(set_term_width = 200)]
+#[structopt()]
 pub enum Options {
   #[structopt(about = "Runs a sample app that returns request headers in the response body")]
   Demo {
