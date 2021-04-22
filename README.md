@@ -152,7 +152,7 @@ challenge phrase that is known to both signer and verifier, and the signing
 address is recoverable from a valid signature.
 
 ```shell
-$ sig-proxy web3 --provides-accounts-verification
+$ sig-proxy web3 --provides-account-verification
 tide::log Logger started
     level DEBUG
 tracing::span new
