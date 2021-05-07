@@ -1,0 +1,27 @@
+{
+  "name": "sig-proxy",
+  "version": "0.2.0",
+  "description": "## What is it?",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colstrom/sig-proxy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colstrom/sig-proxy/issues"
+  },
+  "homepage": "https://github.com/colstrom/sig-proxy#readme",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.1.0"
+  },
+  "dependencies": {}
+}

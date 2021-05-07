@@ -44,7 +44,7 @@ pub struct RequiresHeaders {
 impl<State: Clone + Send + Sync + 'static> Middleware<State> for RequiresHeaders {
   async fn handle(&self, request: Request<State>, next: Next<'_, State>) -> Result {
     for header in &self.headers {
-      if !request.header(header).is_some() {
+      if request.header(header).is_none() {
         return Ok(Response::new(self.status));
       }
     }

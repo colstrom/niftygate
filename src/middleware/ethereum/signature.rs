@@ -1,13 +1,13 @@
 pub mod prelude {
+  pub use ethcontract::web3::{transports::WebSocket, Web3};
   pub use secp256k1::SecretKey;
   pub use tide::http::{headers::HeaderName, Url};
-  pub use web3::{transports::WebSocket, Web3};
 }
 
 use prelude::*;
 
+use ethcontract::web3::signing::SecretKeyRef;
 use tide::{utils::async_trait, Middleware, Next, Request, Result};
-use web3::signing::SecretKeyRef;
 
 #[derive(Clone)]
 pub struct ProvidesSignature {

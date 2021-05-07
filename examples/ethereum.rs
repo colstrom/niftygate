@@ -1,3 +1,4 @@
+use ethcontract::web3::transports::WebSocket;
 use sig_proxy::{
   middleware::{
     ethereum::{prelude::*, *},
@@ -7,7 +8,6 @@ use sig_proxy::{
 };
 use std::str::FromStr;
 use tide::{http::Url, log};
-use web3::transports::WebSocket;
 
 #[async_std::main]
 async fn main() -> WrappedResult<()> {

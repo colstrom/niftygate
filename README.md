@@ -6,6 +6,18 @@
 an AuthN layer for those services. It also has functionality for clients,
 automatically injecting signatures into requests.
 
+## What could I use this for?
+
+As of `0.2`, Smart Contracts are supported. These allow using tokens as transferrable licenses to gated services.
+
+Some examples:
+  - An OCI Registry that allowed licensed users to download an asset.
+  - An Issue Tracker that allowed project supporters to get priority support.
+  - A Project Roadmap that allowed customers proportional voting rights on feature development.
+  - A Deployment Pipeline that required at N-of-M authorized users to release to production.
+  - An App Store with decentralized licenses, where authors retain licensing control, not platforms.
+  - A Digital Library where lending is managed by tokens, and returns are enforced by Smart Contracts.
+
 ## Why does this exist?
 
 This is really two questions, so let's break that down...
@@ -240,9 +252,29 @@ x-web3-balance: ["100000000000000000000"]
 x-web3-signature: ["krpQZO9WpgAEso2uk6eAKDy29QjeVtr+gdDZ7iG4bFkYiTfNvTvU5l4bb2iod5F4Ab8a8tJqzXHSXLkyz9U/gRs="]
 ```
 
+## Smart Contracts
+
+### Embedded Presets
+
+To help you get started, `sig-proxy` embeds a set presets from the OpenZeppelin
+project. These address some of the more common use cases, and are (according to
+the OpenZeppelin documentation) production-ready.
+
+Currently, there are five presets included, along with utilities for deploying 
+and interacting with each. These can be found under the `contract` subcommand.
+
+To help you figure out which contract is appropriate, check the `guide` 
+subcommand. There you'll find an interactive program that will ask you a few 
+simple questions, and present you with a recommendation.
+
 ## Roadmap
 
 - 0.1 - Initial Release with Web3 Account Verification
+- 0.2 - Support Token Standards
+  - Support for [ERC-20 (Token Standard)](https://eips.ethereum.org/EIPS/eip-20)
+  - Support for [ERC-777 (Token Standard)](https://eips.ethereum.org/EIPS/eip-777)
+  - Support for [ERC-721 (Non-Fungible Token Standard)](https://eips.ethereum.org/EIPS/eip-721)
+  - Support for [ERC-1155 (Multi Token Standard)](https://eips.ethereum.org/EIPS/eip-1155)
 
 ## Wishlist (in no particular order)
 
@@ -256,20 +288,6 @@ Optional endpoint to serve an embedded script for in-browser support.
   - Use [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) for key storage.
   - Use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for header manipulation and auth flow.
 
-Support Token Standards
-  - Support for [ERC-20 (Token Standard)](https://eips.ethereum.org/EIPS/eip-20)
-  - Support for [ERC-777 (Token Standard)](https://eips.ethereum.org/EIPS/eip-777)
-  - Support for [ERC-721 (Non-Fungible Token Standard)](https://eips.ethereum.org/EIPS/eip-721)
-  - Support for [ERC-1155 (Multi Token Standard)](https://eips.ethereum.org/EIPS/eip-1155)
-
-These would allow using tokens as transferrable licenses to gated services. Some examples:
-  - An OCI Registry that allowed licensed users to download an asset.
-  - An Issue Tracker that allowed project supporters to get priority support.
-  - A Project Roadmap that allowed customers proportional voting rights on feature development.
-  - A Deployment Pipeline that required at N-of-M authorized users to release to production.
-  - An App Store with decentralized licenses, where authors retain licensing control, not platforms.
-  - A Digital Library where lending is managed by tokens, and returns are enforced by Smart Contracts.
-
 X509 Support
   - This would provide an alternative where a chain-of-trust model is preferred.
 
@@ -279,3 +297,6 @@ PGP Support
 ## License
 
 `sig-proxy` is available under the MIT License. See `LICENSE.txt` for the full text.
+
+`sig-proxy` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts). 
+These are also distributed under the terms of the MIT License [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.1.0/LICENSE).

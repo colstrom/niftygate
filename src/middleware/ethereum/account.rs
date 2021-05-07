@@ -1,13 +1,16 @@
 pub mod prelude {
+  pub use ethcontract::web3::{
+    transports::WebSocket,
+    types::{Address, Recovery},
+    Web3,
+  };
   pub use tide::http::{headers::HeaderName, StatusCode, Url};
-  pub use web3::{transports::WebSocket, Web3};
 }
 
 use prelude::*;
 
 use std::result;
 use tide::{utils::async_trait, Middleware, Next, Request, Response, Result};
-use web3::types::{Address, Recovery};
 
 #[derive(Clone)]
 pub struct ProvidesAccountVerification {
@@ -21,7 +24,7 @@ pub struct ProvidesAccountVerification {
 #[async_trait]
 impl<State: Clone + Send + Sync + 'static> Middleware<State> for ProvidesAccountVerification {
   async fn handle(&self, mut request: Request<State>, next: Next<'_, State>) -> Result {
-    let mut addresses: Vec<web3::types::H160> = vec![];
+    let mut addresses: Vec<Address> = vec![];
 
     match request.header(&self.signature_header) {
       None => return Ok(Response::new(self.status_code)),

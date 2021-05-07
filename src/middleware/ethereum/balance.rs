@@ -1,9 +1,13 @@
 pub mod prelude {
+  pub use ethcontract::web3::{
+    transports::WebSocket,
+    types::{Address, BlockNumber, U256},
+    Web3,
+  };
   pub use tide::http::{
     headers::{HeaderName, HeaderValue},
     StatusCode, Url,
   };
-  pub use web3::{transports::WebSocket, types::U256, Web3};
 }
 
 use prelude::*;
@@ -11,7 +15,6 @@ use prelude::*;
 use std::{result, str::FromStr};
 use strum::{AsRefStr, EnumString, EnumVariantNames};
 use tide::{utils::async_trait, Middleware, Next, Request, Response, Result};
-use web3::types::{Address, BlockNumber};
 
 #[derive(AsRefStr, Clone, Debug, EnumString, EnumVariantNames)]
 pub enum BalanceScale {
