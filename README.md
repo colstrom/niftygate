@@ -55,6 +55,12 @@ It can be deployed as a sidecar container, if you're into that sort of thing.
 cargo install sig-proxy
 ```
 
+Or, if you prefer Docker:
+
+```shell
+docker pull colstrom/sig-proxy:0.2.0
+```
+
 ## How do I use it?
 
 First, you'll need some sort of service you want to put the proxy in front of.
