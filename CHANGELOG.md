@@ -1,3 +1,16 @@
+# 0.3.0
+  - (breaking + library) changed type of ProvidesAccountVerification.web3 from Web3<WebSocket> to Web3<DynTransport>
+  - (breaking + library) changed type of BalanceRequirement.web3 from Web3<WebSocket> to Web3<DynTransport>
+  - (breaking + library) changed type of ProvidesSignature.web3 from Web3<WebSocket> to Web3<DynTransport>
+  - (internal) added command::contract::dump module for console output.
+  - (internal) added util::web3_from_url for converting URLs.
+  - (internal) everything uses DynTransport now.
+  - (internal) use exported web3 from ethcontract.
+  - (library) contract events are (de)serializable now.
+  - (commandline) added tools to query and stream events for deployed contracts.
+  - (dependency) add serde
+  - (dependency) add serde_json
+
 # 0.2.0
   - (fix) stopped counterintuitively parsing U256 CLI options as hex
   - (internal) added program to generate bindings for OpenZeppelin contracts

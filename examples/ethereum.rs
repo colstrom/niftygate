@@ -1,4 +1,4 @@
-use ethcontract::web3::transports::WebSocket;
+use ethcontract::{dyns::DynTransport, web3::transports::WebSocket};
 use sig_proxy::{
   middleware::{
     ethereum::{prelude::*, *},
@@ -16,26 +16,30 @@ async fn main() -> WrappedResult<()> {
   let secret_key_data = std::env::var("SECRET_KEY_DATA")?.as_bytes().to_vec();
   let rpc_url = Url::parse("ws://127.0.0.1:7545")?;
 
+  let inner = WebSocket::new(rpc_url.as_str()).await?;
+  let transport = DynTransport::new(inner);
+  let web3 = Web3::new(transport);
+
   let mut server = tide::new();
   server
     .with(ProvidesForwardedHeader)
     .with(ProvidesSignature {
       signature_header: HeaderName::from_string(String::from("X-Web3-Signature"))?,
       secret_key: SecretKey::from_slice(&secret_key_data)?,
-      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
+      web3: web3.clone(),
       challenge: b"totes-legit".to_vec(),
     })
     .with(ProvidesAccountVerification {
       signature_header: HeaderName::from_string(String::from("X-Web3-Signature"))?,
       address_header: HeaderName::from_string(String::from("X-Web3-Account-Address"))?,
       status_code: StatusCode::PaymentRequired,
-      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
+      web3: web3.clone(),
       challenge: b"totes-legit".to_vec(),
     })
     .with(ProvidesBalance {
       address_header: HeaderName::from_string(String::from("X-Web3-Account-Address"))?,
       balance_header: HeaderName::from_string(String::from("X-Web3-Account-Balance"))?,
-      web3: Web3::new(WebSocket::new(rpc_url.as_str()).await?),
+      web3: web3.clone(),
     })
     .with(
       RequiresBalance {

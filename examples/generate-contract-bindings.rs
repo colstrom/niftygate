@@ -62,6 +62,8 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Source
 fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
   match Builder::with_source(source.clone())
     .with_visibility_modifier(Some("pub"))
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
     .add_method_alias(
       String::from("safeTransferFrom(address,address,uint256,bytes)"),
       String::from("safe_transfer_from_with_data"),
@@ -72,6 +74,8 @@ fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
     Err(_) => Ok(
       Builder::with_source(source)
         .with_visibility_modifier(Some("pub"))
+        .add_event_derive("serde::Deserialize")
+        .add_event_derive("serde::Serialize")
         .generate()?,
     ),
   }

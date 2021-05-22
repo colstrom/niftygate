@@ -1,7 +1,10 @@
-use super::{CallReturn, SendReturn};
+use super::{dump, CallReturn, SendReturn};
 use crate::openzeppelin::contracts::token::erc20::presets::erc20_preset_minter_pauser::Contract;
+use crate::WrappedResult;
+
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
+  futures::StreamExt,
   Address, U256,
 };
 use structopt::StructOpt;
@@ -194,5 +197,130 @@ impl SendCommand {
       Self::Unpause
         => contract.unpause().into(),
     }
+  }
+}
+
+#[derive(Debug, StructOpt)]
+#[structopt(rename_all = "verbatim")]
+pub enum EventsCommand {
+  #[structopt(about = "Any events for this contract")]
+  All,
+  #[structopt(
+    about = "Emitted when the allowance of an account is set for another.",
+    long_about = "Emitted when the allowance of a <spender> for an <owner> is set by a call to {approve}. <value> is the new allowance."
+  )]
+  Approval,
+  #[structopt(
+    about = "Emitted when the pause is triggered.",
+    long_about = "Emitted when the pause is triggered by <account>."
+  )]
+  Paused,
+  #[structopt(
+    about = "Emitted when an admin role is replaced.",
+    long_about = "Emitted when <newAdminRole> is set as <role>'s admin role, replacing <previousAdminRole>"
+  )]
+  RoleAdminChanged,
+  #[structopt(
+    about = "Emitted when a role is granted.",
+    long_about = "Emitted when <account> is granted <role>."
+  )]
+  RoleGranted,
+  #[structopt(
+    about = "Emitted when a role is revoked.",
+    long_about = "Emitted when <account> is revoked <role>."
+  )]
+  RoleRevoked,
+  #[structopt(
+    about = "Emitted when tokens are moved from one account to another.",
+    long_about = "Emitted when <value> tokens are moved from one account (<from>) to another (<to>)."
+  )]
+  Transfer,
+  #[structopt(
+    about = "Emitted when the pause is lifted.",
+    long_about = "Emitted when the pause is lifted by <account>."
+  )]
+  Unpaused,
+}
+
+impl EventsCommand {
+  pub async fn execute(self, web3: &DynWeb3, address: Address, stream: bool) -> WrappedResult<()> {
+    let contract = Contract::at(web3, address);
+
+    if stream {
+      match self {
+        Self::All => contract.all_events().stream().for_each(dump::stream).await,
+        Self::Approval => {
+          contract
+            .events()
+            .approval()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Paused => {
+          contract
+            .events()
+            .paused()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleAdminChanged => {
+          contract
+            .events()
+            .role_admin_changed()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleGranted => {
+          contract
+            .events()
+            .role_granted()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleRevoked => {
+          contract
+            .events()
+            .role_revoked()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Transfer => {
+          contract
+            .events()
+            .transfer()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Unpaused => {
+          contract
+            .events()
+            .unpaused()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+      }
+    } else {
+      match self {
+        Self::All => dump::query(contract.all_events().query().await?),
+        Self::Approval => dump::query(contract.events().approval().query().await?),
+        Self::Paused => dump::query(contract.events().paused().query().await?),
+        Self::RoleAdminChanged => {
+          dump::query(contract.events().role_admin_changed().query().await?)
+        }
+        Self::RoleGranted => dump::query(contract.events().role_granted().query().await?),
+        Self::RoleRevoked => dump::query(contract.events().role_revoked().query().await?),
+        Self::Transfer => dump::query(contract.events().transfer().query().await?),
+        Self::Unpaused => dump::query(contract.events().unpaused().query().await?),
+      }
+    }
+
+    Ok(())
   }
 }

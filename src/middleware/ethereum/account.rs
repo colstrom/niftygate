@@ -1,8 +1,11 @@
 pub mod prelude {
-  pub use ethcontract::web3::{
-    transports::WebSocket,
-    types::{Address, Recovery},
-    Web3,
+  pub use ethcontract::{
+    dyns::DynWeb3,
+    web3::{
+      transports::WebSocket,
+      types::{Address, Recovery},
+      Web3,
+    },
   };
   pub use tide::http::{headers::HeaderName, StatusCode, Url};
 }
@@ -18,7 +21,7 @@ pub struct ProvidesAccountVerification {
   pub challenge: Vec<u8>,
   pub signature_header: HeaderName,
   pub status_code: StatusCode,
-  pub web3: Web3<WebSocket>,
+  pub web3: DynWeb3,
 }
 
 #[async_trait]

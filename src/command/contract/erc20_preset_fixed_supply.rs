@@ -1,7 +1,10 @@
-use super::{CallReturn, SendReturn};
+use super::{dump, CallReturn, SendReturn};
 use crate::openzeppelin::contracts::token::erc20::presets::erc20_preset_fixed_supply::Contract;
+use crate::WrappedResult;
+
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
+  futures::StreamExt,
   Address, U256,
 };
 use structopt::StructOpt;
@@ -181,5 +184,58 @@ impl SendCommand {
       Self::TransferFrom { sender, recipient, amount }
         => contract.transfer_from(sender, recipient, amount).into(),
     }
+  }
+}
+
+#[derive(Debug, StructOpt)]
+#[structopt(rename_all = "verbatim")]
+pub enum EventsCommand {
+  #[structopt(about = "Any events for this contract")]
+  All,
+  #[structopt(
+    about = "Emitted when the allowance of an account is set for another.",
+    long_about = "Emitted when the allowance of a <spender> for an <owner> is set by a call to {approve}. <value> is the new allowance."
+  )]
+  Approval,
+  #[structopt(
+    about = "Emitted when tokens are moved from one account to another.",
+    long_about = "Emitted when <value> tokens are moved from one account (<from>) to another (<to>)."
+  )]
+  Transfer,
+}
+
+impl EventsCommand {
+  pub async fn execute(self, web3: &DynWeb3, address: Address, stream: bool) -> WrappedResult<()> {
+    let contract = Contract::at(web3, address);
+
+    if stream {
+      match self {
+        Self::All => contract.all_events().stream().for_each(dump::stream).await,
+        Self::Approval => {
+          contract
+            .events()
+            .approval()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Transfer => {
+          contract
+            .events()
+            .transfer()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+      }
+    } else {
+      match self {
+        Self::All => dump::query(contract.all_events().query().await?),
+        Self::Approval => dump::query(contract.events().approval().query().await?),
+        Self::Transfer => dump::query(contract.events().transfer().query().await?),
+      }
+    }
+
+    Ok(())
   }
 }

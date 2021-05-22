@@ -1,14 +1,14 @@
 use crate::WrappedResult;
 use async_std::println;
 use ethcontract::{
-  dyns::{DynMethodBuilder, DynTransport, DynViewMethodBuilder, DynWeb3},
+  dyns::{DynMethodBuilder, DynViewMethodBuilder, DynWeb3},
   transaction::TransactionResult,
-  web3::transports::WebSocket,
-  Account, Address, Password, PrivateKey, Void, Web3, U256,
+  Account, Address, Password, PrivateKey, Void, U256,
 };
 use structopt::StructOpt;
 use tide::http::Url;
 
+mod dump;
 mod erc1155_preset_minter_pauser;
 mod erc20_preset_fixed_supply;
 mod erc20_preset_minter_pauser;
@@ -48,6 +48,7 @@ pub enum CommandVariant {
   Deploy(DeployCommand),
   Call(CallCommand),
   Send(SendCommand),
+  Events(EventsCommand),
 }
 
 impl Command {
@@ -63,15 +64,13 @@ impl Command {
       },
     };
 
-    let url = self.web3_rpc_url.as_str();
-    let inner = WebSocket::new(url).await?;
-    let transport = DynTransport::new(inner);
-    let web3 = Web3::new(transport);
+    let web3 = crate::util::web3_from_url(self.web3_rpc_url).await?;
 
     match self.variant {
       CommandVariant::Deploy(variant) => variant.execute(&web3, account).await,
       CommandVariant::Call(variant) => variant.execute(&web3, account).await,
       CommandVariant::Send(variant) => variant.execute(&web3, account).await,
+      CommandVariant::Events(variant) => variant.execute(&web3, account).await,
     }
   }
 }
@@ -244,6 +243,54 @@ pub enum SendVariant {
   ERC20PresetMinterPauser(erc20_preset_minter_pauser::SendCommand),
   ERC721PresetMinterPauserAutoId(erc721_preset_minter_pauser_auto_id::SendCommand),
   ERC777PresetFixedSupply(erc777_preset_fixed_supply::SendCommand),
+}
+
+#[derive(Debug, StructOpt)]
+pub struct EventsCommand {
+  #[structopt(env, long, value_name = "H160")]
+  pub(crate) contract_address: Address,
+
+  #[structopt(long, help = "Stream future events instead of querying past events.")]
+  stream: bool,
+
+  #[structopt(subcommand)]
+  variant: EventsVariant,
+}
+
+impl EventsCommand {
+  pub async fn execute(self, web3: &DynWeb3, _account: Account) -> WrappedResult<()> {
+    let address = self.contract_address;
+
+    match self.variant {
+      EventsVariant::ERC20PresetFixedSupply(variant) => {
+        variant.execute(web3, address, self.stream).await?
+      }
+      EventsVariant::ERC20PresetMinterPauser(variant) => {
+        variant.execute(web3, address, self.stream).await?
+      }
+      EventsVariant::ERC721PresetMinterPauserAutoId(variant) => {
+        variant.execute(web3, address, self.stream).await?
+      }
+      EventsVariant::ERC777PresetFixedSupply(variant) => {
+        variant.execute(web3, address, self.stream).await?
+      }
+      EventsVariant::ERC1155PresetMinterPauser(variant) => {
+        variant.execute(web3, address, self.stream).await?
+      }
+    };
+
+    Ok(())
+  }
+}
+
+#[derive(Debug, StructOpt)]
+#[structopt(rename_all = "verbatim")]
+pub enum EventsVariant {
+  ERC20PresetFixedSupply(erc20_preset_fixed_supply::EventsCommand),
+  ERC20PresetMinterPauser(erc20_preset_minter_pauser::EventsCommand),
+  ERC721PresetMinterPauserAutoId(erc721_preset_minter_pauser_auto_id::EventsCommand),
+  ERC777PresetFixedSupply(erc777_preset_fixed_supply::EventsCommand),
+  ERC1155PresetMinterPauser(erc1155_preset_minter_pauser::EventsCommand),
 }
 
 pub enum CallReturn {

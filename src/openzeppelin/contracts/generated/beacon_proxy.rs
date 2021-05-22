@@ -176,29 +176,29 @@ pub mod beacon_proxy {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq)]
-    pub struct BeaconUpgraded {
-      pub beacon: self::ethcontract::Address,
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Upgraded {
+      pub implementation: self::ethcontract::Address,
     }
-    impl BeaconUpgraded {
+    impl Upgraded {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`BeaconUpgraded(address)`"]
+      #[doc = "`Upgraded(address)`"]
       pub fn abi_signature() -> &'static str {
-        "BeaconUpgraded(address)"
+        "Upgraded(address)"
       }
     }
-    impl self::ethcontract::web3::contract::tokens::Detokenize for BeaconUpgraded {
+    impl self::ethcontract::web3::contract::tokens::Detokenize for Upgraded {
       fn from_tokens(
         tokens: Vec<self::ethcontract::common::abi::Token>,
       ) -> Result<Self, self::ethcontract::web3::contract::Error> {
@@ -209,11 +209,11 @@ pub mod beacon_proxy {
         }
         #[allow(unused_mut)]
         let mut tokens = tokens.into_iter();
-        let beacon = < self :: ethcontract :: Address as self :: ethcontract :: web3 :: contract :: tokens :: Tokenizable > :: from_token (tokens . next () . unwrap ()) ? ;
-        Ok(BeaconUpgraded { beacon })
+        let implementation = < self :: ethcontract :: Address as self :: ethcontract :: web3 :: contract :: tokens :: Tokenizable > :: from_token (tokens . next () . unwrap ()) ? ;
+        Ok(Upgraded { implementation })
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq)]
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct AdminChanged {
       pub previous_admin: self::ethcontract::Address,
       pub new_admin: self::ethcontract::Address,
@@ -255,29 +255,29 @@ pub mod beacon_proxy {
         })
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq)]
-    pub struct Upgraded {
-      pub implementation: self::ethcontract::Address,
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct BeaconUpgraded {
+      pub beacon: self::ethcontract::Address,
     }
-    impl Upgraded {
+    impl BeaconUpgraded {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Upgraded(address)`"]
+      #[doc = "`BeaconUpgraded(address)`"]
       pub fn abi_signature() -> &'static str {
-        "Upgraded(address)"
+        "BeaconUpgraded(address)"
       }
     }
-    impl self::ethcontract::web3::contract::tokens::Detokenize for Upgraded {
+    impl self::ethcontract::web3::contract::tokens::Detokenize for BeaconUpgraded {
       fn from_tokens(
         tokens: Vec<self::ethcontract::common::abi::Token>,
       ) -> Result<Self, self::ethcontract::web3::contract::Error> {
@@ -288,8 +288,8 @@ pub mod beacon_proxy {
         }
         #[allow(unused_mut)]
         let mut tokens = tokens.into_iter();
-        let implementation = < self :: ethcontract :: Address as self :: ethcontract :: web3 :: contract :: tokens :: Tokenizable > :: from_token (tokens . next () . unwrap ()) ? ;
-        Ok(Upgraded { implementation })
+        let beacon = < self :: ethcontract :: Address as self :: ethcontract :: web3 :: contract :: tokens :: Tokenizable > :: from_token (tokens . next () . unwrap ()) ? ;
+        Ok(BeaconUpgraded { beacon })
       }
     }
   }
@@ -307,13 +307,13 @@ pub mod beacon_proxy {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
-      self::event_builders::BeaconUpgradedBuilder(
+    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
+      self::event_builders::UpgradedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
           ]))
           .expect("generated event filter"),
       )
@@ -331,13 +331,13 @@ pub mod beacon_proxy {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
-      self::event_builders::UpgradedBuilder(
+    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
+      self::event_builders::BeaconUpgradedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
           ]))
           .expect("generated event filter"),
       )
@@ -348,125 +348,6 @@ pub mod beacon_proxy {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
-    pub struct BeaconUpgradedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::BeaconUpgraded>,
-    );
-    impl BeaconUpgradedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the beacon event parameter."]
-      pub fn beacon(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::BeaconUpgraded>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::BeaconUpgraded>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
-    pub struct AdminChangedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
-    );
-    impl AdminChangedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
     pub struct UpgradedBuilder(
       #[doc = r" The inner event builder."]
@@ -532,6 +413,125 @@ pub mod beacon_proxy {
         (self.0).stream()
       }
     }
+    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
+    pub struct AdminChangedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
+    );
+    impl AdminChangedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
+    pub struct BeaconUpgradedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::BeaconUpgraded>,
+    );
+    impl BeaconUpgradedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the beacon event parameter."]
+      pub fn beacon(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::BeaconUpgraded>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::BeaconUpgraded>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
   }
   impl Contract {
     #[doc = r" Returns a log stream with all events."]
@@ -544,7 +544,7 @@ pub mod beacon_proxy {
     }
   }
   #[doc = r" A contract event."]
-  #[derive(Clone, Debug, Eq, PartialEq)]
+  #[derive(Clone, Debug, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
   pub enum Event {
     AdminChanged(self::event_data::AdminChanged),
     BeaconUpgraded(self::event_data::BeaconUpgraded),

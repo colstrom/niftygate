@@ -1,8 +1,9 @@
-use super::{CallReturn, SendReturn};
-use crate::command::HexData;
+use super::{dump, CallReturn, SendReturn};
 use crate::openzeppelin::contracts::token::erc1155::presets::erc1155_preset_minter_pauser::Contract;
+use crate::{command::HexData, WrappedResult};
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
+  futures::StreamExt,
   Address, U256,
 };
 use structopt::StructOpt;
@@ -199,5 +200,158 @@ impl SendCommand {
       Self::Unpause
         => contract.unpause().into(),
     }
+  }
+}
+
+#[derive(Debug, StructOpt)]
+#[structopt(rename_all = "verbatim")]
+pub enum EventsCommand {
+  #[structopt(about = "Any events for this contract")]
+  All,
+  #[structopt(
+    about = "Emitted when permission to transfer tokens is granted or revoked.",
+    long_about = "Emitted when <account> grants or revokes permission to <operator> to transfer their tokens, according to <approved>."
+  )]
+  ApprovalForAll,
+  #[structopt(
+    about = "Emitted when the pause is triggered.",
+    long_about = "Emitted when the pause is triggered by <account>."
+  )]
+  Paused,
+  #[structopt(
+    about = "Emitted when an admin role is replaced.",
+    long_about = "Emitted when <newAdminRole> is set as <role>'s admin role, replacing <previousAdminRole>"
+  )]
+  RoleAdminChanged,
+  #[structopt(
+    about = "Emitted when a role is granted.",
+    long_about = "Emitted when <account> is granted <role>."
+  )]
+  RoleGranted,
+  #[structopt(
+    about = "Emitted when a role is revoked.",
+    long_about = "Emitted when <account> is revoked <role>."
+  )]
+  RoleRevoked,
+  #[structopt(
+    about = "Equivalent to multiple {TransferSingle} events.",
+    long_about = "Equivalent to multiple {TransferSingle} events, where <operator>, <from> and <to> are the same for all transfers."
+  )]
+  TransferBatch,
+  #[structopt(
+    about = "Emitted when tokens are transferred.",
+    long_about = "Emitted when <value> tokens of token type <id> are transferred from <from> to <to> by <operator>."
+  )]
+  TransferSingle,
+  #[structopt(
+    about = "Emitted when the pause is lifted.",
+    long_about = "Emitted when the pause is lifted by <account>."
+  )]
+  Unpaused,
+  #[structopt(
+    about = "Emitted when URI changes for a token.",
+    long_about = "Emitted when the URI for token type <id> changes to <value>, if it is a non-programmatic URI."
+  )]
+  URI,
+}
+
+impl EventsCommand {
+  pub async fn execute(self, web3: &DynWeb3, address: Address, stream: bool) -> WrappedResult<()> {
+    let contract = Contract::at(web3, address);
+
+    if stream {
+      match self {
+        Self::All => contract.all_events().stream().for_each(dump::stream).await,
+        Self::ApprovalForAll => {
+          contract
+            .events()
+            .approval_for_all()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Paused => {
+          contract
+            .events()
+            .paused()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleAdminChanged => {
+          contract
+            .events()
+            .role_admin_changed()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleGranted => {
+          contract
+            .events()
+            .role_granted()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::RoleRevoked => {
+          contract
+            .events()
+            .role_revoked()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::TransferBatch => {
+          contract
+            .events()
+            .transfer_batch()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::TransferSingle => {
+          contract
+            .events()
+            .transfer_single()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::Unpaused => {
+          contract
+            .events()
+            .unpaused()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+        Self::URI => {
+          contract
+            .events()
+            .uri()
+            .stream()
+            .for_each(dump::stream)
+            .await
+        }
+      }
+    } else {
+      match self {
+        Self::All => dump::query(contract.all_events().query().await?),
+        Self::ApprovalForAll => dump::query(contract.events().approval_for_all().query().await?),
+        Self::Paused => dump::query(contract.events().paused().query().await?),
+        Self::RoleAdminChanged => {
+          dump::query(contract.events().role_admin_changed().query().await?)
+        }
+        Self::RoleGranted => dump::query(contract.events().role_granted().query().await?),
+        Self::RoleRevoked => dump::query(contract.events().role_revoked().query().await?),
+        Self::TransferBatch => dump::query(contract.events().transfer_batch().query().await?),
+        Self::TransferSingle => dump::query(contract.events().transfer_single().query().await?),
+        Self::Unpaused => dump::query(contract.events().unpaused().query().await?),
+        Self::URI => dump::query(contract.events().uri().query().await?),
+      }
+    }
+
+    Ok(())
   }
 }

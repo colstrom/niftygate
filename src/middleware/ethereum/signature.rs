@@ -1,5 +1,8 @@
 pub mod prelude {
-  pub use ethcontract::web3::{transports::WebSocket, Web3};
+  pub use ethcontract::{
+    dyns::DynWeb3,
+    web3::{transports::WebSocket, Web3},
+  };
   pub use secp256k1::SecretKey;
   pub use tide::http::{headers::HeaderName, Url};
 }
@@ -14,7 +17,7 @@ pub struct ProvidesSignature {
   pub challenge: Vec<u8>,
   pub secret_key: SecretKey,
   pub signature_header: HeaderName,
-  pub web3: Web3<WebSocket>,
+  pub web3: DynWeb3,
 }
 
 #[async_trait]

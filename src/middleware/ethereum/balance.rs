@@ -1,8 +1,11 @@
 pub mod prelude {
-  pub use ethcontract::web3::{
-    transports::WebSocket,
-    types::{Address, BlockNumber, U256},
-    Web3,
+  pub use ethcontract::{
+    dyns::DynWeb3,
+    web3::{
+      transports::WebSocket,
+      types::{Address, BlockNumber, U256},
+      Web3,
+    },
   };
   pub use tide::http::{
     headers::{HeaderName, HeaderValue},
@@ -58,7 +61,7 @@ pub enum BalanceRequirement {
 pub struct ProvidesBalance {
   pub address_header: HeaderName,
   pub balance_header: HeaderName,
-  pub web3: Web3<WebSocket>,
+  pub web3: DynWeb3,
 }
 
 #[async_trait]

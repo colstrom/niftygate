@@ -5,8 +5,6 @@ use crate::{
   },
   WrappedResult,
 };
-use ethcontract::dyns::DynTransport;
-use ethcontract::web3::transports::WebSocket;
 use tide::Server;
 
 pub struct ERC1155Config {
@@ -72,11 +70,13 @@ pub async fn server(config: Config) -> WrappedResult<Server<()>> {
   let mut server = tide::new();
   server.with(ProvidesForwardedHeader);
 
+  let web3 = crate::util::web3_from_url(config.web3_rpc_url).await?;
+
   if config.provides_signatures {
     server.with(ProvidesSignature {
       signature_header: config.signature_header.clone(),
       secret_key: config.secret_key.unwrap(),
-      web3: Web3::new(WebSocket::new(config.web3_rpc_url.as_str()).await?),
+      web3: web3.clone(),
       challenge: config.challenge.clone(),
     });
   }
@@ -86,7 +86,7 @@ pub async fn server(config: Config) -> WrappedResult<Server<()>> {
       signature_header: config.signature_header.clone(),
       address_header: config.address_header.clone(),
       status_code: StatusCode::PaymentRequired,
-      web3: Web3::new(WebSocket::new(config.web3_rpc_url.as_str()).await?),
+      web3: web3.clone(),
       challenge: config.challenge.clone(),
     });
   }
@@ -95,7 +95,7 @@ pub async fn server(config: Config) -> WrappedResult<Server<()>> {
     server.with(ProvidesBalance {
       address_header: config.address_header.clone(),
       balance_header: config.balance_header.clone(),
-      web3: Web3::new(WebSocket::new(config.web3_rpc_url.as_str()).await?),
+      web3: web3.clone(),
     });
   }
 
@@ -108,9 +108,6 @@ pub async fn server(config: Config) -> WrappedResult<Server<()>> {
       .scale(config.balance_scale.unwrap_or(BalanceScale::Gwei)),
     );
   }
-
-  let transport = DynTransport::new(WebSocket::new(config.web3_rpc_url.as_str()).await?);
-  let web3 = Web3::new(transport);
 
   if !config.erc1155.contract_address.is_zero() {
     if config.erc1155.provides_balances {

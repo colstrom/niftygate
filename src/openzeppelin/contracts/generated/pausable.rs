@@ -144,7 +144,7 @@ pub mod pausable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq)]
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Paused {
       pub account: self::ethcontract::Address,
     }
@@ -181,7 +181,7 @@ pub mod pausable {
         Ok(Paused { account })
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq)]
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Unpaused {
       pub account: self::ethcontract::Address,
     }
@@ -388,7 +388,7 @@ pub mod pausable {
     }
   }
   #[doc = r" A contract event."]
-  #[derive(Clone, Debug, Eq, PartialEq)]
+  #[derive(Clone, Debug, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
   pub enum Event {
     Paused(self::event_data::Paused),
     Unpaused(self::event_data::Unpaused),
