@@ -58,7 +58,7 @@ cargo install sig-proxy
 Or, if you prefer Docker:
 
 ```shell
-docker pull colstrom/sig-proxy:0.2.0
+docker pull colstrom/sig-proxy:0.3.0
 ```
 
 ## How do I use it?
@@ -281,6 +281,7 @@ simple questions, and present you with a recommendation.
   - Support for [ERC-777 (Token Standard)](https://eips.ethereum.org/EIPS/eip-777)
   - Support for [ERC-721 (Non-Fungible Token Standard)](https://eips.ethereum.org/EIPS/eip-721)
   - Support for [ERC-1155 (Multi Token Standard)](https://eips.ethereum.org/EIPS/eip-1155)
+- 0.3 - Observability for Smart Contracts
 
 ## Wishlist (in no particular order)
 
