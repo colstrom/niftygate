@@ -102,7 +102,8 @@ fn write_module(path: PathBuf, output_files: Vec<PathBuf>) -> std::io::Result<()
   mods.sort();
   uses.sort();
 
-  let contents = [mods.join("\n"), uses.join("\n")].join("\n\n");
+  let clippy = String::from("#![allow(clippy::all)]");
+  let contents = [clippy, mods.join("\n"), uses.join("\n")].join("\n\n");
   std::fs::write(path, contents)
 }
 

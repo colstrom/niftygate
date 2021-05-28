@@ -1,3 +1,9 @@
+# 0.3.1
+  - (commandline) added help text to the `events` subcommand.
+  - (lint) disabled clippy lints for generated code.
+  - (lint) replaced some `.and_then(|x| Ok(y))` with `.map(|x| y)`.
+  - (lint) stopped calling `clone()` on `Copy` types.
+
 # 0.3.0
   - (breaking + library) changed type of ProvidesAccountVerification.web3 from Web3<WebSocket> to Web3<DynTransport>
   - (breaking + library) changed type of BalanceRequirement.web3 from Web3<WebSocket> to Web3<DynTransport>

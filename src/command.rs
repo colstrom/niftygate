@@ -330,7 +330,7 @@ pub async fn run() -> WrappedResult<()> {
         ),
         contract_address: match erc1155_contract_address {
           Some(address) => address,
-          None => zero_address.clone(),
+          None => zero_address,
         },
         provides_balances: provides_erc1155_balance,
       };
@@ -340,7 +340,7 @@ pub async fn run() -> WrappedResult<()> {
         balance_requirement: balance_requirement_from(erc20_balance_minimum, erc20_balance_maximum),
         contract_address: match erc20_contract_address {
           Some(address) => address,
-          None => zero_address.clone(),
+          None => zero_address,
         },
         name_header: erc20_name_header,
         provides_balances: provides_erc20_balance,
@@ -357,7 +357,7 @@ pub async fn run() -> WrappedResult<()> {
         ),
         contract_address: match erc721_contract_address {
           Some(address) => address,
-          None => zero_address.clone(),
+          None => zero_address,
         },
         name_header: erc721_name_header,
         provides_balances: provides_erc721_balance,
@@ -374,7 +374,7 @@ pub async fn run() -> WrappedResult<()> {
         ),
         contract_address: match erc777_contract_address {
           Some(address) => address,
-          None => zero_address.clone(),
+          None => zero_address,
         },
         name_header: erc777_name_header,
         provides_balances: provides_erc777_balance,

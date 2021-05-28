@@ -58,7 +58,7 @@ cargo install sig-proxy
 Or, if you prefer Docker:
 
 ```shell
-docker pull colstrom/sig-proxy:0.3.0
+docker pull colstrom/sig-proxy:0.3.1
 ```
 
 ## How do I use it?
@@ -266,11 +266,11 @@ To help you get started, `sig-proxy` embeds a set presets from the OpenZeppelin
 project. These address some of the more common use cases, and are (according to
 the OpenZeppelin documentation) production-ready.
 
-Currently, there are five presets included, along with utilities for deploying 
+Currently, there are five presets included, along with utilities for deploying
 and interacting with each. These can be found under the `contract` subcommand.
 
-To help you figure out which contract is appropriate, check the `guide` 
-subcommand. There you'll find an interactive program that will ask you a few 
+To help you figure out which contract is appropriate, check the `guide`
+subcommand. There you'll find an interactive program that will ask you a few
 simple questions, and present you with a recommendation.
 
 ## Roadmap
@@ -305,5 +305,5 @@ PGP Support
 
 `sig-proxy` is available under the MIT License. See `LICENSE.txt` for the full text.
 
-`sig-proxy` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts). 
+`sig-proxy` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts).
 These are also distributed under the terms of the MIT License [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.1.0/LICENSE).

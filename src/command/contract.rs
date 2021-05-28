@@ -146,7 +146,7 @@ impl CallCommand {
         .from(account)
         .call()
         .await
-        .and_then(|op| Ok(format!("{:?}", op)))?,
+        .map(|address| format!("{:?}", address))?,
       CallReturn::Bool(method) => method.from(account).call().await?.to_string(),
       CallReturn::String(method) => method.from(account).call().await?.to_string(),
       CallReturn::U256(method) => method.from(account).call().await?.to_string(),
@@ -171,7 +171,7 @@ impl CallCommand {
         .from(account)
         .call()
         .await
-        .and_then(|op| Ok(format!("{:?}", op)))?,
+        .map(|void| format!("{:?}", void))?,
     };
 
     println!("{}", result).await;
@@ -246,6 +246,7 @@ pub enum SendVariant {
 }
 
 #[derive(Debug, StructOpt)]
+#[structopt(about = "Reads the events for a deployed contract, returns JSON.")]
 pub struct EventsCommand {
   #[structopt(env, long, value_name = "H160")]
   pub(crate) contract_address: Address,

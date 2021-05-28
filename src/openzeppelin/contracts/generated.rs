@@ -1,3 +1,5 @@
+#![allow(clippy::all)]
+
 pub mod access_control;
 pub mod access_control_enumerable;
 pub mod address;
