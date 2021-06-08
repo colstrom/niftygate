@@ -4,7 +4,7 @@ use crate::{command::HexData, WrappedResult};
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
   futures::StreamExt,
-  Address, U256,
+  Address, Bytes, U256,
 };
 use structopt::StructOpt;
 
@@ -93,23 +93,23 @@ impl CallCommand {
     let contract = Contract::at(web3, address);
     match self {
       Self::Allowance { holder, spender }
-        => contract.allowance(holder, spender).view().into(),
+        => contract.allowance(holder, spender).into(),
       Self::BalanceOf { token_holder }
-        => contract.balance_of(token_holder).view().into(),
+        => contract.balance_of(token_holder).into(),
       Self::Decimals
-        => contract.decimals().view().into(),
+        => contract.decimals().into(),
       Self::DefaultOperators
-        => contract.default_operators().view().into(),
+        => contract.default_operators().into(),
       Self::Granularity
-        => contract.granularity().view().into(),
+        => contract.granularity().into(),
       Self::IsOperatorFor { operator, token_holder }
-        => contract.is_operator_for(operator, token_holder).view().into(),
+        => contract.is_operator_for(operator, token_holder).into(),
       Self::Name
-        => contract.name().view().into(),
+        => contract.name().into(),
       Self::Symbol
-        => contract.symbol().view().into(),
+        => contract.symbol().into(),
       Self::TotalSupply
-        => contract.total_supply().view().into(),
+        => contract.total_supply().into(),
     }
   }
 }
@@ -222,15 +222,15 @@ impl SendCommand {
       Self::AuthorizeOperator { operator }
         => contract.authorize_operator(operator).into(),
       Self::Burn { amount, data }
-        => contract.burn(amount, data.0).into(),
+        => contract.burn(amount, Bytes(data.0)).into(),
       Self::OperatorBurn { account, amount, data, operator_data }
-        => contract.operator_burn(account, amount, data.0, operator_data.0).into(),
+        => contract.operator_burn(account, amount, Bytes(data.0), Bytes(operator_data.0)).into(),
       Self::OperatorSend { sender, recipient, amount, data, operator_data }
-        => contract.operator_send(sender, recipient, amount, data.0, operator_data.0).into(),
+        => contract.operator_send(sender, recipient, amount, Bytes(data.0), Bytes(operator_data.0)).into(),
       Self::RevokeOperator { operator }
         => contract.revoke_operator(operator).into(),
       Self::Send { recipient, amount, data }
-        => contract.send(recipient, amount, data.0).into(),
+        => contract.send(recipient, amount, Bytes(data.0)).into(),
       Self::Transfer { recipient, amount }
         => contract.transfer(recipient, amount).into(),
       Self::TransferFrom { holder, recipient, amount }

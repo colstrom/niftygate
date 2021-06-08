@@ -23,7 +23,7 @@ pub mod ierc777_recipient {
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
-    #[doc = r" Note that this does not verify that a contract with a maching"]
+    #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
     pub fn at<F, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
@@ -33,7 +33,6 @@ pub mod ierc777_recipient {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -56,7 +55,6 @@ pub mod ierc777_recipient {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -112,7 +110,7 @@ pub mod ierc777_recipient {
     }
   }
   impl Contract {
-    #[doc = r" Retrives a reference to type containing all the generated"]
+    #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
@@ -133,9 +131,9 @@ pub mod ierc777_recipient {
       from: self::ethcontract::Address,
       to: self::ethcontract::Address,
       amount: self::ethcontract::U256,
-      user_data: Vec<u8>,
-      operator_data: Vec<u8>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::Void> {
+      user_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+      operator_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
         .method(

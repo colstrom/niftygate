@@ -23,7 +23,7 @@ pub mod proxy {
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
-    #[doc = r" Note that this does not verify that a contract with a maching"]
+    #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
     pub fn at<F, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
@@ -33,7 +33,6 @@ pub mod proxy {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -56,7 +55,6 @@ pub mod proxy {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -118,10 +116,7 @@ pub mod proxy {
   impl Contract {
     #[doc = r" Returns a method builder to setup a call to a smart"]
     #[doc = r" contract's fallback function."]
-    pub fn fallback<D>(
-      &self,
-      data: D,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::Void>
+    pub fn fallback<D>(&self, data: D) -> self::ethcontract::dyns::DynMethodBuilder<()>
     where
       D: Into<Vec<u8>>,
     {

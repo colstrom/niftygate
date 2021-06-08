@@ -4,7 +4,7 @@ use crate::{command::HexData, WrappedResult};
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
   futures::StreamExt,
-  Address, U256,
+  Address, Bytes, U256,
 };
 use structopt::StructOpt;
 
@@ -69,15 +69,15 @@ impl CallCommand {
     let contract = Contract::at(web3, address);
     match self {
       Self::BalanceOf { account, id }
-        => contract.balance_of(account, id).view().into(),
+        => contract.balance_of(account, id).into(),
       Self::BalanceOfBatch { accounts, ids }
-        => contract.balance_of_batch(accounts, ids).view().into(),
+        => contract.balance_of_batch(accounts, ids).into(),
       Self::IsApprovedForAll { account, operator }
-        => contract.is_approved_for_all(account, operator).view().into(),
+        => contract.is_approved_for_all(account, operator).into(),
       Self::Paused
-        => contract.paused().view().into(),
+        => contract.paused().into(),
       Self::URI { p0 }
-        => contract.uri(p0).view().into(),
+        => contract.uri(p0).into(),
     }
   }
 }
@@ -186,15 +186,15 @@ impl SendCommand {
       Self::BurnBatch { account, ids, values }
         => contract.burn_batch(account, ids, values).into(),
       Self::Mint { to, id, amount, data }
-        => contract.mint(to, id, amount, data.0).into(),
+        => contract.mint(to, id, amount, Bytes(data.0)).into(),
       Self::MintBatch { to, ids, amounts, data }
-        => contract.mint_batch(to, ids, amounts, data.0).into(),
+        => contract.mint_batch(to, ids, amounts, Bytes(data.0)).into(),
       Self::Pause
         => contract.pause().into(),
       Self::SafeBatchTransferFrom { from, to, ids, amounts, data }
-        => contract.safe_batch_transfer_from(from, to, ids, amounts, data.0).into(),
+        => contract.safe_batch_transfer_from(from, to, ids, amounts, Bytes(data.0)).into(),
       Self::SafeTransferFrom { from, to, id, amount, data }
-        => contract.safe_transfer_from(from, to, id, amount, data.0).into(),
+        => contract.safe_transfer_from(from, to, id, amount, Bytes(data.0)).into(),
       Self::SetApprovalForAll { operator, approved }
         => contract.set_approval_for_all(operator, approved).into(),
       Self::Unpause

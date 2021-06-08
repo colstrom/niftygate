@@ -74,17 +74,17 @@ impl CallCommand {
     let contract = Contract::at(web3, address);
     match self {
       Self::Allowance { owner, spender }
-        => contract.allowance(owner, spender).view().into(),
+        => contract.allowance(owner, spender).into(),
       Self::BalanceOf { account }
-        => contract.balance_of(account).view().into(),
+        => contract.balance_of(account).into(),
       Self::Decimals
-        => contract.decimals().view().into(),
+        => contract.decimals().into(),
       Self::Name
-        => contract.name().view().into(),
+        => contract.name().into(),
       Self::Symbol
-        => contract.symbol().view().into(),
+        => contract.symbol().into(),
       Self::TotalSupply
-        => contract.total_supply().view().into(),
+        => contract.total_supply().into(),
     }
   }
 }

@@ -1,3 +1,12 @@
+# 0.4.0
+  - (breaking) - Contract methods that took Vec<u8> now take Bytes<Vec<u8>>
+  - (breaking) - ethcontract::Void was removed, replaced with ()
+  - (dependency) - ethcontract 0.11.3 -> 0.12.2
+  - (dependency) - ethcontract-generate 0.11.3 -> 0.12.2
+  - (dependency) - heck 0.3.2 -> 0.3.3
+  - (dependency) - strum 0.20.0 -> 0.21.0
+  - (dependency) - web3 0.15.0 -> 0.16.0
+
 # 0.3.1
   - (commandline) added help text to the `events` subcommand.
   - (lint) disabled clippy lints for generated code.

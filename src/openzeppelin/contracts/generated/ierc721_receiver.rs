@@ -23,7 +23,7 @@ pub mod ierc721_receiver {
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
-    #[doc = r" Note that this does not verify that a contract with a maching"]
+    #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
     pub fn at<F, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
@@ -33,7 +33,6 @@ pub mod ierc721_receiver {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -56,7 +55,6 @@ pub mod ierc721_receiver {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -112,7 +110,7 @@ pub mod ierc721_receiver {
     }
   }
   impl Contract {
-    #[doc = r" Retrives a reference to type containing all the generated"]
+    #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
@@ -132,8 +130,8 @@ pub mod ierc721_receiver {
       operator: self::ethcontract::Address,
       from: self::ethcontract::Address,
       token_id: self::ethcontract::U256,
-      data: Vec<u8>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<[u8; 4]> {
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 4]>> {
       self
         .instance
         .method([21, 11, 122, 2], (operator, from, token_id, data))

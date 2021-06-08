@@ -4,7 +4,7 @@ use crate::{command::HexData, WrappedResult};
 use ethcontract::{
   dyns::{DynDeployBuilder, DynWeb3},
   futures::StreamExt,
-  Address, U256,
+  Address, Bytes, U256,
 };
 use structopt::StructOpt;
 
@@ -104,27 +104,27 @@ impl CallCommand {
     let contract = Contract::at(web3, address);
     match self {
       Self::BalanceOf { owner }
-        => contract.balance_of(owner).view().into(),
+        => contract.balance_of(owner).into(),
       Self::GetApproved { token_id }
-        => contract.get_approved(token_id).view().into(),
+        => contract.get_approved(token_id).into(),
       Self::IsApprovedForAll { owner, operator }
-        => contract.is_approved_for_all(owner, operator).view().into(),
+        => contract.is_approved_for_all(owner, operator).into(),
       Self::Name
-        => contract.name().view().into(),
+        => contract.name().into(),
       Self::OwnerOf { token_id }
-        => contract.owner_of(token_id).view().into(),
+        => contract.owner_of(token_id).into(),
       Self::Paused
-        => contract.paused().view().into(),
+        => contract.paused().into(),
       Self::Symbol
-        => contract.symbol().view().into(),
+        => contract.symbol().into(),
       Self::TokenByIndex { index }
-        => contract.token_by_index(index).view().into(),
+        => contract.token_by_index(index).into(),
       Self::TokenOfOwnerByIndex { owner, index }
-        => contract.token_of_owner_by_index(owner, index).view().into(),
+        => contract.token_of_owner_by_index(owner, index).into(),
       Self::TokenURI { token_id }
-        => contract.token_uri(token_id).view().into(),
+        => contract.token_uri(token_id).into(),
       Self::TotalSupply
-        => contract.total_supply().view().into(),
+        => contract.total_supply().into(),
     }
   }
 }
@@ -216,7 +216,7 @@ impl SendCommand {
       Self::SafeTransferFrom { from, to, token_id, data }
         => match data {
           Some(data)
-            => contract.safe_transfer_from_with_data(from, to, token_id, data.0).into(),
+            => contract.safe_transfer_from_with_data(from, to, token_id, Bytes(data.0)).into(),
           None
             => contract.safe_transfer_from(from, to, token_id).into(),
         }

@@ -23,7 +23,7 @@ pub mod reentrancy_guard {
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
-    #[doc = r" Note that this does not verify that a contract with a maching"]
+    #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
     pub fn at<F, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
@@ -33,7 +33,6 @@ pub mod reentrancy_guard {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {
@@ -56,7 +55,6 @@ pub mod reentrancy_guard {
       F: std::future::Future<
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
-        + Unpin
         + 'static,
       T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
     {

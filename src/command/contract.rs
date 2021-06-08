@@ -3,7 +3,7 @@ use async_std::println;
 use ethcontract::{
   dyns::{DynMethodBuilder, DynViewMethodBuilder, DynWeb3},
   transaction::TransactionResult,
-  Account, Address, Password, PrivateKey, Void, U256,
+  Account, Address, Password, PrivateKey, U256,
 };
 use structopt::StructOpt;
 use tide::http::Url;
@@ -302,7 +302,7 @@ pub enum CallReturn {
   U8(DynViewMethodBuilder<u8>),
   VecOfAddress(DynViewMethodBuilder<Vec<Address>>),
   VecOfU256(DynViewMethodBuilder<Vec<U256>>),
-  Void(DynViewMethodBuilder<Void>),
+  Void(DynViewMethodBuilder<()>),
 }
 
 impl From<DynViewMethodBuilder<Address>> for CallReturn {
@@ -347,8 +347,8 @@ impl From<DynViewMethodBuilder<Vec<U256>>> for CallReturn {
   }
 }
 
-impl From<DynViewMethodBuilder<Void>> for CallReturn {
-  fn from(builder: DynViewMethodBuilder<Void>) -> Self {
+impl From<DynViewMethodBuilder<()>> for CallReturn {
+  fn from(builder: DynViewMethodBuilder<()>) -> Self {
     Self::Void(builder)
   }
 }
@@ -366,12 +366,12 @@ where
 }
 
 pub enum SendReturn {
-  Void(DynMethodBuilder<Void>),
+  Void(DynMethodBuilder<()>),
   Bool(DynMethodBuilder<bool>),
 }
 
-impl From<DynMethodBuilder<Void>> for SendReturn {
-  fn from(builder: DynMethodBuilder<Void>) -> Self {
+impl From<DynMethodBuilder<()>> for SendReturn {
+  fn from(builder: DynMethodBuilder<()>) -> Self {
     Self::Void(builder)
   }
 }

@@ -24,7 +24,7 @@ pub mod interfaces {
 
 pub mod metatx {
   pub use crate::openzeppelin::contracts::generated::erc2771_context::*;
-  // pub use crate::openzeppelin::contracts::generated::minimal_forwarder::*;
+  pub use crate::openzeppelin::contracts::generated::minimal_forwarder::*;
 }
 
 pub mod proxy {
