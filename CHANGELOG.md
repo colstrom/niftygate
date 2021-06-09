@@ -1,3 +1,7 @@
+# 0.5.0
+  - (internal) added support for upgradeable contracts to generator.
+  - (library) added generated bindings for upgradeable OpenZeppelin contracts.
+
 # 0.4.1
   - (fix) clearer error message when asked to provide signatures, but no secret key is given.
 

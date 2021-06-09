@@ -1,6 +1,6 @@
 [package]
 name = "sig-proxy"
-version = "0.4.1"
+version = "0.5.0"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"

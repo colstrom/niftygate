@@ -7,7 +7,10 @@
 
 use ethcontract_generate::{Builder, ContractBindings, Source};
 use heck::SnakeCase;
-use std::path::{Path, PathBuf};
+use std::{
+  ffi::OsStr,
+  path::{Path, PathBuf},
+};
 
 pub type WrappedError = Box<dyn std::error::Error>;
 pub type WrappedResult<T> = std::result::Result<T, WrappedError>;
@@ -110,11 +113,11 @@ fn write_module(path: PathBuf, output_files: Vec<PathBuf>) -> std::io::Result<()
 // This makes no attempts to preserve modifications or anything. It will
 // blithely stomp all over anything in the "generated" directory, because
 // that words have meanings, and that directory has that name for a reason.
-fn main() -> WrappedResult<()> {
-  let input_dir = Path::new("node_modules/@openzeppelin/contracts/build/contracts").to_path_buf();
+fn generate<T: AsRef<OsStr>>(input: T, output: T) -> WrappedResult<()> {
+  let input_dir = Path::new(input.as_ref()).to_path_buf();
   let sources = sources(input_dir)?;
 
-  let output_base = Path::new("src/openzeppelin/contracts");
+  let output_base = Path::new(output.as_ref());
   let output_file = output_base.join("generated.rs");
   let output_dir = output_base.join("generated");
   if !output_dir.exists() {
@@ -143,6 +146,19 @@ fn main() -> WrappedResult<()> {
   output_files.sort();
 
   write_module(output_file, output_files)?;
+
+  Ok(())
+}
+
+fn main() -> WrappedResult<()> {
+  generate(
+    "node_modules/@openzeppelin/contracts/build/contracts",
+    "src/openzeppelin/contracts",
+  )?;
+  generate(
+    "node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
+    "src/openzeppelin/contracts_upgradeable",
+  )?;
 
   Ok(())
 }
