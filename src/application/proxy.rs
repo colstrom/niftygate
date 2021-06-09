@@ -75,7 +75,9 @@ pub async fn server(config: Config) -> WrappedResult<Server<()>> {
   if config.provides_signatures {
     server.with(ProvidesSignature {
       signature_header: config.signature_header.clone(),
-      secret_key: config.secret_key.unwrap(),
+      secret_key: config
+        .secret_key
+        .expect("Cannot provide signatures without a secret key!"),
       web3: web3.clone(),
       challenge: config.challenge.clone(),
     });

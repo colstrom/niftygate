@@ -1,3 +1,6 @@
+# 0.4.1
+  - (fix) clearer error message when asked to provide signatures, but no secret key is given.
+
 # 0.4.0
   - (breaking) - Contract methods that took Vec<u8> now take Bytes<Vec<u8>>
   - (breaking) - ethcontract::Void was removed, replaced with ()
