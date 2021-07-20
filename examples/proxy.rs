@@ -1,4 +1,4 @@
-use sig_proxy::{middleware::prelude::*, middleware::*};
+use niftygate::{middleware::prelude::*, middleware::*};
 use tide::log;
 
 type WrappedError = Box<dyn std::error::Error>;

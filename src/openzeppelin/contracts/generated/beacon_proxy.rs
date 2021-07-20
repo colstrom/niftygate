@@ -14,7 +14,7 @@ pub mod beacon_proxy {
       use self::ethcontract::Artifact;
       lazy_static! {
         pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"BeaconProxy\",\n  \"sourceName\": \"contracts/proxy/beacon/BeaconProxy.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"stateMutability\": \"payable\",\n      \"type\": \"constructor\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"previousAdmin\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"newAdmin\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"AdminChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"BeaconUpgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"implementation\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Upgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"fallback\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"receive\"\n    }\n  ],\n  \"bytecode\": \"0x608060405260405161098838038061098883398101604081905261002291610483565b61004d60017fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5161058e565b6000805160206109418339815191521461007757634e487b7160e01b600052600160045260246000fd5b6100838282600061008a565b50506105f3565b61009383610164565b6040516001600160a01b038416907f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e90600090a26000825111806100d45750805b1561015f5761015d836001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561011557600080fd5b505afa158015610129573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014d9190610469565b8361030460201b6100291760201c565b505b505050565b6101778161033060201b6100551760201c565b6101d65760405162461bcd60e51b815260206004820152602560248201527f455243313936373a206e657720626561636f6e206973206e6f74206120636f6e6044820152641d1c9858dd60da1b60648201526084015b60405180910390fd5b610259816001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561021257600080fd5b505afa158015610226573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061024a9190610469565b61033060201b6100551760201c565b6102be5760405162461bcd60e51b815260206004820152603060248201527f455243313936373a20626561636f6e20696d706c656d656e746174696f6e206960448201526f1cc81b9bdd08184818dbdb9d1c9858dd60821b60648201526084016101cd565b806102e360008051602061094183398151915260001b61033a60201b61005b1760201c565b80546001600160a01b0319166001600160a01b039290921691909117905550565b606061032983836040518060600160405280602781526020016109616027913961033d565b9392505050565b803b15155b919050565b90565b606061034884610330565b6103a35760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084016101cd565b600080856001600160a01b0316856040516103be919061053f565b600060405180830381855af49150503d80600081146103f9576040519150601f19603f3d011682016040523d82523d6000602084013e6103fe565b606091505b50909250905061040f828286610419565b9695505050505050565b60608315610428575081610329565b8251156104385782518084602001fd5b8160405162461bcd60e51b81526004016101cd919061055b565b80516001600160a01b038116811461033557600080fd5b60006020828403121561047a578081fd5b61032982610452565b60008060408385031215610495578081fd5b61049e83610452565b60208401519092506001600160401b03808211156104ba578283fd5b818501915085601f8301126104cd578283fd5b8151818111156104df576104df6105dd565b604051601f8201601f19908116603f01168101908382118183101715610507576105076105dd565b8160405282815288602084870101111561051f578586fd5b6105308360208301602088016105b1565b80955050505050509250929050565b600082516105518184602087016105b1565b9190910192915050565b600060208252825180602084015261057a8160408501602087016105b1565b601f01601f19169190910160400192915050565b6000828210156105ac57634e487b7160e01b81526011600452602481fd5b500390565b60005b838110156105cc5781810151838201526020016105b4565b8381111561015d5750506000910152565b634e487b7160e01b600052604160045260246000fd5b61033f806106026000396000f3fe60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a26469706673582212209b57a7249e44362f1d8b8dde751b67a74386def8af392f9a6c3baa5dc1b5006564736f6c63430008030033a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564\",\n  \"deployedBytecode\": \"0x60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a26469706673582212209b57a7249e44362f1d8b8dde751b67a74386def8af392f9a6c3baa5dc1b5006564736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
+          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"BeaconProxy\",\n  \"sourceName\": \"contracts/proxy/beacon/BeaconProxy.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"stateMutability\": \"payable\",\n      \"type\": \"constructor\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"previousAdmin\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"newAdmin\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"AdminChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"BeaconUpgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"implementation\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Upgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"fallback\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"receive\"\n    }\n  ],\n  \"bytecode\": \"0x608060405260405161098838038061098883398101604081905261002291610483565b61004d60017fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5161058e565b6000805160206109418339815191521461007757634e487b7160e01b600052600160045260246000fd5b6100838282600061008a565b50506105f3565b61009383610164565b6040516001600160a01b038416907f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e90600090a26000825111806100d45750805b1561015f5761015d836001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561011557600080fd5b505afa158015610129573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014d9190610469565b8361030460201b6100291760201c565b505b505050565b6101778161033060201b6100551760201c565b6101d65760405162461bcd60e51b815260206004820152602560248201527f455243313936373a206e657720626561636f6e206973206e6f74206120636f6e6044820152641d1c9858dd60da1b60648201526084015b60405180910390fd5b610259816001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561021257600080fd5b505afa158015610226573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061024a9190610469565b61033060201b6100551760201c565b6102be5760405162461bcd60e51b815260206004820152603060248201527f455243313936373a20626561636f6e20696d706c656d656e746174696f6e206960448201526f1cc81b9bdd08184818dbdb9d1c9858dd60821b60648201526084016101cd565b806102e360008051602061094183398151915260001b61033a60201b61005b1760201c565b80546001600160a01b0319166001600160a01b039290921691909117905550565b606061032983836040518060600160405280602781526020016109616027913961033d565b9392505050565b803b15155b919050565b90565b606061034884610330565b6103a35760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084016101cd565b600080856001600160a01b0316856040516103be919061053f565b600060405180830381855af49150503d80600081146103f9576040519150601f19603f3d011682016040523d82523d6000602084013e6103fe565b606091505b50909250905061040f828286610419565b9695505050505050565b60608315610428575081610329565b8251156104385782518084602001fd5b8160405162461bcd60e51b81526004016101cd919061055b565b80516001600160a01b038116811461033557600080fd5b60006020828403121561047a578081fd5b61032982610452565b60008060408385031215610495578081fd5b61049e83610452565b60208401519092506001600160401b03808211156104ba578283fd5b818501915085601f8301126104cd578283fd5b8151818111156104df576104df6105dd565b604051601f8201601f19908116603f01168101908382118183101715610507576105076105dd565b8160405282815288602084870101111561051f578586fd5b6105308360208301602088016105b1565b80955050505050509250929050565b600082516105518184602087016105b1565b9190910192915050565b600060208252825180602084015261057a8160408501602087016105b1565b601f01601f19169190910160400192915050565b6000828210156105ac57634e487b7160e01b81526011600452602481fd5b500390565b60005b838110156105cc5781810151838201526020016105b4565b8381111561015d5750506000910152565b634e487b7160e01b600052604160045260246000fd5b61033f806106026000396000f3fe60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a264697066735822122038445ef595f361061f8278ba6400a4de8fa1f88199a1e2e0f7d7c00de94fd3df64736f6c63430008030033a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564\",\n  \"deployedBytecode\": \"0x60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a264697066735822122038445ef595f361061f8278ba6400a4de8fa1f88199a1e2e0f7d7c00de94fd3df64736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
           artifact
         };
       }
@@ -172,6 +172,39 @@ pub mod beacon_proxy {
   pub mod event_data {
     use super::ethcontract;
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Upgraded {
+      pub implementation: self::ethcontract::Address,
+    }
+    impl Upgraded {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Upgraded(address)`"]
+      pub fn abi_signature() -> &'static str {
+        "Upgraded(address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Upgraded {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (implementation,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Upgraded { implementation })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct AdminChanged {
       pub previous_admin: self::ethcontract::Address,
       pub new_admin: self::ethcontract::Address,
@@ -241,39 +274,6 @@ pub mod beacon_proxy {
         unimplemented!("events are only decoded, not encoded")
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Upgraded {
-      pub implementation: self::ethcontract::Address,
-    }
-    impl Upgraded {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Upgraded(address)`"]
-      pub fn abi_signature() -> &'static str {
-        "Upgraded(address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Upgraded {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (implementation,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Upgraded { implementation })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -288,6 +288,18 @@ pub mod beacon_proxy {
     instance: &'a self::ethcontract::dyns::DynInstance,
   }
   impl Events<'_> {
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
+      self::event_builders::UpgradedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
     #[doc = r" Generated by `ethcontract`."]
     pub fn admin_changed(&self) -> self::event_builders::AdminChangedBuilder {
       self::event_builders::AdminChangedBuilder(
@@ -312,24 +324,77 @@ pub mod beacon_proxy {
           .expect("generated event filter"),
       )
     }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
-      self::event_builders::UpgradedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
+    pub struct UpgradedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Upgraded>,
+    );
+    impl UpgradedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the implementation event parameter."]
+      pub fn implementation(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Upgraded>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Upgraded>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
     pub struct AdminChangedBuilder(
       #[doc = r" The inner event builder."]
@@ -443,71 +508,6 @@ pub mod beacon_proxy {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::BeaconUpgraded>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
-    pub struct UpgradedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Upgraded>,
-    );
-    impl UpgradedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the implementation event parameter."]
-      pub fn implementation(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Upgraded>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Upgraded>,
           self::ethcontract::errors::EventError,
         >,
       > {

@@ -1,12 +1,12 @@
 [package]
-name = "sig-proxy"
-version = "0.5.0"
+name = "niftygate"
+version = "0.6.0"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
-repository = "https://github.com/colstrom/sig-proxy/"
-documentation = "https://docs.rs/sig-proxy/"
-description = "Signature-Based (Web3) Authenticating Proxy"
+repository = "https://github.com/colstrom/niftygate/"
+documentation = "https://docs.rs/niftygate/"
+description = "Drop-in Proxy for Access Control via NFT Ownership"
 
 [dependencies]
 async-std = { version = "1.9.0", features = ["attributes"] }
@@ -17,10 +17,10 @@ ethcontract = { version = "0.12.2", default-features = false, features = ["deriv
 ethcontract-generate = "0.12.2"
 heck = "0.3.3"
 hex = "0.4.3"
-secp256k1 = "0.20.2"
+secp256k1 = "0.20.3"
 serde = { version = "1.0.126", features = ["derive"] }
 serde_json = "1.0.64"
-structopt = "0.3.21"
+structopt = "0.3.22"
 strum = { version = "0.21.0", features = ["derive"] }
 surf = { version = "2.2.0", default-features = false, features = ["middleware-logger", "encoding", "h1-client-rustls"] }
 tide = "0.16.0"

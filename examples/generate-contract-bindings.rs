@@ -106,7 +106,8 @@ fn write_module(path: PathBuf, output_files: Vec<PathBuf>) -> std::io::Result<()
   uses.sort();
 
   let clippy = String::from("#![allow(clippy::all)]");
-  let contents = [clippy, mods.join("\n"), uses.join("\n")].join("\n\n");
+  let mut contents = [clippy, mods.join("\n"), uses.join("\n")].join("\n\n");
+  contents.push_str("\n");
   std::fs::write(path, contents)
 }
 
@@ -158,6 +159,10 @@ fn main() -> WrappedResult<()> {
   generate(
     "node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
     "src/openzeppelin/contracts_upgradeable",
+  )?;
+  generate(
+    "legacy/node_modules/@openzeppelin/contracts/build/contracts",
+    "src/openzeppelin/contracts_2x",
   )?;
 
   Ok(())

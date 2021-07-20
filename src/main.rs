@@ -1,6 +1,6 @@
-use sig_proxy::WrappedResult;
+use niftygate::WrappedResult;
 
 #[async_std::main]
 async fn main() -> WrappedResult<()> {
-  sig_proxy::command::run().await
+  niftygate::command::run().await
 }

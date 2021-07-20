@@ -1,8 +1,8 @@
-# sig-proxy - Signature-Based Authenticating Proxy
+# niftygate - Signature-Based Authenticating Proxy
 
 ## What is it?
 
-`sig-proxy` is a proxy for HTTP services, that validates signatures, providing
+`niftygate` is a proxy for HTTP services, that validates signatures, providing
 an AuthN layer for those services. It also has functionality for clients,
 automatically injecting signatures into requests.
 
@@ -52,7 +52,7 @@ It can be deployed as a sidecar container, if you're into that sort of thing.
 ## How do I obtain this majestic tool?
 
 ```shell
-cargo install sig-proxy
+cargo install niftygate
 ```
 
 Or, if you prefer Docker:
@@ -65,18 +65,18 @@ docker pull colstrom/sig-proxy:0.3.1
 
 First, you'll need some sort of service you want to put the proxy in front of.
 
-For demonstration and development purposes, `sig-proxy` includes an embedded
+For demonstration and development purposes, `niftygate` includes an embedded
 sample service that prints the request headers in the response body.
 
 ```shell
-$ sig-proxy demo
+$ niftygate demo
 tide::log Logger started
     level DEBUG
 tide::server Server listening on http://127.0.0.1:8080
 ```
 
 Next, you'll need to have an Ethereum JSON-RPC (Web3) service available for
-`sig-proxy` to interact with. [Ganache](https://www.trufflesuite.com/ganache)
+`niftygate` to interact with. [Ganache](https://www.trufflesuite.com/ganache)
 is an excellent option for local use, so the rest of this document assumes that.
 
 First, pick the address you want to use for signing requests:
@@ -100,13 +100,13 @@ export SECRET_KEY_DATA=PUT_THE_DATA_HERE
 Now you're ready to run it! Let's have a look at the help:
 
 ```shell
-$ sig-proxy web3 --help
+$ niftygate web3 --help
 
-sig-proxy-web3 0.1.0
+niftygate-web3 0.1.0
 Runs the proxy service
 
 USAGE:
-    sig-proxy web3 [FLAGS] [OPTIONS]
+    niftygate web3 [FLAGS] [OPTIONS]
 
 FLAGS:
     -h, --help                             Prints help information
@@ -135,10 +135,10 @@ enable at least one of them. Let's focus on two scenarios.
 
 ### Scenario 1 - Providing Signatures
 
-In this mode, `sig-proxy` adds a signature to every request it handles.
+In this mode, `niftygate` adds a signature to every request it handles.
 
 ```shell
-$ sig-proxy web3 --provides-signatures
+$ niftygate web3 --provides-signatures
 tide::log Logger started
     level DEBUG
 tracing::span new
@@ -161,7 +161,7 @@ This signature is added to the request using the header given by `--signature-he
 
 ### Scenario 2 - Providing Account Verification
 
-In this mode, `sig-proxy` expects requests to contain a signature header, and
+In this mode, `niftygate` expects requests to contain a signature header, and
 will reject requests that do not contain one. These headers will be verified,
 and the address used to sign them will be added to each request it handles.
 
@@ -170,7 +170,7 @@ challenge phrase that is known to both signer and verifier, and the signing
 address is recoverable from a valid signature.
 
 ```shell
-$ sig-proxy web3 --provides-account-verification
+$ niftygate web3 --provides-account-verification
 tide::log Logger started
     level DEBUG
 tracing::span new
@@ -184,16 +184,16 @@ tide::server Server listening on http://0.0.0.0:8000
 If the signature is valid, the address is added to the request using the header
 given by `--address-header`. It is assumed that the backend knows what to do
 with this header. For instance, you could use the `X-Remote-User` header to
-integrate `sig-proxy` with [Dex](https://dexidp.io/docs/connectors/authproxy/).
+integrate `niftygate` with [Dex](https://dexidp.io/docs/connectors/authproxy/).
 
 ### Scenario 3 - Providing Account Balances
 
-In this mode, `sig-proxy` expects requests to contain an account header, and
+In this mode, `niftygate` expects requests to contain an account header, and
 will reject requests that to not contain one. The balance of the address given
 in this header will be added to each request it handles.
 
 ```shell
-$ sig-proxy web3 --provides-balances
+$ niftygate web3 --provides-balances
 tide::log Logger started
     level DEBUG
 tracing::span new
@@ -219,7 +219,7 @@ common folk if you were so inclined.
 
 The `--balance-unit` option can be used to conveniently scale the above limits.
 How many zeroes are there in a Gwei? No need to remember, just set
-`--balance-unit=Gwei` and `sig-proxy` will do the scaling internally. The
+`--balance-unit=Gwei` and `niftygate` will do the scaling internally. The
 balance header will still be given in Wei, though.
 
 ## Notes
@@ -262,7 +262,7 @@ x-web3-signature: ["krpQZO9WpgAEso2uk6eAKDy29QjeVtr+gdDZ7iG4bFkYiTfNvTvU5l4bb2io
 
 ### Embedded Presets
 
-To help you get started, `sig-proxy` embeds a set presets from the OpenZeppelin
+To help you get started, `niftygate` embeds a set presets from the OpenZeppelin
 project. These address some of the more common use cases, and are (according to
 the OpenZeppelin documentation) production-ready.
 
@@ -303,7 +303,7 @@ PGP Support
 
 ## License
 
-`sig-proxy` is available under the MIT License. See `LICENSE.txt` for the full text.
+`niftygate` is available under the MIT License. See `LICENSE.txt` for the full text.
 
-`sig-proxy` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts).
+`niftygate` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts).
 These are also distributed under the terms of the MIT License [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.1.0/LICENSE).

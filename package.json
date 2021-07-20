@@ -1,5 +1,5 @@
 {
-  "name": "sig-proxy",
+  "name": "niftygate",
   "version": "0.2.0",
   "description": "## What is it?",
   "main": "index.js",
@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colstrom/sig-proxy.git"
+    "url": "git+https://github.com/colstrom/niftygate.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/colstrom/sig-proxy/issues"
+    "url": "https://github.com/colstrom/niftygate/issues"
   },
-  "homepage": "https://github.com/colstrom/sig-proxy#readme",
+  "homepage": "https://github.com/colstrom/niftygate#readme",
   "devDependencies": {
-    "@openzeppelin/contracts": "^4.1.0",
-    "@openzeppelin/contracts-upgradeable": "^4.1.0"
+    "@openzeppelin/contracts": "^4.2.0",
+    "@openzeppelin/contracts-upgradeable": "^4.2.0"
   },
   "dependencies": {}
 }

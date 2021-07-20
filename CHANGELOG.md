@@ -1,3 +1,11 @@
+# 0.6.0
+  - (breaking) - renamed from sig-proxy to niftygate.
+  - (library) updated bindings for OpenZeppelin contracts to 4.2.0 - see [Changelog](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.2/CHANGELOG.md) for details.
+    - (deprecation) ERC20FlashMint no longer a draft extension.
+      - update import path by removing `draft::` to fix.
+  - (dependency) secp256k1 0.20.2 -> 0.20.3
+  - (dependency) structopt 0.3.21 -> 0.3.22
+
 # 0.5.0
   - (internal) added support for upgradeable contracts to generator.
   - (library) added generated bindings for upgradeable OpenZeppelin contracts.

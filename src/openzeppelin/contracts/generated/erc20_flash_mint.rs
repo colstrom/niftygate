@@ -14,7 +14,7 @@ pub mod erc20_flash_mint {
       use self::ethcontract::Artifact;
       lazy_static! {
         pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC20FlashMint\",\n  \"sourceName\": \"contracts/token/ERC20/extensions/draft-ERC20FlashMint.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Approval\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Transfer\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"allowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"approve\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"decimals\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"subtractedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"decreaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"flashFee\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"contract IERC3156FlashBorrower\",\n          \"name\": \"receiver\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"flashLoan\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"addedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"increaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"maxFlashLoan\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"name\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"symbol\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transfer\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"sender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transferFrom\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
+          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC20FlashMint\",\n  \"sourceName\": \"contracts/token/ERC20/extensions/ERC20FlashMint.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Approval\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Transfer\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"allowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"approve\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"decimals\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"subtractedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"decreaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"flashFee\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"contract IERC3156FlashBorrower\",\n          \"name\": \"receiver\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"flashLoan\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"addedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"increaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"token\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"maxFlashLoan\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"name\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"symbol\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transfer\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"sender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transferFrom\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
           artifact
         };
       }
@@ -125,73 +125,19 @@ pub mod erc20_flash_mint {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([24, 22, 13, 221], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
       self
         .instance
         .view_method([49, 60, 229, 103], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn flash_loan(
-      &self,
-      receiver: self::ethcontract::Address,
-      token: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([92, 255, 233, 222], (receiver, token, amount, data))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn max_flash_loan(
-      &self,
-      token: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([97, 50, 85, 171], (token,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([6, 253, 222, 3], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_from(
-      &self,
-      sender: self::ethcontract::Address,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([35, 184, 114, 221], (sender, recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn decrease_allowance(
-      &self,
-      spender: self::ethcontract::Address,
-      subtracted_value: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([164, 87, 194, 215], (spender, subtracted_value))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([112, 160, 130, 49], (account,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -217,6 +163,17 @@ pub mod erc20_flash_mint {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn decrease_allowance(
+      &self,
+      spender: self::ethcontract::Address,
+      subtracted_value: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([164, 87, 194, 215], (spender, subtracted_value))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn flash_fee(
       &self,
       token: self::ethcontract::Address,
@@ -225,6 +182,51 @@ pub mod erc20_flash_mint {
       self
         .instance
         .view_method([217, 217, 140, 228], (token, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([112, 160, 130, 49], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn max_flash_loan(
+      &self,
+      token: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([97, 50, 85, 171], (token,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn flash_loan(
+      &self,
+      receiver: self::ethcontract::Address,
+      token: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([92, 255, 233, 222], (receiver, token, amount, data))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn transfer_from(
+      &self,
+      sender: self::ethcontract::Address,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([35, 184, 114, 221], (sender, recipient, amount))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -239,22 +241,6 @@ pub mod erc20_flash_mint {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([24, 22, 13, 221], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn transfer(
       &self,
       recipient: self::ethcontract::Address,
@@ -263,6 +249,20 @@ pub mod erc20_flash_mint {
       self
         .instance
         .method([169, 5, 156, 187], (recipient, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([6, 253, 222, 3], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([149, 216, 155, 65], ())
         .expect("generated call")
     }
   }
@@ -276,6 +276,41 @@ pub mod erc20_flash_mint {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Transfer {
+      pub from: self::ethcontract::Address,
+      pub to: self::ethcontract::Address,
+      pub value: self::ethcontract::U256,
+    }
+    impl Transfer {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
+          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Transfer(address,address,uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "Transfer(address,address,uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Transfer {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (from, to, value) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Transfer { from, to, value })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Approval {
       pub owner: self::ethcontract::Address,
@@ -315,41 +350,6 @@ pub mod erc20_flash_mint {
         unimplemented!("events are only decoded, not encoded")
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Transfer {
-      pub from: self::ethcontract::Address,
-      pub to: self::ethcontract::Address,
-      pub value: self::ethcontract::U256,
-    }
-    impl Transfer {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
-          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Transfer(address,address,uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "Transfer(address,address,uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Transfer {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (from, to, value) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Transfer { from, to, value })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -365,18 +365,6 @@ pub mod erc20_flash_mint {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
-      self::event_builders::ApprovalBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
-            192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
     pub fn transfer(&self) -> self::event_builders::TransferBuilder {
       self::event_builders::TransferBuilder(
         self
@@ -388,12 +376,91 @@ pub mod erc20_flash_mint {
           .expect("generated event filter"),
       )
     }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
+      self::event_builders::ApprovalBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
+            192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
+    pub struct TransferBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
+    );
+    impl TransferBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the from event parameter."]
+      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = "Adds a filter for the to event parameter."]
+      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic1(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Transfer>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `Approval` events."]
     pub struct ApprovalBuilder(
       #[doc = r" The inner event builder."]
@@ -458,73 +525,6 @@ pub mod erc20_flash_mint {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::Approval>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
-    pub struct TransferBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
-    );
-    impl TransferBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the from event parameter."]
-      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = "Adds a filter for the to event parameter."]
-      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic1(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Transfer>,
           self::ethcontract::errors::EventError,
         >,
       > {

@@ -56,11 +56,16 @@ pub mod token {
     pub mod extensions {
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_burnable_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_capped_upgradeable::*;
+      pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_flash_mint_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_pausable_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_snapshot_upgradeable::*;
+      pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_votes_comp_upgradeable::*;
+      pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_votes_upgradeable::*;
+      pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_wrapper_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::ierc20_metadata_upgradeable::*;
 
       pub mod draft {
+        #[deprecated(since = "0.6.0", note = "no longer a draft extension")]
         pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_flash_mint_upgradeable::*;
         pub use crate::openzeppelin::contracts_upgradeable::generated::erc20_permit_upgradeable::*;
         pub use crate::openzeppelin::contracts_upgradeable::generated::ierc20_permit_upgradeable::*;
@@ -120,6 +125,7 @@ pub mod token {
     pub mod extensions {
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc1155_burnable_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::erc1155_pausable_upgradeable::*;
+      pub use crate::openzeppelin::contracts_upgradeable::generated::erc1155_supply_upgradeable::*;
       pub use crate::openzeppelin::contracts_upgradeable::generated::ierc1155_metadata_uri_upgradeable::*;
     }
 
@@ -177,6 +183,7 @@ pub mod utils {
   }
 
   pub mod structs {
+    pub use crate::openzeppelin::contracts_upgradeable::generated::bit_maps_upgradeable::*;
     pub use crate::openzeppelin::contracts_upgradeable::generated::enumerable_map_upgradeable::*;
     pub use crate::openzeppelin::contracts_upgradeable::generated::enumerable_set_upgradeable::*;
   }

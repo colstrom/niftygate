@@ -14,7 +14,7 @@ pub mod payment_splitter_upgradeable {
       use self::ethcontract::Artifact;
       lazy_static! {
         pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"PaymentSplitterUpgradeable\",\n  \"sourceName\": \"contracts/finance/PaymentSplitterUpgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"shares\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PayeeAdded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PaymentReceived\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PaymentReleased\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"index\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"payee\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"release\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"released\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"shares\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalReleased\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalShares\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"receive\"\n    }\n  ],\n  \"bytecode\": \"0x608060405234801561001057600080fd5b506105e5806100206000396000f3fe6080604052600436106100595760003560e01c806319165587146100a75780633a98ef39146100c95780638b83209b146100ed5780639852595c14610125578063ce7c2ac21461015b578063e33b7de314610191576100a2565b366100a2577f6ef95f06320e7a25a04a175ca677b7052bdd97131872c2192525a629f51be77033604080516001600160a01b0390921682523460208301520160405180910390a1005b600080fd5b3480156100b357600080fd5b506100c76100c23660046104d8565b6101a6565b005b3480156100d557600080fd5b506033545b6040519081526020015b60405180910390f35b3480156100f957600080fd5b5061010d6101083660046104fb565b61037c565b6040516001600160a01b0390911681526020016100e4565b34801561013157600080fd5b506100da6101403660046104d8565b6001600160a01b031660009081526036602052604090205490565b34801561016757600080fd5b506100da6101763660046104d8565b6001600160a01b031660009081526035602052604090205490565b34801561019d57600080fd5b506034546100da565b6001600160a01b03811660009081526035602052604090205461021f5760405162461bcd60e51b815260206004820152602660248201527f5061796d656e7453706c69747465723a206163636f756e7420686173206e6f2060448201526573686172657360d01b60648201526084015b60405180910390fd5b60006034544761022f9190610513565b6001600160a01b0383166000908152603660209081526040808320546033546035909352908320549394509192610266908561054b565b610270919061052b565b61027a919061056a565b9050806102dd5760405162461bcd60e51b815260206004820152602b60248201527f5061796d656e7453706c69747465723a206163636f756e74206973206e6f742060448201526a191d59481c185e5b595b9d60aa1b6064820152608401610216565b6001600160a01b038316600090815260366020526040902054610301908290610513565b6001600160a01b038416600090815260366020526040902055603454610328908290610513565b60345561033583826103ba565b604080516001600160a01b0385168152602081018390527fdf20fd1e76bc69d672e4814fafb2c449bba3a5369d8359adf9e05e6fde87b056910160405180910390a1505050565b60006037828154811061039f57634e487b7160e01b600052603260045260246000fd5b6000918252602090912001546001600160a01b031692915050565b8047101561040a5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e63650000006044820152606401610216565b6000826001600160a01b03168260405160006040518083038185875af1925050503d8060008114610457576040519150601f19603f3d011682016040523d82523d6000602084013e61045c565b606091505b50509050806104d35760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d617920686176652072657665727465640000000000006064820152608401610216565b505050565b6000602082840312156104e9578081fd5b81356104f481610597565b9392505050565b60006020828403121561050c578081fd5b5035919050565b6000821982111561052657610526610581565b500190565b60008261054657634e487b7160e01b81526012600452602481fd5b500490565b600081600019048311821515161561056557610565610581565b500290565b60008282101561057c5761057c610581565b500390565b634e487b7160e01b600052601160045260246000fd5b6001600160a01b03811681146105ac57600080fd5b5056fea2646970667358221220183027721683b12bc146494944155fd24424cf8efe80d75099cf3c6b546cb17a64736f6c63430008030033\",\n  \"deployedBytecode\": \"0x6080604052600436106100595760003560e01c806319165587146100a75780633a98ef39146100c95780638b83209b146100ed5780639852595c14610125578063ce7c2ac21461015b578063e33b7de314610191576100a2565b366100a2577f6ef95f06320e7a25a04a175ca677b7052bdd97131872c2192525a629f51be77033604080516001600160a01b0390921682523460208301520160405180910390a1005b600080fd5b3480156100b357600080fd5b506100c76100c23660046104d8565b6101a6565b005b3480156100d557600080fd5b506033545b6040519081526020015b60405180910390f35b3480156100f957600080fd5b5061010d6101083660046104fb565b61037c565b6040516001600160a01b0390911681526020016100e4565b34801561013157600080fd5b506100da6101403660046104d8565b6001600160a01b031660009081526036602052604090205490565b34801561016757600080fd5b506100da6101763660046104d8565b6001600160a01b031660009081526035602052604090205490565b34801561019d57600080fd5b506034546100da565b6001600160a01b03811660009081526035602052604090205461021f5760405162461bcd60e51b815260206004820152602660248201527f5061796d656e7453706c69747465723a206163636f756e7420686173206e6f2060448201526573686172657360d01b60648201526084015b60405180910390fd5b60006034544761022f9190610513565b6001600160a01b0383166000908152603660209081526040808320546033546035909352908320549394509192610266908561054b565b610270919061052b565b61027a919061056a565b9050806102dd5760405162461bcd60e51b815260206004820152602b60248201527f5061796d656e7453706c69747465723a206163636f756e74206973206e6f742060448201526a191d59481c185e5b595b9d60aa1b6064820152608401610216565b6001600160a01b038316600090815260366020526040902054610301908290610513565b6001600160a01b038416600090815260366020526040902055603454610328908290610513565b60345561033583826103ba565b604080516001600160a01b0385168152602081018390527fdf20fd1e76bc69d672e4814fafb2c449bba3a5369d8359adf9e05e6fde87b056910160405180910390a1505050565b60006037828154811061039f57634e487b7160e01b600052603260045260246000fd5b6000918252602090912001546001600160a01b031692915050565b8047101561040a5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e63650000006044820152606401610216565b6000826001600160a01b03168260405160006040518083038185875af1925050503d8060008114610457576040519150601f19603f3d011682016040523d82523d6000602084013e61045c565b606091505b50509050806104d35760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d617920686176652072657665727465640000000000006064820152608401610216565b505050565b6000602082840312156104e9578081fd5b81356104f481610597565b9392505050565b60006020828403121561050c578081fd5b5035919050565b6000821982111561052657610526610581565b500190565b60008261054657634e487b7160e01b81526012600452602481fd5b500490565b600081600019048311821515161561056557610565610581565b500290565b60008282101561057c5761057c610581565b500390565b634e487b7160e01b600052601160045260246000fd5b6001600160a01b03811681146105ac57600080fd5b5056fea2646970667358221220183027721683b12bc146494944155fd24424cf8efe80d75099cf3c6b546cb17a64736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
+          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"PaymentSplitterUpgradeable\",\n  \"sourceName\": \"contracts/finance/PaymentSplitterUpgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"shares\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PayeeAdded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PaymentReceived\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"PaymentReleased\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"index\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"payee\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"release\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"released\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"shares\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalReleased\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalShares\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"receive\"\n    }\n  ],\n  \"bytecode\": \"0x608060405234801561001057600080fd5b506105e5806100206000396000f3fe6080604052600436106100595760003560e01c806319165587146100a75780633a98ef39146100c95780638b83209b146100ed5780639852595c14610125578063ce7c2ac21461015b578063e33b7de314610191576100a2565b366100a2577f6ef95f06320e7a25a04a175ca677b7052bdd97131872c2192525a629f51be77033604080516001600160a01b0390921682523460208301520160405180910390a1005b600080fd5b3480156100b357600080fd5b506100c76100c23660046104d8565b6101a6565b005b3480156100d557600080fd5b506033545b6040519081526020015b60405180910390f35b3480156100f957600080fd5b5061010d6101083660046104fb565b61037c565b6040516001600160a01b0390911681526020016100e4565b34801561013157600080fd5b506100da6101403660046104d8565b6001600160a01b031660009081526036602052604090205490565b34801561016757600080fd5b506100da6101763660046104d8565b6001600160a01b031660009081526035602052604090205490565b34801561019d57600080fd5b506034546100da565b6001600160a01b03811660009081526035602052604090205461021f5760405162461bcd60e51b815260206004820152602660248201527f5061796d656e7453706c69747465723a206163636f756e7420686173206e6f2060448201526573686172657360d01b60648201526084015b60405180910390fd5b60006034544761022f9190610513565b6001600160a01b0383166000908152603660209081526040808320546033546035909352908320549394509192610266908561054b565b610270919061052b565b61027a919061056a565b9050806102dd5760405162461bcd60e51b815260206004820152602b60248201527f5061796d656e7453706c69747465723a206163636f756e74206973206e6f742060448201526a191d59481c185e5b595b9d60aa1b6064820152608401610216565b6001600160a01b038316600090815260366020526040902054610301908290610513565b6001600160a01b038416600090815260366020526040902055603454610328908290610513565b60345561033583826103ba565b604080516001600160a01b0385168152602081018390527fdf20fd1e76bc69d672e4814fafb2c449bba3a5369d8359adf9e05e6fde87b056910160405180910390a1505050565b60006037828154811061039f57634e487b7160e01b600052603260045260246000fd5b6000918252602090912001546001600160a01b031692915050565b8047101561040a5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e63650000006044820152606401610216565b6000826001600160a01b03168260405160006040518083038185875af1925050503d8060008114610457576040519150601f19603f3d011682016040523d82523d6000602084013e61045c565b606091505b50509050806104d35760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d617920686176652072657665727465640000000000006064820152608401610216565b505050565b6000602082840312156104e9578081fd5b81356104f481610597565b9392505050565b60006020828403121561050c578081fd5b5035919050565b6000821982111561052657610526610581565b500190565b60008261054657634e487b7160e01b81526012600452602481fd5b500490565b600081600019048311821515161561056557610565610581565b500290565b60008282101561057c5761057c610581565b500390565b634e487b7160e01b600052601160045260246000fd5b6001600160a01b03811681146105ac57600080fd5b5056fea26469706673582212202a51e8a07b7c99f8263a437727bb87150c556ff984f8d1294df96db42b7034c164736f6c63430008030033\",\n  \"deployedBytecode\": \"0x6080604052600436106100595760003560e01c806319165587146100a75780633a98ef39146100c95780638b83209b146100ed5780639852595c14610125578063ce7c2ac21461015b578063e33b7de314610191576100a2565b366100a2577f6ef95f06320e7a25a04a175ca677b7052bdd97131872c2192525a629f51be77033604080516001600160a01b0390921682523460208301520160405180910390a1005b600080fd5b3480156100b357600080fd5b506100c76100c23660046104d8565b6101a6565b005b3480156100d557600080fd5b506033545b6040519081526020015b60405180910390f35b3480156100f957600080fd5b5061010d6101083660046104fb565b61037c565b6040516001600160a01b0390911681526020016100e4565b34801561013157600080fd5b506100da6101403660046104d8565b6001600160a01b031660009081526036602052604090205490565b34801561016757600080fd5b506100da6101763660046104d8565b6001600160a01b031660009081526035602052604090205490565b34801561019d57600080fd5b506034546100da565b6001600160a01b03811660009081526035602052604090205461021f5760405162461bcd60e51b815260206004820152602660248201527f5061796d656e7453706c69747465723a206163636f756e7420686173206e6f2060448201526573686172657360d01b60648201526084015b60405180910390fd5b60006034544761022f9190610513565b6001600160a01b0383166000908152603660209081526040808320546033546035909352908320549394509192610266908561054b565b610270919061052b565b61027a919061056a565b9050806102dd5760405162461bcd60e51b815260206004820152602b60248201527f5061796d656e7453706c69747465723a206163636f756e74206973206e6f742060448201526a191d59481c185e5b595b9d60aa1b6064820152608401610216565b6001600160a01b038316600090815260366020526040902054610301908290610513565b6001600160a01b038416600090815260366020526040902055603454610328908290610513565b60345561033583826103ba565b604080516001600160a01b0385168152602081018390527fdf20fd1e76bc69d672e4814fafb2c449bba3a5369d8359adf9e05e6fde87b056910160405180910390a1505050565b60006037828154811061039f57634e487b7160e01b600052603260045260246000fd5b6000918252602090912001546001600160a01b031692915050565b8047101561040a5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e63650000006044820152606401610216565b6000826001600160a01b03168260405160006040518083038185875af1925050503d8060008114610457576040519150601f19603f3d011682016040523d82523d6000602084013e61045c565b606091505b50509050806104d35760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d617920686176652072657665727465640000000000006064820152608401610216565b505050565b6000602082840312156104e9578081fd5b81356104f481610597565b9392505050565b60006020828403121561050c578081fd5b5035919050565b6000821982111561052657610526610581565b500190565b60008261054657634e487b7160e01b81526012600452602481fd5b500490565b600081600019048311821515161561056557610565610581565b500290565b60008282101561057c5761057c610581565b500390565b634e487b7160e01b600052601160045260246000fd5b6001600160a01b03811681146105ac57600080fd5b5056fea26469706673582212202a51e8a07b7c99f8263a437727bb87150c556ff984f8d1294df96db42b7034c164736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
           artifact
         };
       }
@@ -164,12 +164,13 @@ pub mod payment_splitter_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn total_released(
+    pub fn shares(
       &self,
+      account: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([227, 59, 125, 227], ())
+        .view_method([206, 124, 42, 194], (account,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -183,13 +184,22 @@ pub mod payment_splitter_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn released(
+    pub fn release(
       &self,
       account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([25, 22, 85, 135], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn total_released(
+      &self,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([152, 82, 89, 92], (account,))
+        .view_method([227, 59, 125, 227], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -202,23 +212,13 @@ pub mod payment_splitter_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn release(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([25, 22, 85, 135], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn shares(
+    pub fn released(
       &self,
       account: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([206, 124, 42, 194], (account,))
+        .view_method([152, 82, 89, 92], (account,))
         .expect("generated call")
     }
   }
@@ -245,40 +245,6 @@ pub mod payment_splitter_upgradeable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct PaymentReleased {
-      pub to: self::ethcontract::Address,
-      pub amount: self::ethcontract::U256,
-    }
-    impl PaymentReleased {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          223, 32, 253, 30, 118, 188, 105, 214, 114, 228, 129, 79, 175, 178, 196, 73, 187, 163,
-          165, 54, 157, 131, 89, 173, 249, 224, 94, 111, 222, 135, 176, 86,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`PaymentReleased(address,uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "PaymentReleased(address,uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for PaymentReleased {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (to, amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(PaymentReleased { to, amount })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct PayeeAdded {
       pub account: self::ethcontract::Address,
@@ -347,6 +313,40 @@ pub mod payment_splitter_upgradeable {
         unimplemented!("events are only decoded, not encoded")
       }
     }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct PaymentReleased {
+      pub to: self::ethcontract::Address,
+      pub amount: self::ethcontract::U256,
+    }
+    impl PaymentReleased {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          223, 32, 253, 30, 118, 188, 105, 214, 114, 228, 129, 79, 175, 178, 196, 73, 187, 163,
+          165, 54, 157, 131, 89, 173, 249, 224, 94, 111, 222, 135, 176, 86,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`PaymentReleased(address,uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "PaymentReleased(address,uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for PaymentReleased {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (to, amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(PaymentReleased { to, amount })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -361,18 +361,6 @@ pub mod payment_splitter_upgradeable {
     instance: &'a self::ethcontract::dyns::DynInstance,
   }
   impl Events<'_> {
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn payment_released(&self) -> self::event_builders::PaymentReleasedBuilder {
-      self::event_builders::PaymentReleasedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            223, 32, 253, 30, 118, 188, 105, 214, 114, 228, 129, 79, 175, 178, 196, 73, 187, 163,
-            165, 54, 157, 131, 89, 173, 249, 224, 94, 111, 222, 135, 176, 86,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
     #[doc = r" Generated by `ethcontract`."]
     pub fn payee_added(&self) -> self::event_builders::PayeeAddedBuilder {
       self::event_builders::PayeeAddedBuilder(
@@ -397,69 +385,24 @@ pub mod payment_splitter_upgradeable {
           .expect("generated event filter"),
       )
     }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn payment_released(&self) -> self::event_builders::PaymentReleasedBuilder {
+      self::event_builders::PaymentReleasedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            223, 32, 253, 30, 118, 188, 105, 214, 114, 228, 129, 79, 175, 178, 196, 73, 187, 163,
+            165, 54, 157, 131, 89, 173, 249, 224, 94, 111, 222, 135, 176, 86,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `PaymentReleased` events."]
-    pub struct PaymentReleasedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::PaymentReleased>,
-    );
-    impl PaymentReleasedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::PaymentReleased>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::PaymentReleased>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `PayeeAdded` events."]
     pub struct PayeeAddedBuilder(
       #[doc = r" The inner event builder."]
@@ -568,6 +511,63 @@ pub mod payment_splitter_upgradeable {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::PaymentReceived>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `PaymentReleased` events."]
+    pub struct PaymentReleasedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::PaymentReleased>,
+    );
+    impl PaymentReleasedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::PaymentReleased>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::PaymentReleased>,
           self::ethcontract::errors::EventError,
         >,
       > {

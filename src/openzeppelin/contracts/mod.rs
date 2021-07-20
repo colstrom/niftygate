@@ -69,6 +69,7 @@ pub mod token {
     pub mod extensions {
       pub use crate::openzeppelin::contracts::generated::erc1155_burnable::*;
       pub use crate::openzeppelin::contracts::generated::erc1155_pausable::*;
+      pub use crate::openzeppelin::contracts::generated::erc1155_supply::*;
       pub use crate::openzeppelin::contracts::generated::ierc1155_metadata_uri::*;
     }
 
@@ -89,11 +90,16 @@ pub mod token {
     pub mod extensions {
       pub use crate::openzeppelin::contracts::generated::erc20_burnable::*;
       pub use crate::openzeppelin::contracts::generated::erc20_capped::*;
+      pub use crate::openzeppelin::contracts::generated::erc20_flash_mint::*;
       pub use crate::openzeppelin::contracts::generated::erc20_pausable::*;
       pub use crate::openzeppelin::contracts::generated::erc20_snapshot::*;
+      pub use crate::openzeppelin::contracts::generated::erc20_votes::*;
+      pub use crate::openzeppelin::contracts::generated::erc20_votes_comp::*;
+      pub use crate::openzeppelin::contracts::generated::erc20_wrapper::*;
       pub use crate::openzeppelin::contracts::generated::ierc20_metadata::*;
 
       pub mod draft {
+        #[deprecated(since = "0.6.0", note = "no longer a draft extension")]
         pub use crate::openzeppelin::contracts::generated::erc20_flash_mint::*;
         pub use crate::openzeppelin::contracts::generated::erc20_permit::*;
         pub use crate::openzeppelin::contracts::generated::ierc20_permit::*;
@@ -190,6 +196,7 @@ pub mod utils {
   }
 
   pub mod structs {
+    pub use crate::openzeppelin::contracts::generated::bit_maps::*;
     pub use crate::openzeppelin::contracts::generated::enumerable_map::*;
     pub use crate::openzeppelin::contracts::generated::enumerable_set::*;
   }

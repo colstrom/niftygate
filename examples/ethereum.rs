@@ -1,5 +1,5 @@
 use ethcontract::{dyns::DynTransport, web3::transports::WebSocket};
-use sig_proxy::{
+use niftygate::{
   middleware::{
     ethereum::{prelude::*, *},
     *,
