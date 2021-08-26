@@ -1,6 +1,6 @@
 [package]
 name = "niftygate"
-version = "0.6.0"
+version = "0.6.1"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"

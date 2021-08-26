@@ -1,6 +1,6 @@
 {
   "name": "niftygate",
-  "version": "0.2.0",
+  "version": "0.6.1",
   "description": "## What is it?",
   "main": "index.js",
   "directories": {
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/colstrom/niftygate#readme",
   "devDependencies": {
-    "@openzeppelin/contracts": "^4.2.0",
-    "@openzeppelin/contracts-upgradeable": "^4.2.0"
+    "@openzeppelin/contracts": "^4.3.1",
+    "@openzeppelin/contracts-upgradeable": "^4.3.1"
   },
   "dependencies": {}
 }

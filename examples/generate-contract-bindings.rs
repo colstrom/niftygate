@@ -63,7 +63,7 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Source
 // source files with the same issue, and this doesn't need to be fast,
 // since it's not even run at build time, but manually when needed.
 fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
-  match Builder::with_source(source.clone())
+  if let Ok(contract_bindings) = Builder::with_source(source.clone())
     .with_visibility_modifier(Some("pub"))
     .add_event_derive("serde::Deserialize")
     .add_event_derive("serde::Serialize")
@@ -73,14 +73,57 @@ fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
     )
     .generate()
   {
-    Ok(contract_bindings) => Ok(contract_bindings),
-    Err(_) => Ok(
+    Ok(contract_bindings)
+  } else if let Ok(contract_bindings) = Builder::with_source(source.clone())
+    .with_visibility_modifier(Some("pub"))
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
+    .add_method_alias(
+      String::from("propose(address[],uint256[],string[],bytes[],string)"),
+      String::from("propose_with_signatures"),
+    )
+    .add_method_alias(
+      String::from("queue(uint256)"),
+      String::from("queue_proposal"),
+    )
+    .add_method_alias(
+      String::from("execute(uint256)"),
+      String::from("execute_proposal"),
+    )
+    .add_method_alias(
+      String::from("cancel(uint256)"),
+      String::from("cancel_proposal"),
+    )
+    .generate()
+  {
+    Ok(contract_bindings)
+  } else if let Ok(contract_bindings) = Builder::with_source(source.clone())
+    .with_visibility_modifier(Some("pub"))
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
+    .add_method_alias(
+      String::from("approveAndCall(address,uint256,bytes)"),
+      String::from("approve_and_call_with_data"),
+    )
+    .add_method_alias(
+      String::from("transferAndCall(address,uint256,bytes)"),
+      String::from("transfer_and_call_with_data"),
+    )
+    .add_method_alias(
+      String::from("transferFromAndCall(address,address,uint256,bytes)"),
+      String::from("transfer_from_and_call_with_data"),
+    )
+    .generate()
+  {
+    Ok(contract_bindings)
+  } else {
+    Ok(
       Builder::with_source(source)
         .with_visibility_modifier(Some("pub"))
         .add_event_derive("serde::Deserialize")
         .add_event_derive("serde::Serialize")
         .generate()?,
-    ),
+    )
   }
 }
 
@@ -159,10 +202,6 @@ fn main() -> WrappedResult<()> {
   generate(
     "node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
     "src/openzeppelin/contracts_upgradeable",
-  )?;
-  generate(
-    "legacy/node_modules/@openzeppelin/contracts/build/contracts",
-    "src/openzeppelin/contracts_2x",
   )?;
 
   Ok(())

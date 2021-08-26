@@ -1,5 +1,11 @@
+# 0.6.1
+  - (library) updated bindings for OpenZeppelin contracts to 4.3.1 - see [Changelog](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.3/CHANGELOG.md) for details.
+  - (internal) added support for (I)GovernorCompatiblityBravo contracts to generator.
+  - (internal) added support for IERC1363 contracts to generator.
+  - (internal) removed unfinished support for legacy contract bindings from generator.
+
 # 0.6.0
-  - (breaking) - renamed from sig-proxy to niftygate.
+  - (breaking) renamed from sig-proxy to niftygate.
   - (library) updated bindings for OpenZeppelin contracts to 4.2.0 - see [Changelog](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.2/CHANGELOG.md) for details.
     - (deprecation) ERC20FlashMint no longer a draft extension.
       - update import path by removing `draft::` to fix.
@@ -14,13 +20,13 @@
   - (fix) clearer error message when asked to provide signatures, but no secret key is given.
 
 # 0.4.0
-  - (breaking) - Contract methods that took Vec<u8> now take Bytes<Vec<u8>>
-  - (breaking) - ethcontract::Void was removed, replaced with ()
-  - (dependency) - ethcontract 0.11.3 -> 0.12.2
-  - (dependency) - ethcontract-generate 0.11.3 -> 0.12.2
-  - (dependency) - heck 0.3.2 -> 0.3.3
-  - (dependency) - strum 0.20.0 -> 0.21.0
-  - (dependency) - web3 0.15.0 -> 0.16.0
+  - (breaking) Contract methods that took Vec<u8> now take Bytes<Vec<u8>>
+  - (breaking) ethcontract::Void was removed, replaced with ()
+  - (dependency) ethcontract 0.11.3 -> 0.12.2
+  - (dependency) ethcontract-generate 0.11.3 -> 0.12.2
+  - (dependency) heck 0.3.2 -> 0.3.3
+  - (dependency) strum 0.20.0 -> 0.21.0
+  - (dependency) web3 0.15.0 -> 0.16.0
 
 # 0.3.1
   - (commandline) added help text to the `events` subcommand.

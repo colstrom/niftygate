@@ -3,6 +3,8 @@ mod generated;
 pub mod access {
   pub use crate::openzeppelin::contracts_upgradeable::generated::access_control_enumerable_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::access_control_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::i_access_control_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::i_access_control_enumerable_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::ownable_upgradeable::*;
 }
 
@@ -11,13 +13,40 @@ pub mod finance {
 }
 
 pub mod governance {
+  pub use crate::openzeppelin::contracts_upgradeable::generated::governor_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::i_governor_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::timelock_controller_upgradeable::*;
+
+  pub mod compatibility {
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_compatibility_bravo_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::i_governor_compatibility_bravo_upgradeable::*;
+  }
+
+  pub mod extensions {
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_counting_simple_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_proposal_threshold_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_timelock_compound_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_timelock_control_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_votes_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_votes_comp_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::governor_votes_quorum_fraction_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::i_compound_timelock_upgradeable::*;
+    pub use crate::openzeppelin::contracts_upgradeable::generated::i_governor_timelock_upgradeable::*;
+  }
 }
 
 pub mod interfaces {
   pub use crate::openzeppelin::contracts_upgradeable::generated::ierc1271_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::ierc3156_flash_borrower_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::ierc3156_flash_lender_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::ierc1363_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::ierc1363_receiver_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::ierc1363_spender_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::ierc2981_upgradeable::*;
+
+  pub mod draft {
+    pub use crate::openzeppelin::contracts_upgradeable::generated::ierc2612_upgradeable::*;
+  }
 }
 
 pub mod metatx {
@@ -148,6 +177,7 @@ pub mod utils {
   pub use crate::openzeppelin::contracts_upgradeable::generated::multicall_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::storage_slot_upgradeable::*;
   pub use crate::openzeppelin::contracts_upgradeable::generated::strings_upgradeable::*;
+  pub use crate::openzeppelin::contracts_upgradeable::generated::timers_upgradeable::*;
 
   pub mod cryptography {
     pub use crate::openzeppelin::contracts_upgradeable::generated::ecdsa_upgradeable::*;

@@ -13,13 +13,40 @@ pub mod finance {
 }
 
 pub mod governance {
+  pub use crate::openzeppelin::contracts::generated::governor::*;
+  pub use crate::openzeppelin::contracts::generated::i_governor::*;
   pub use crate::openzeppelin::contracts::generated::timelock_controller::*;
+
+  pub mod compatibility {
+    pub use crate::openzeppelin::contracts::generated::governor_compatibility_bravo::*;
+    pub use crate::openzeppelin::contracts::generated::i_governor_compatibility_bravo::*;
+  }
+
+  pub mod extensions {
+    pub use crate::openzeppelin::contracts::generated::governor_counting_simple::*;
+    pub use crate::openzeppelin::contracts::generated::governor_proposal_threshold::*;
+    pub use crate::openzeppelin::contracts::generated::governor_timelock_compound::*;
+    pub use crate::openzeppelin::contracts::generated::governor_timelock_control::*;
+    pub use crate::openzeppelin::contracts::generated::governor_votes::*;
+    pub use crate::openzeppelin::contracts::generated::governor_votes_comp::*;
+    pub use crate::openzeppelin::contracts::generated::governor_votes_quorum_fraction::*;
+    pub use crate::openzeppelin::contracts::generated::i_compound_timelock::*;
+    pub use crate::openzeppelin::contracts::generated::i_governor_timelock::*;
+  }
 }
 
 pub mod interfaces {
   pub use crate::openzeppelin::contracts::generated::ierc1271::*;
+  pub use crate::openzeppelin::contracts::generated::ierc1363::*;
+  pub use crate::openzeppelin::contracts::generated::ierc1363_receiver::*;
+  pub use crate::openzeppelin::contracts::generated::ierc1363_spender::*;
+  pub use crate::openzeppelin::contracts::generated::ierc2981::*;
   pub use crate::openzeppelin::contracts::generated::ierc3156_flash_borrower::*;
   pub use crate::openzeppelin::contracts::generated::ierc3156_flash_lender::*;
+
+  pub mod draft {
+    pub use crate::openzeppelin::contracts::generated::ierc2612::*;
+  }
 }
 
 pub mod metatx {
@@ -39,7 +66,6 @@ pub mod proxy {
 
   pub mod erc1967 {
     pub use crate::openzeppelin::contracts::generated::erc1967_proxy::*;
-    pub use crate::openzeppelin::contracts::generated::erc1967_upgrade::*;
     pub use crate::openzeppelin::contracts::generated::erc1967_upgrade::*;
   }
 
@@ -161,6 +187,7 @@ pub mod utils {
   pub use crate::openzeppelin::contracts::generated::multicall::*;
   pub use crate::openzeppelin::contracts::generated::storage_slot::*;
   pub use crate::openzeppelin::contracts::generated::strings::*;
+  pub use crate::openzeppelin::contracts::generated::timers::*;
 
   pub mod cryptography {
     pub use crate::openzeppelin::contracts::generated::ecdsa::*;
