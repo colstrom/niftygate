@@ -7,25 +7,26 @@ pub mod erc1820_implementer {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC1820Implementer\",\n  \"sourceName\": \"contracts/utils/introspection/ERC1820Implementer.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"interfaceHash\",\n          \"type\": \"bytes32\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"canImplementInterfaceForAddress\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"\",\n          \"type\": \"bytes32\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x608060405234801561001057600080fd5b50610112806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063249cb3fa14602d575b600080fd5b603c603836600460a4565b604e565b60405190815260200160405180910390f35b6000828152602081815260408083206001600160a01b038516845290915281205460ff16607b576000609d565b7fa2ef4600d742022d532d4747cb3547474667d6f13804902513b2ec01c848f4b45b9392505050565b6000806040838503121560b5578182fd5b8235915060208301356001600160a01b038116811460d1578182fd5b80915050925092905056fea26469706673582212204632c1ec3802d05d61ae8523ec72aef2d74c909d2807e5511841a201a52fc3b864736f6c63430008030033\",\n  \"deployedBytecode\": \"0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063249cb3fa14602d575b600080fd5b603c603836600460a4565b604e565b60405190815260200160405180910390f35b6000828152602081815260408083206001600160a01b038516845290915281205460ff16607b576000609d565b7fa2ef4600d742022d532d4747cb3547474667d6f13804902513b2ec01c848f4b45b9392505050565b6000806040838503121560b5578182fd5b8235915060208301356001600160a01b038116811460d1578182fd5b80915050925092905056fea26469706673582212204632c1ec3802d05d61ae8523ec72aef2d74c909d2807e5511841a201a52fc3b864736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC1820Implementer\",\"abi\":[{\"type\":\"function\",\"name\":\"canImplementInterfaceForAddress\",\"inputs\":[{\"name\":\"interfaceHash\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"}],\"bytecode\":\"608060405234801561001057600080fd5b50610112806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063249cb3fa14602d575b600080fd5b603c603836600460a4565b604e565b60405190815260200160405180910390f35b6000828152602081815260408083206001600160a01b038516845290915281205460ff16607b576000609d565b7fa2ef4600d742022d532d4747cb3547474667d6f13804902513b2ec01c848f4b45b9392505050565b6000806040838503121560b5578182fd5b8235915060208301356001600160a01b038116811460d1578182fd5b80915050925092905056fea26469706673582212204632c1ec3802d05d61ae8523ec72aef2d74c909d2807e5511841a201a52fc3b864736f6c63430008030033\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc1820_implementer {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc1820_implementer {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc1820_implementer {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -112,7 +135,7 @@ pub mod erc1820_implementer {
   impl Contract {
     #[doc = "Generated by `ethcontract`"]
     #[allow(clippy::too_many_arguments)]
-    pub fn builder<F, T>(
+    pub fn builder<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
     ) -> self::ethcontract::dyns::DynDeployBuilder<Self>
     where
@@ -120,14 +143,25 @@ pub mod erc1820_implementer {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::contract::DeployBuilder;
       use self::ethcontract::dyns::DynTransport;
       use self::ethcontract::web3::api::Web3;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let bytecode = Self::artifact().bytecode.clone();
+      let bytecode = Self::raw_contract().bytecode.clone();
       DeployBuilder::new(web3, bytecode, ()).expect("valid deployment args")
     }
   }
@@ -137,7 +171,7 @@ pub mod erc1820_implementer {
       cx
     }
     fn abi(_: &Self::Context) -> &self::ethcontract::common::Abi {
-      &Self::artifact().abi
+      &Self::raw_contract().abi
     }
     fn from_deployment(
       web3: self::ethcontract::dyns::DynWeb3,
@@ -149,11 +183,33 @@ pub mod erc1820_implementer {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `canImplementInterfaceForAddress(bytes32,address):(bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn can_implement_interface_for_address(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+        self::ethcontract::Address,
+      ),
+      self::ethcontract::tokens::Bytes<[u8; 32]>,
+    > {
+      self::ethcontract::contract::Signature::new([36, 156, 179, 250])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]

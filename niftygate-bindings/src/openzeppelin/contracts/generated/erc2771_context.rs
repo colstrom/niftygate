@@ -7,25 +7,26 @@ pub mod erc2771_context {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC2771Context\",\n  \"sourceName\": \"contracts/metatx/ERC2771Context.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"forwarder\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"isTrustedForwarder\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC2771Context\",\"abi\":[{\"type\":\"function\",\"name\":\"isTrustedForwarder\",\"inputs\":[{\"name\":\"forwarder\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc2771_context {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc2771_context {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc2771_context {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -110,11 +133,27 @@ pub mod erc2771_context {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `isTrustedForwarder(address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn is_trusted_forwarder(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), bool> {
+      self::ethcontract::contract::Signature::new([87, 43, 108, 5])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]

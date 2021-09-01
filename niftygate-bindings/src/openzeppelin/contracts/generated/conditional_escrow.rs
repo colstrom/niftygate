@@ -7,25 +7,26 @@ pub mod conditional_escrow {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ConditionalEscrow\",\n  \"sourceName\": \"contracts/utils/escrow/ConditionalEscrow.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"weiAmount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Deposited\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"previousOwner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"OwnershipTransferred\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"weiAmount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Withdrawn\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"deposit\",\n      \"outputs\": [],\n      \"stateMutability\": \"payable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"depositsOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"owner\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"renounceOwnership\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"transferOwnership\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"withdraw\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"withdrawalAllowed\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ConditionalEscrow\",\"abi\":[{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"deposit\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"withdrawalAllowed\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"depositsOf\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"withdraw\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Withdrawn\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Deposited\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod conditional_escrow {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod conditional_escrow {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod conditional_escrow {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -110,11 +133,68 @@ pub mod conditional_escrow {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `renounceOwnership()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn renounce_ownership(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([113, 80, 24, 166])
+    }
+    #[doc = "Returns signature for method `deposit(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn deposit(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([243, 64, 250, 1])
+    }
+    #[doc = "Returns signature for method `withdrawalAllowed(address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn withdrawal_allowed(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), bool> {
+      self::ethcontract::contract::Signature::new([104, 92, 161, 148])
+    }
+    #[doc = "Returns signature for method `depositsOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn deposits_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([227, 169, 219, 26])
+    }
+    #[doc = "Returns signature for method `transferOwnership(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_ownership(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([242, 253, 227, 139])
+    }
+    #[doc = "Returns signature for method `owner():(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn owner(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
+      self::ethcontract::contract::Signature::new([141, 165, 203, 91])
+    }
+    #[doc = "Returns signature for method `withdraw(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn withdraw(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([81, 207, 248, 217])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -125,12 +205,10 @@ pub mod conditional_escrow {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn owner(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+    pub fn renounce_ownership(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .view_method([141, 165, 203, 91], ())
+        .method([113, 80, 24, 166], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -144,33 +222,6 @@ pub mod conditional_escrow {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn deposits_of(
-      &self,
-      payee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([227, 169, 219, 26], (payee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn renounce_ownership(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([113, 80, 24, 166], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn withdraw(
-      &self,
-      payee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([81, 207, 248, 217], (payee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn withdrawal_allowed(
       &self,
       payee: self::ethcontract::Address,
@@ -181,6 +232,16 @@ pub mod conditional_escrow {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn deposits_of(
+      &self,
+      payee: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([227, 169, 219, 26], (payee,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn transfer_ownership(
       &self,
       new_owner: self::ethcontract::Address,
@@ -188,6 +249,25 @@ pub mod conditional_escrow {
       self
         .instance
         .method([242, 253, 227, 139], (new_owner,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn owner(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([141, 165, 203, 91], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn withdraw(
+      &self,
+      payee: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([81, 207, 248, 217], (payee,))
         .expect("generated call")
     }
   }
@@ -384,14 +464,14 @@ pub mod conditional_escrow {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -446,14 +526,14 @@ pub mod conditional_escrow {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -508,14 +588,14 @@ pub mod conditional_escrow {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -581,7 +661,7 @@ pub mod conditional_escrow {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([45 , 164 , 102 , 167 , 178 , 67 , 4 , 244 , 126 , 135 , 250 , 46 , 30 , 90 , 129 , 185 , 131 , 28 , 229 , 79 , 236 , 25 , 5 , 92 , 226 , 119 , 202 , 47 , 57 , 186 , 66 , 196]) => Ok (Event :: Deposited (log . clone () . decode (Contract :: artifact () . abi . event ("Deposited") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([139 , 224 , 7 , 156 , 83 , 22 , 89 , 20 , 19 , 68 , 205 , 31 , 208 , 164 , 242 , 132 , 25 , 73 , 127 , 151 , 34 , 163 , 218 , 175 , 227 , 180 , 24 , 111 , 107 , 100 , 87 , 224]) => Ok (Event :: OwnershipTransferred (log . clone () . decode (Contract :: artifact () . abi . event ("OwnershipTransferred") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([112 , 132 , 245 , 71 , 102 , 24 , 216 , 230 , 11 , 17 , 239 , 13 , 125 , 63 , 6 , 145 , 70 , 85 , 173 , 184 , 121 , 62 , 40 , 255 , 127 , 1 , 141 , 76 , 118 , 213 , 5 , 213]) => Ok (Event :: Withdrawn (log . clone () . decode (Contract :: artifact () . abi . event ("Withdrawn") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([45 , 164 , 102 , 167 , 178 , 67 , 4 , 244 , 126 , 135 , 250 , 46 , 30 , 90 , 129 , 185 , 131 , 28 , 229 , 79 , 236 , 25 , 5 , 92 , 226 , 119 , 202 , 47 , 57 , 186 , 66 , 196]) => Ok (Event :: Deposited (log . clone () . decode (Contract :: raw_contract () . abi . event ("Deposited") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([139 , 224 , 7 , 156 , 83 , 22 , 89 , 20 , 19 , 68 , 205 , 31 , 208 , 164 , 242 , 132 , 25 , 73 , 127 , 151 , 34 , 163 , 218 , 175 , 227 , 180 , 24 , 111 , 107 , 100 , 87 , 224]) => Ok (Event :: OwnershipTransferred (log . clone () . decode (Contract :: raw_contract () . abi . event ("OwnershipTransferred") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([112 , 132 , 245 , 71 , 102 , 24 , 216 , 230 , 11 , 17 , 239 , 13 , 125 , 63 , 6 , 145 , 70 , 85 , 173 , 184 , 121 , 62 , 40 , 255 , 127 , 1 , 141 , 76 , 118 , 213 , 5 , 213]) => Ok (Event :: Withdrawn (log . clone () . decode (Contract :: raw_contract () . abi . event ("Withdrawn") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

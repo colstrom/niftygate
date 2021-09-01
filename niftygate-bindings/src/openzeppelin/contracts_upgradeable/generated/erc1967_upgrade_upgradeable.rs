@@ -7,25 +7,26 @@ pub mod erc1967_upgrade_upgradeable {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC1967UpgradeUpgradeable\",\n  \"sourceName\": \"contracts/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"previousAdmin\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"newAdmin\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"AdminChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"BeaconUpgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"implementation\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Upgraded\",\n      \"type\": \"event\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC1967UpgradeUpgradeable\",\"abi\":[{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"AdminChanged\",\"inputs\":[{\"name\":\"previousAdmin\",\"type\":\"address\",\"indexed\":false},{\"name\":\"newAdmin\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"BeaconUpgraded\",\"inputs\":[{\"name\":\"beacon\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc1967_upgrade_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc1967_upgrade_upgradeable {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc1967_upgrade_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -113,6 +136,8 @@ pub mod erc1967_upgrade_upgradeable {
   struct Methods {
     instance: self::ethcontract::dyns::DynInstance,
   }
+  #[derive(Clone, Copy)]
+  struct Signatures;
   #[doc = r" Module containing all generated data models for this contract's"]
   #[doc = r" events."]
   pub mod event_data {
@@ -145,39 +170,6 @@ pub mod erc1967_upgrade_upgradeable {
       ) -> Result<Self, self::ethcontract::tokens::Error> {
         let (implementation,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
         Ok(Upgraded { implementation })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct BeaconUpgraded {
-      pub beacon: self::ethcontract::Address,
-    }
-    impl BeaconUpgraded {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`BeaconUpgraded(address)`"]
-      pub fn abi_signature() -> &'static str {
-        "BeaconUpgraded(address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(BeaconUpgraded { beacon })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -220,6 +212,39 @@ pub mod erc1967_upgrade_upgradeable {
         unimplemented!("events are only decoded, not encoded")
       }
     }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct BeaconUpgraded {
+      pub beacon: self::ethcontract::Address,
+    }
+    impl BeaconUpgraded {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`BeaconUpgraded(address)`"]
+      pub fn abi_signature() -> &'static str {
+        "BeaconUpgraded(address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(BeaconUpgraded { beacon })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -247,18 +272,6 @@ pub mod erc1967_upgrade_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
-      self::event_builders::BeaconUpgradedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
     pub fn admin_changed(&self) -> self::event_builders::AdminChangedBuilder {
       self::event_builders::AdminChangedBuilder(
         self
@@ -266,6 +279,18 @@ pub mod erc1967_upgrade_upgradeable {
           .event(self::ethcontract::H256([
             126, 100, 77, 121, 66, 47, 23, 192, 30, 72, 148, 181, 244, 245, 136, 211, 49, 235, 250,
             40, 101, 61, 66, 174, 131, 45, 197, 158, 56, 201, 121, 143,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
+      self::event_builders::BeaconUpgradedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
           ]))
           .expect("generated event filter"),
       )
@@ -298,14 +323,14 @@ pub mod erc1967_upgrade_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -341,6 +366,63 @@ pub mod erc1967_upgrade_upgradeable {
         (self.0).stream()
       }
     }
+    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
+    pub struct AdminChangedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
+    );
+    impl AdminChangedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
     pub struct BeaconUpgradedBuilder(
       #[doc = r" The inner event builder."]
@@ -363,14 +445,14 @@ pub mod erc1967_upgrade_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -403,63 +485,6 @@ pub mod erc1967_upgrade_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
-    pub struct AdminChangedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
-    );
-    impl AdminChangedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
   }
   impl Contract {
     #[doc = r" Returns a log stream with all events."]
@@ -482,7 +507,7 @@ pub mod erc1967_upgrade_upgradeable {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([126 , 100 , 77 , 121 , 66 , 47 , 23 , 192 , 30 , 72 , 148 , 181 , 244 , 245 , 136 , 211 , 49 , 235 , 250 , 40 , 101 , 61 , 66 , 174 , 131 , 45 , 197 , 158 , 56 , 201 , 121 , 143]) => Ok (Event :: AdminChanged (log . clone () . decode (Contract :: artifact () . abi . event ("AdminChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([28 , 243 , 176 , 58 , 108 , 241 , 159 , 162 , 186 , 186 , 77 , 241 , 72 , 233 , 220 , 171 , 237 , 234 , 127 , 138 , 92 , 7 , 132 , 14 , 32 , 126 , 92 , 8 , 155 , 233 , 93 , 62]) => Ok (Event :: BeaconUpgraded (log . clone () . decode (Contract :: artifact () . abi . event ("BeaconUpgraded") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([188 , 124 , 215 , 90 , 32 , 238 , 39 , 253 , 154 , 222 , 186 , 179 , 32 , 65 , 247 , 85 , 33 , 77 , 188 , 107 , 255 , 169 , 12 , 192 , 34 , 91 , 57 , 218 , 46 , 92 , 45 , 59]) => Ok (Event :: Upgraded (log . clone () . decode (Contract :: artifact () . abi . event ("Upgraded") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([126 , 100 , 77 , 121 , 66 , 47 , 23 , 192 , 30 , 72 , 148 , 181 , 244 , 245 , 136 , 211 , 49 , 235 , 250 , 40 , 101 , 61 , 66 , 174 , 131 , 45 , 197 , 158 , 56 , 201 , 121 , 143]) => Ok (Event :: AdminChanged (log . clone () . decode (Contract :: raw_contract () . abi . event ("AdminChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([28 , 243 , 176 , 58 , 108 , 241 , 159 , 162 , 186 , 186 , 77 , 241 , 72 , 233 , 220 , 171 , 237 , 234 , 127 , 138 , 92 , 7 , 132 , 14 , 32 , 126 , 92 , 8 , 155 , 233 , 93 , 62]) => Ok (Event :: BeaconUpgraded (log . clone () . decode (Contract :: raw_contract () . abi . event ("BeaconUpgraded") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([188 , 124 , 215 , 90 , 32 , 238 , 39 , 253 , 154 , 222 , 186 , 179 , 32 , 65 , 247 , 85 , 33 , 77 , 188 , 107 , 255 , 169 , 12 , 192 , 34 , 91 , 57 , 218 , 46 , 92 , 45 , 59]) => Ok (Event :: Upgraded (log . clone () . decode (Contract :: raw_contract () . abi . event ("Upgraded") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

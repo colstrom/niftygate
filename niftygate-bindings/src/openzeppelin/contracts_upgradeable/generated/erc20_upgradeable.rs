@@ -7,25 +7,26 @@ pub mod erc20_upgradeable {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC20Upgradeable\",\n  \"sourceName\": \"contracts/token/ERC20/ERC20Upgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Approval\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Transfer\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"allowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"approve\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"decimals\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"subtractedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"decreaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"addedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"increaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"name\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"symbol\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transfer\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"sender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transferFrom\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x608060405234801561001057600080fd5b506108c0806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80633950935111610071578063395093511461012357806370a082311461013657806395d89b4114610149578063a457c2d714610151578063a9059cbb14610164578063dd62ed3e14610177576100a9565b806306fdde03146100ae578063095ea7b3146100cc57806318160ddd146100ef57806323b872dd14610101578063313ce56714610114575b600080fd5b6100b66101b0565b6040516100c391906107d8565b60405180910390f35b6100df6100da3660046107af565b610242565b60405190151581526020016100c3565b6035545b6040519081526020016100c3565b6100df61010f366004610774565b610258565b604051601281526020016100c3565b6100df6101313660046107af565b610307565b6100f3610144366004610721565b610343565b6100b6610362565b6100df61015f3660046107af565b610371565b6100df6101723660046107af565b61040a565b6100f3610185366004610742565b6001600160a01b03918216600090815260346020908152604080832093909416825291909152205490565b6060603680546101bf9061084f565b80601f01602080910402602001604051908101604052809291908181526020018280546101eb9061084f565b80156102385780601f1061020d57610100808354040283529160200191610238565b820191906000526020600020905b81548152906001019060200180831161021b57829003601f168201915b5050505050905090565b600061024f338484610417565b50600192915050565b600061026584848461053b565b6001600160a01b0384166000908152603460209081526040808320338452909152902054828110156102ef5760405162461bcd60e51b815260206004820152602860248201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616044820152676c6c6f77616e636560c01b60648201526084015b60405180910390fd5b6102fc8533858403610417565b506001949350505050565b3360008181526034602090815260408083206001600160a01b0387168452909152812054909161024f91859061033e90869061082b565b610417565b6001600160a01b0381166000908152603360205260409020545b919050565b6060603780546101bf9061084f565b3360009081526034602090815260408083206001600160a01b0386168452909152812054828110156103f35760405162461bcd60e51b815260206004820152602560248201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604482015264207a65726f60d81b60648201526084016102e6565b6104003385858403610417565b5060019392505050565b600061024f33848461053b565b6001600160a01b0383166104795760405162461bcd60e51b8152602060048201526024808201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646044820152637265737360e01b60648201526084016102e6565b6001600160a01b0382166104da5760405162461bcd60e51b815260206004820152602260248201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604482015261737360f01b60648201526084016102e6565b6001600160a01b0383811660008181526034602090815260408083209487168084529482529182902085905590518481527f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925910160405180910390a3505050565b6001600160a01b03831661059f5760405162461bcd60e51b815260206004820152602560248201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604482015264647265737360d81b60648201526084016102e6565b6001600160a01b0382166106015760405162461bcd60e51b815260206004820152602360248201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260448201526265737360e81b60648201526084016102e6565b6001600160a01b038316600090815260336020526040902054818110156106795760405162461bcd60e51b815260206004820152602660248201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604482015265616c616e636560d01b60648201526084016102e6565b6001600160a01b038085166000908152603360205260408082208585039055918516815290812080548492906106b090849061082b565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef846040516106fc91815260200190565b60405180910390a350505050565b80356001600160a01b038116811461035d57600080fd5b600060208284031215610732578081fd5b61073b8261070a565b9392505050565b60008060408385031215610754578081fd5b61075d8361070a565b915061076b6020840161070a565b90509250929050565b600080600060608486031215610788578081fd5b6107918461070a565b925061079f6020850161070a565b9150604084013590509250925092565b600080604083850312156107c1578182fd5b6107ca8361070a565b946020939093013593505050565b6000602080835283518082850152825b81811015610804578581018301518582016040015282016107e8565b818111156108155783604083870101525b50601f01601f1916929092016040019392505050565b6000821982111561084a57634e487b7160e01b81526011600452602481fd5b500190565b600181811c9082168061086357607f821691505b6020821081141561088457634e487b7160e01b600052602260045260246000fd5b5091905056fea26469706673582212204a0aafea9432e54ac05320e349cad400f020d1803eaed06774b2a6413b0f3ad164736f6c63430008030033\",\n  \"deployedBytecode\": \"0x608060405234801561001057600080fd5b50600436106100a95760003560e01c80633950935111610071578063395093511461012357806370a082311461013657806395d89b4114610149578063a457c2d714610151578063a9059cbb14610164578063dd62ed3e14610177576100a9565b806306fdde03146100ae578063095ea7b3146100cc57806318160ddd146100ef57806323b872dd14610101578063313ce56714610114575b600080fd5b6100b66101b0565b6040516100c391906107d8565b60405180910390f35b6100df6100da3660046107af565b610242565b60405190151581526020016100c3565b6035545b6040519081526020016100c3565b6100df61010f366004610774565b610258565b604051601281526020016100c3565b6100df6101313660046107af565b610307565b6100f3610144366004610721565b610343565b6100b6610362565b6100df61015f3660046107af565b610371565b6100df6101723660046107af565b61040a565b6100f3610185366004610742565b6001600160a01b03918216600090815260346020908152604080832093909416825291909152205490565b6060603680546101bf9061084f565b80601f01602080910402602001604051908101604052809291908181526020018280546101eb9061084f565b80156102385780601f1061020d57610100808354040283529160200191610238565b820191906000526020600020905b81548152906001019060200180831161021b57829003601f168201915b5050505050905090565b600061024f338484610417565b50600192915050565b600061026584848461053b565b6001600160a01b0384166000908152603460209081526040808320338452909152902054828110156102ef5760405162461bcd60e51b815260206004820152602860248201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616044820152676c6c6f77616e636560c01b60648201526084015b60405180910390fd5b6102fc8533858403610417565b506001949350505050565b3360008181526034602090815260408083206001600160a01b0387168452909152812054909161024f91859061033e90869061082b565b610417565b6001600160a01b0381166000908152603360205260409020545b919050565b6060603780546101bf9061084f565b3360009081526034602090815260408083206001600160a01b0386168452909152812054828110156103f35760405162461bcd60e51b815260206004820152602560248201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604482015264207a65726f60d81b60648201526084016102e6565b6104003385858403610417565b5060019392505050565b600061024f33848461053b565b6001600160a01b0383166104795760405162461bcd60e51b8152602060048201526024808201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646044820152637265737360e01b60648201526084016102e6565b6001600160a01b0382166104da5760405162461bcd60e51b815260206004820152602260248201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604482015261737360f01b60648201526084016102e6565b6001600160a01b0383811660008181526034602090815260408083209487168084529482529182902085905590518481527f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925910160405180910390a3505050565b6001600160a01b03831661059f5760405162461bcd60e51b815260206004820152602560248201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604482015264647265737360d81b60648201526084016102e6565b6001600160a01b0382166106015760405162461bcd60e51b815260206004820152602360248201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260448201526265737360e81b60648201526084016102e6565b6001600160a01b038316600090815260336020526040902054818110156106795760405162461bcd60e51b815260206004820152602660248201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604482015265616c616e636560d01b60648201526084016102e6565b6001600160a01b038085166000908152603360205260408082208585039055918516815290812080548492906106b090849061082b565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef846040516106fc91815260200190565b60405180910390a350505050565b80356001600160a01b038116811461035d57600080fd5b600060208284031215610732578081fd5b61073b8261070a565b9392505050565b60008060408385031215610754578081fd5b61075d8361070a565b915061076b6020840161070a565b90509250929050565b600080600060608486031215610788578081fd5b6107918461070a565b925061079f6020850161070a565b9150604084013590509250925092565b600080604083850312156107c1578182fd5b6107ca8361070a565b946020939093013593505050565b6000602080835283518082850152825b81811015610804578581018301518582016040015282016107e8565b818111156108155783604083870101525b50601f01601f1916929092016040019392505050565b6000821982111561084a57634e487b7160e01b81526011600452602481fd5b500190565b600181811c9082168061086357607f821691505b6020821081141561088457634e487b7160e01b600052602260045260246000fd5b5091905056fea26469706673582212204a0aafea9432e54ac05320e349cad400f020d1803eaed06774b2a6413b0f3ad164736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20Upgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"608060405234801561001057600080fd5b506108c0806100206000396000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c80633950935111610071578063395093511461012357806370a082311461013657806395d89b4114610149578063a457c2d714610151578063a9059cbb14610164578063dd62ed3e14610177576100a9565b806306fdde03146100ae578063095ea7b3146100cc57806318160ddd146100ef57806323b872dd14610101578063313ce56714610114575b600080fd5b6100b66101b0565b6040516100c391906107d8565b60405180910390f35b6100df6100da3660046107af565b610242565b60405190151581526020016100c3565b6035545b6040519081526020016100c3565b6100df61010f366004610774565b610258565b604051601281526020016100c3565b6100df6101313660046107af565b610307565b6100f3610144366004610721565b610343565b6100b6610362565b6100df61015f3660046107af565b610371565b6100df6101723660046107af565b61040a565b6100f3610185366004610742565b6001600160a01b03918216600090815260346020908152604080832093909416825291909152205490565b6060603680546101bf9061084f565b80601f01602080910402602001604051908101604052809291908181526020018280546101eb9061084f565b80156102385780601f1061020d57610100808354040283529160200191610238565b820191906000526020600020905b81548152906001019060200180831161021b57829003601f168201915b5050505050905090565b600061024f338484610417565b50600192915050565b600061026584848461053b565b6001600160a01b0384166000908152603460209081526040808320338452909152902054828110156102ef5760405162461bcd60e51b815260206004820152602860248201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616044820152676c6c6f77616e636560c01b60648201526084015b60405180910390fd5b6102fc8533858403610417565b506001949350505050565b3360008181526034602090815260408083206001600160a01b0387168452909152812054909161024f91859061033e90869061082b565b610417565b6001600160a01b0381166000908152603360205260409020545b919050565b6060603780546101bf9061084f565b3360009081526034602090815260408083206001600160a01b0386168452909152812054828110156103f35760405162461bcd60e51b815260206004820152602560248201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604482015264207a65726f60d81b60648201526084016102e6565b6104003385858403610417565b5060019392505050565b600061024f33848461053b565b6001600160a01b0383166104795760405162461bcd60e51b8152602060048201526024808201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646044820152637265737360e01b60648201526084016102e6565b6001600160a01b0382166104da5760405162461bcd60e51b815260206004820152602260248201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604482015261737360f01b60648201526084016102e6565b6001600160a01b0383811660008181526034602090815260408083209487168084529482529182902085905590518481527f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925910160405180910390a3505050565b6001600160a01b03831661059f5760405162461bcd60e51b815260206004820152602560248201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604482015264647265737360d81b60648201526084016102e6565b6001600160a01b0382166106015760405162461bcd60e51b815260206004820152602360248201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260448201526265737360e81b60648201526084016102e6565b6001600160a01b038316600090815260336020526040902054818110156106795760405162461bcd60e51b815260206004820152602660248201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604482015265616c616e636560d01b60648201526084016102e6565b6001600160a01b038085166000908152603360205260408082208585039055918516815290812080548492906106b090849061082b565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef846040516106fc91815260200190565b60405180910390a350505050565b80356001600160a01b038116811461035d57600080fd5b600060208284031215610732578081fd5b61073b8261070a565b9392505050565b60008060408385031215610754578081fd5b61075d8361070a565b915061076b6020840161070a565b90509250929050565b600080600060608486031215610788578081fd5b6107918461070a565b925061079f6020850161070a565b9150604084013590509250925092565b600080604083850312156107c1578182fd5b6107ca8361070a565b946020939093013593505050565b6000602080835283518082850152825b81811015610804578581018301518582016040015282016107e8565b818111156108155783604083870101525b50601f01601f1916929092016040019392505050565b6000821982111561084a57634e487b7160e01b81526011600452602481fd5b500190565b600181811c9082168061086357607f821691505b6020821081141561088457634e487b7160e01b600052602260045260246000fd5b5091905056fea26469706673582212204a0aafea9432e54ac05320e349cad400f020d1803eaed06774b2a6413b0f3ad164736f6c63430008030033\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc20_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc20_upgradeable {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc20_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -112,7 +135,7 @@ pub mod erc20_upgradeable {
   impl Contract {
     #[doc = "Generated by `ethcontract`"]
     #[allow(clippy::too_many_arguments)]
-    pub fn builder<F, T>(
+    pub fn builder<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
     ) -> self::ethcontract::dyns::DynDeployBuilder<Self>
     where
@@ -120,14 +143,25 @@ pub mod erc20_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::contract::DeployBuilder;
       use self::ethcontract::dyns::DynTransport;
       use self::ethcontract::web3::api::Web3;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let bytecode = Self::artifact().bytecode.clone();
+      let bytecode = Self::raw_contract().bytecode.clone();
       DeployBuilder::new(web3, bytecode, ()).expect("valid deployment args")
     }
   }
@@ -137,7 +171,7 @@ pub mod erc20_upgradeable {
       cx
     }
     fn abi(_: &Self::Context) -> &self::ethcontract::common::Abi {
-      &Self::artifact().abi
+      &Self::raw_contract().abi
     }
     fn from_deployment(
       web3: self::ethcontract::dyns::DynWeb3,
@@ -149,11 +183,116 @@ pub mod erc20_upgradeable {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
+    }
+    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decrease_allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
+    }
+    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn approve(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
+    }
+    #[doc = "Returns signature for method `transferFrom(address,address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+      ),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([35, 184, 114, 221])
+    }
+    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
+    }
+    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
+    }
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    }
+    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
+    }
+    #[doc = "Returns signature for method `increaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn increase_allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([57, 80, 147, 81])
+    }
+    #[doc = "Returns signature for method `name():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+    }
+    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -163,80 +302,6 @@ pub mod erc20_upgradeable {
   }
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
-    #[doc = "Generated by `ethcontract`"]
-    pub fn increase_allowance(
-      &self,
-      spender: self::ethcontract::Address,
-      added_value: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([57, 80, 147, 81], (spender, added_value))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([24, 22, 13, 221], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([112, 160, 130, 49], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn allowance(
-      &self,
-      owner: self::ethcontract::Address,
-      spender: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([221, 98, 237, 62], (owner, spender))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
-      self
-        .instance
-        .view_method([49, 60, 229, 103], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_from(
-      &self,
-      sender: self::ethcontract::Address,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([35, 184, 114, 221], (sender, recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([6, 253, 222, 3], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
     #[doc = "Generated by `ethcontract`"]
     pub fn transfer(
       &self,
@@ -268,6 +333,80 @@ pub mod erc20_upgradeable {
       self
         .instance
         .method([9, 94, 167, 179], (spender, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn transfer_from(
+      &self,
+      sender: self::ethcontract::Address,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([35, 184, 114, 221], (sender, recipient, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([112, 160, 130, 49], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([149, 216, 155, 65], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([24, 22, 13, 221], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn allowance(
+      &self,
+      owner: self::ethcontract::Address,
+      spender: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([221, 98, 237, 62], (owner, spender))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn increase_allowance(
+      &self,
+      spender: self::ethcontract::Address,
+      added_value: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([57, 80, 147, 81], (spender, added_value))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([6, 253, 222, 3], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+      self
+        .instance
+        .view_method([49, 60, 229, 103], ())
         .expect("generated call")
     }
   }
@@ -421,14 +560,14 @@ pub mod erc20_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -491,14 +630,14 @@ pub mod erc20_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -557,7 +696,7 @@ pub mod erc20_upgradeable {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([140 , 91 , 225 , 229 , 235 , 236 , 125 , 91 , 209 , 79 , 113 , 66 , 125 , 30 , 132 , 243 , 221 , 3 , 20 , 192 , 247 , 178 , 41 , 30 , 91 , 32 , 10 , 200 , 199 , 195 , 185 , 37]) => Ok (Event :: Approval (log . clone () . decode (Contract :: artifact () . abi . event ("Approval") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([221 , 242 , 82 , 173 , 27 , 226 , 200 , 155 , 105 , 194 , 176 , 104 , 252 , 55 , 141 , 170 , 149 , 43 , 167 , 241 , 99 , 196 , 161 , 22 , 40 , 245 , 90 , 77 , 245 , 35 , 179 , 239]) => Ok (Event :: Transfer (log . clone () . decode (Contract :: artifact () . abi . event ("Transfer") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([140 , 91 , 225 , 229 , 235 , 236 , 125 , 91 , 209 , 79 , 113 , 66 , 125 , 30 , 132 , 243 , 221 , 3 , 20 , 192 , 247 , 178 , 41 , 30 , 91 , 32 , 10 , 200 , 199 , 195 , 185 , 37]) => Ok (Event :: Approval (log . clone () . decode (Contract :: raw_contract () . abi . event ("Approval") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([221 , 242 , 82 , 173 , 27 , 226 , 200 , 155 , 105 , 194 , 176 , 104 , 252 , 55 , 141 , 170 , 149 , 43 , 167 , 241 , 99 , 196 , 161 , 22 , 40 , 245 , 90 , 77 , 245 , 35 , 179 , 239]) => Ok (Event :: Transfer (log . clone () . decode (Contract :: raw_contract () . abi . event ("Transfer") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

@@ -7,25 +7,26 @@ pub mod erc20_votes {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC20Votes\",\n  \"sourceName\": \"contracts/token/ERC20/extensions/ERC20Votes.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Approval\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"delegator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"fromDelegate\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"toDelegate\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"DelegateChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"delegate\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"previousBalance\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"newBalance\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"DelegateVotesChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Transfer\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"DOMAIN_SEPARATOR\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"\",\n          \"type\": \"bytes32\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"allowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"approve\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint32\",\n          \"name\": \"pos\",\n          \"type\": \"uint32\"\n        }\n      ],\n      \"name\": \"checkpoints\",\n      \"outputs\": [\n        {\n          \"components\": [\n            {\n              \"internalType\": \"uint32\",\n              \"name\": \"fromBlock\",\n              \"type\": \"uint32\"\n            },\n            {\n              \"internalType\": \"uint224\",\n              \"name\": \"votes\",\n              \"type\": \"uint224\"\n            }\n          ],\n          \"internalType\": \"struct ERC20Votes.Checkpoint\",\n          \"name\": \"\",\n          \"type\": \"tuple\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"decimals\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"subtractedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"decreaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"delegatee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"delegate\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"delegatee\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"nonce\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"expiry\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"v\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"r\",\n          \"type\": \"bytes32\"\n        },\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"s\",\n          \"type\": \"bytes32\"\n        }\n      ],\n      \"name\": \"delegateBySig\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"delegates\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"blockNumber\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"getPastTotalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"blockNumber\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"getPastVotes\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"getVotes\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"addedValue\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"increaseAllowance\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"name\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"nonces\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"numCheckpoints\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint32\",\n          \"name\": \"\",\n          \"type\": \"uint32\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"spender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"deadline\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"uint8\",\n          \"name\": \"v\",\n          \"type\": \"uint8\"\n        },\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"r\",\n          \"type\": \"bytes32\"\n        },\n        {\n          \"internalType\": \"bytes32\",\n          \"name\": \"s\",\n          \"type\": \"bytes32\"\n        }\n      ],\n      \"name\": \"permit\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"symbol\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transfer\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"sender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"transferFrom\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20Votes\",\"abi\":[{\"type\":\"function\",\"name\":\"nonces\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"delegates\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getPastVotes\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"delegate\",\"inputs\":[{\"name\":\"delegatee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"DOMAIN_SEPARATOR\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"numCheckpoints\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"permit\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"},{\"name\":\"v\",\"type\":\"uint8\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getVotes\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"delegateBySig\",\"inputs\":[{\"name\":\"delegatee\",\"type\":\"address\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"expiry\",\"type\":\"uint256\"},{\"name\":\"v\",\"type\":\"uint8\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getPastTotalSupply\",\"inputs\":[{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"checkpoints\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"pos\",\"type\":\"uint32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"tuple\",\"components\":[{\"type\":\"uint32\"},{\"type\":\"uint224\"}]}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DelegateChanged\",\"inputs\":[{\"name\":\"delegator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"fromDelegate\",\"type\":\"address\",\"indexed\":true},{\"name\":\"toDelegate\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"DelegateVotesChanged\",\"inputs\":[{\"name\":\"delegate\",\"type\":\"address\",\"indexed\":true},{\"name\":\"previousBalance\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"newBalance\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc20_votes {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc20_votes {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc20_votes {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -110,11 +133,231 @@ pub mod erc20_votes {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `nonces(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn nonces(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([126, 206, 190, 0])
+    }
+    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decrease_allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
+    }
+    #[doc = "Returns signature for method `delegates(address):(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn delegates(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::Address,
+    > {
+      self::ethcontract::contract::Signature::new([88, 124, 222, 30])
+    }
+    #[doc = "Returns signature for method `getPastVotes(address,uint256):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_past_votes(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([58, 70, 177, 168])
+    }
+    #[doc = "Returns signature for method `delegate(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn delegate(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([92, 25, 169, 92])
+    }
+    #[doc = "Returns signature for method `name():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+    }
+    #[doc = "Returns signature for method `DOMAIN_SEPARATOR():(bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn domain_separator(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::tokens::Bytes<[u8; 32]>>
+    {
+      self::ethcontract::contract::Signature::new([54, 68, 229, 21])
+    }
+    #[doc = "Returns signature for method `numCheckpoints(address):(uint32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn num_checkpoints(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), u32> {
+      self::ethcontract::contract::Signature::new([111, 207, 255, 69])
+    }
+    #[doc = "Returns signature for method `permit(address,address,uint256,uint256,uint8,bytes32,bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn permit(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::U256,
+        u8,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([213, 5, 172, 207])
+    }
+    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    }
+    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
+    }
+    #[doc = "Returns signature for method `getVotes(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_votes(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([154, 178, 78, 176])
+    }
+    #[doc = "Returns signature for method `transferFrom(address,address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+      ),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([35, 184, 114, 221])
+    }
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    }
+    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
+    }
+    #[doc = "Returns signature for method `increaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn increase_allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([57, 80, 147, 81])
+    }
+    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
+    }
+    #[doc = "Returns signature for method `delegateBySig(address,uint256,uint256,uint8,bytes32,bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn delegate_by_sig(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::U256,
+        u8,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([195, 205, 165, 32])
+    }
+    #[doc = "Returns signature for method `getPastTotalSupply(uint256):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_past_total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
+    {
+      self::ethcontract::contract::Signature::new([142, 83, 158, 140])
+    }
+    #[doc = "Returns signature for method `checkpoints(address,uint32):((uint32,uint224))`."]
+    #[allow(clippy::type_complexity)]
+    pub fn checkpoints(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, u32),
+      (u32, self::ethcontract::U256),
+    > {
+      self::ethcontract::contract::Signature::new([241, 18, 126, 216])
+    }
+    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn approve(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
+    }
+    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -125,27 +368,24 @@ pub mod erc20_votes {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn delegate_by_sig(
+    pub fn nonces(
       &self,
-      delegatee: self::ethcontract::Address,
-      nonce: self::ethcontract::U256,
-      expiry: self::ethcontract::U256,
-      v: u8,
-      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
-      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([195, 205, 165, 32], (delegatee, nonce, expiry, v, r, s))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
+      owner: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([24, 22, 13, 221], ())
+        .view_method([126, 206, 190, 0], (owner,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn decrease_allowance(
+      &self,
+      spender: self::ethcontract::Address,
+      subtracted_value: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([164, 87, 194, 215], (spender, subtracted_value))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -156,6 +396,118 @@ pub mod erc20_votes {
       self
         .instance
         .view_method([88, 124, 222, 30], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn get_past_votes(
+      &self,
+      account: self::ethcontract::Address,
+      block_number: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([58, 70, 177, 168], (account, block_number))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn delegate(
+      &self,
+      delegatee: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([92, 25, 169, 92], (delegatee,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([6, 253, 222, 3], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn domain_separator(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 32]>>
+    {
+      self
+        .instance
+        .view_method([54, 68, 229, 21], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn num_checkpoints(
+      &self,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<u32> {
+      self
+        .instance
+        .view_method([111, 207, 255, 69], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn permit(
+      &self,
+      owner: self::ethcontract::Address,
+      spender: self::ethcontract::Address,
+      value: self::ethcontract::U256,
+      deadline: self::ethcontract::U256,
+      v: u8,
+      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
+      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method(
+          [213, 5, 172, 207],
+          (owner, spender, value, deadline, v, r, s),
+        )
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+      self
+        .instance
+        .view_method([49, 60, 229, 103], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([149, 216, 155, 65], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn get_votes(
+      &self,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([154, 178, 78, 176], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn transfer_from(
+      &self,
+      sender: self::ethcontract::Address,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([35, 184, 114, 221], (sender, recipient, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([24, 22, 13, 221], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -181,6 +533,32 @@ pub mod erc20_votes {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn transfer(
+      &self,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([169, 5, 156, 187], (recipient, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn delegate_by_sig(
+      &self,
+      delegatee: self::ethcontract::Address,
+      nonce: self::ethcontract::U256,
+      expiry: self::ethcontract::U256,
+      v: u8,
+      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
+      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([195, 205, 165, 32], (delegatee, nonce, expiry, v, r, s))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn get_past_total_supply(
       &self,
       block_number: self::ethcontract::U256,
@@ -188,33 +566,6 @@ pub mod erc20_votes {
       self
         .instance
         .view_method([142, 83, 158, 140], (block_number,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([6, 253, 222, 3], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn domain_separator(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 32]>>
-    {
-      self
-        .instance
-        .view_method([54, 68, 229, 21], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn nonces(
-      &self,
-      owner: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([126, 206, 190, 0], (owner,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -229,18 +580,6 @@ pub mod erc20_votes {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_from(
-      &self,
-      sender: self::ethcontract::Address,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([35, 184, 114, 221], (sender, recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn approve(
       &self,
       spender: self::ethcontract::Address,
@@ -252,73 +591,6 @@ pub mod erc20_votes {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn delegate(
-      &self,
-      delegatee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([92, 25, 169, 92], (delegatee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn num_checkpoints(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<u32> {
-      self
-        .instance
-        .view_method([111, 207, 255, 69], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn decrease_allowance(
-      &self,
-      spender: self::ethcontract::Address,
-      subtracted_value: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([164, 87, 194, 215], (spender, subtracted_value))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn get_votes(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([154, 178, 78, 176], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn permit(
-      &self,
-      owner: self::ethcontract::Address,
-      spender: self::ethcontract::Address,
-      value: self::ethcontract::U256,
-      deadline: self::ethcontract::U256,
-      v: u8,
-      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
-      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method(
-          [213, 5, 172, 207],
-          (owner, spender, value, deadline, v, r, s),
-        )
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn balance_of(
       &self,
       account: self::ethcontract::Address,
@@ -326,35 +598,6 @@ pub mod erc20_votes {
       self
         .instance
         .view_method([112, 160, 130, 49], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
-      self
-        .instance
-        .view_method([49, 60, 229, 103], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer(
-      &self,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([169, 5, 156, 187], (recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn get_past_votes(
-      &self,
-      account: self::ethcontract::Address,
-      block_number: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([58, 70, 177, 168], (account, block_number))
         .expect("generated call")
     }
   }
@@ -398,46 +641,6 @@ pub mod erc20_votes {
       ) -> Result<Self, self::ethcontract::tokens::Error> {
         let (from, to, value) = self::ethcontract::tokens::Tokenize::from_token(token)?;
         Ok(Transfer { from, to, value })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct DelegateVotesChanged {
-      pub delegate: self::ethcontract::Address,
-      pub previous_balance: self::ethcontract::U256,
-      pub new_balance: self::ethcontract::U256,
-    }
-    impl DelegateVotesChanged {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          222, 194, 186, 205, 210, 240, 91, 89, 222, 52, 218, 155, 82, 61, 255, 139, 228, 46, 94,
-          56, 232, 24, 200, 47, 219, 11, 174, 119, 67, 135, 167, 36,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`DelegateVotesChanged(address,uint256,uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "DelegateVotesChanged(address,uint256,uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for DelegateVotesChanged {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (delegate, previous_balance, new_balance) =
-          self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(DelegateVotesChanged {
-          delegate,
-          previous_balance,
-          new_balance,
-        })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -522,6 +725,46 @@ pub mod erc20_votes {
         unimplemented!("events are only decoded, not encoded")
       }
     }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct DelegateVotesChanged {
+      pub delegate: self::ethcontract::Address,
+      pub previous_balance: self::ethcontract::U256,
+      pub new_balance: self::ethcontract::U256,
+    }
+    impl DelegateVotesChanged {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          222, 194, 186, 205, 210, 240, 91, 89, 222, 52, 218, 155, 82, 61, 255, 139, 228, 46, 94,
+          56, 232, 24, 200, 47, 219, 11, 174, 119, 67, 135, 167, 36,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`DelegateVotesChanged(address,uint256,uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "DelegateVotesChanged(address,uint256,uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for DelegateVotesChanged {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (delegate, previous_balance, new_balance) =
+          self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(DelegateVotesChanged {
+          delegate,
+          previous_balance,
+          new_balance,
+        })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -549,18 +792,6 @@ pub mod erc20_votes {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn delegate_votes_changed(&self) -> self::event_builders::DelegateVotesChangedBuilder {
-      self::event_builders::DelegateVotesChangedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            222, 194, 186, 205, 210, 240, 91, 89, 222, 52, 218, 155, 82, 61, 255, 139, 228, 46, 94,
-            56, 232, 24, 200, 47, 219, 11, 174, 119, 67, 135, 167, 36,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
     pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
       self::event_builders::ApprovalBuilder(
         self
@@ -580,6 +811,18 @@ pub mod erc20_votes {
           .event(self::ethcontract::H256([
             49, 52, 232, 162, 230, 217, 126, 146, 154, 126, 84, 1, 30, 165, 72, 93, 125, 25, 109,
             213, 240, 186, 77, 78, 249, 88, 3, 232, 227, 252, 37, 127,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn delegate_votes_changed(&self) -> self::event_builders::DelegateVotesChangedBuilder {
+      self::event_builders::DelegateVotesChangedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            222, 194, 186, 205, 210, 240, 91, 89, 222, 52, 218, 155, 82, 61, 255, 139, 228, 46, 94,
+            56, 232, 24, 200, 47, 219, 11, 174, 119, 67, 135, 167, 36,
           ]))
           .expect("generated event filter"),
       )
@@ -612,14 +855,14 @@ pub mod erc20_votes {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -657,71 +900,6 @@ pub mod erc20_votes {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `DelegateVotesChanged` events."]
-    pub struct DelegateVotesChangedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::DelegateVotesChanged>,
-    );
-    impl DelegateVotesChangedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the delegate event parameter."]
-      pub fn delegate(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::DelegateVotesChanged>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::DelegateVotesChanged>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `Approval` events."]
     pub struct ApprovalBuilder(
       #[doc = r" The inner event builder."]
@@ -744,14 +922,14 @@ pub mod erc20_votes {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -814,14 +992,14 @@ pub mod erc20_votes {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -873,6 +1051,71 @@ pub mod erc20_votes {
         (self.0).stream()
       }
     }
+    #[doc = "A builder for creating a filtered stream of `DelegateVotesChanged` events."]
+    pub struct DelegateVotesChangedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::DelegateVotesChanged>,
+    );
+    impl DelegateVotesChangedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the delegate event parameter."]
+      pub fn delegate(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::DelegateVotesChanged>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::DelegateVotesChanged>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
   }
   impl Contract {
     #[doc = r" Returns a log stream with all events."]
@@ -896,7 +1139,7 @@ pub mod erc20_votes {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([140 , 91 , 225 , 229 , 235 , 236 , 125 , 91 , 209 , 79 , 113 , 66 , 125 , 30 , 132 , 243 , 221 , 3 , 20 , 192 , 247 , 178 , 41 , 30 , 91 , 32 , 10 , 200 , 199 , 195 , 185 , 37]) => Ok (Event :: Approval (log . clone () . decode (Contract :: artifact () . abi . event ("Approval") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([49 , 52 , 232 , 162 , 230 , 217 , 126 , 146 , 154 , 126 , 84 , 1 , 30 , 165 , 72 , 93 , 125 , 25 , 109 , 213 , 240 , 186 , 77 , 78 , 249 , 88 , 3 , 232 , 227 , 252 , 37 , 127]) => Ok (Event :: DelegateChanged (log . clone () . decode (Contract :: artifact () . abi . event ("DelegateChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([222 , 194 , 186 , 205 , 210 , 240 , 91 , 89 , 222 , 52 , 218 , 155 , 82 , 61 , 255 , 139 , 228 , 46 , 94 , 56 , 232 , 24 , 200 , 47 , 219 , 11 , 174 , 119 , 67 , 135 , 167 , 36]) => Ok (Event :: DelegateVotesChanged (log . clone () . decode (Contract :: artifact () . abi . event ("DelegateVotesChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([221 , 242 , 82 , 173 , 27 , 226 , 200 , 155 , 105 , 194 , 176 , 104 , 252 , 55 , 141 , 170 , 149 , 43 , 167 , 241 , 99 , 196 , 161 , 22 , 40 , 245 , 90 , 77 , 245 , 35 , 179 , 239]) => Ok (Event :: Transfer (log . clone () . decode (Contract :: artifact () . abi . event ("Transfer") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([140 , 91 , 225 , 229 , 235 , 236 , 125 , 91 , 209 , 79 , 113 , 66 , 125 , 30 , 132 , 243 , 221 , 3 , 20 , 192 , 247 , 178 , 41 , 30 , 91 , 32 , 10 , 200 , 199 , 195 , 185 , 37]) => Ok (Event :: Approval (log . clone () . decode (Contract :: raw_contract () . abi . event ("Approval") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([49 , 52 , 232 , 162 , 230 , 217 , 126 , 146 , 154 , 126 , 84 , 1 , 30 , 165 , 72 , 93 , 125 , 25 , 109 , 213 , 240 , 186 , 77 , 78 , 249 , 88 , 3 , 232 , 227 , 252 , 37 , 127]) => Ok (Event :: DelegateChanged (log . clone () . decode (Contract :: raw_contract () . abi . event ("DelegateChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([222 , 194 , 186 , 205 , 210 , 240 , 91 , 89 , 222 , 52 , 218 , 155 , 82 , 61 , 255 , 139 , 228 , 46 , 94 , 56 , 232 , 24 , 200 , 47 , 219 , 11 , 174 , 119 , 67 , 135 , 167 , 36]) => Ok (Event :: DelegateVotesChanged (log . clone () . decode (Contract :: raw_contract () . abi . event ("DelegateVotesChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([221 , 242 , 82 , 173 , 27 , 226 , 200 , 155 , 105 , 194 , 176 , 104 , 252 , 55 , 141 , 170 , 149 , 43 , 167 , 241 , 99 , 196 , 161 , 22 , 40 , 245 , 90 , 77 , 245 , 35 , 179 , 239]) => Ok (Event :: Transfer (log . clone () . decode (Contract :: raw_contract () . abi . event ("Transfer") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

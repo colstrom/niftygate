@@ -7,25 +7,26 @@ pub mod erc1155_pausable_upgradeable {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"ERC1155PausableUpgradeable\",\n  \"sourceName\": \"contracts/token/ERC1155/extensions/ERC1155PausableUpgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bool\",\n          \"name\": \"approved\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"name\": \"ApprovalForAll\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Paused\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256[]\",\n          \"name\": \"ids\",\n          \"type\": \"uint256[]\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256[]\",\n          \"name\": \"values\",\n          \"type\": \"uint256[]\"\n        }\n      ],\n      \"name\": \"TransferBatch\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"id\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"value\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"TransferSingle\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"string\",\n          \"name\": \"value\",\n          \"type\": \"string\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"uint256\",\n          \"name\": \"id\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"URI\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Unpaused\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"id\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address[]\",\n          \"name\": \"accounts\",\n          \"type\": \"address[]\"\n        },\n        {\n          \"internalType\": \"uint256[]\",\n          \"name\": \"ids\",\n          \"type\": \"uint256[]\"\n        }\n      ],\n      \"name\": \"balanceOfBatch\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256[]\",\n          \"name\": \"\",\n          \"type\": \"uint256[]\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"isApprovedForAll\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"paused\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256[]\",\n          \"name\": \"ids\",\n          \"type\": \"uint256[]\"\n        },\n        {\n          \"internalType\": \"uint256[]\",\n          \"name\": \"amounts\",\n          \"type\": \"uint256[]\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"safeBatchTransferFrom\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"id\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"safeTransferFrom\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"approved\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"name\": \"setApprovalForAll\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"bytes4\",\n          \"name\": \"interfaceId\",\n          \"type\": \"bytes4\"\n        }\n      ],\n      \"name\": \"supportsInterface\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"uri\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC1155PausableUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"isApprovedForAll\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"operator\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"paused\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"setApprovalForAll\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"approved\",\"type\":\"bool\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"uri\",\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"id\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOfBatch\",\"inputs\":[{\"name\":\"accounts\",\"type\":\"address[]\"},{\"name\":\"ids\",\"type\":\"uint256[]\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"id\",\"type\":\"uint256\"},{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"safeBatchTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"ids\",\"type\":\"uint256[]\"},{\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Paused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"URI\",\"inputs\":[{\"name\":\"value\",\"type\":\"string\",\"indexed\":false},{\"name\":\"id\",\"type\":\"uint256\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Unpaused\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TransferBatch\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"ids\",\"type\":\"uint256[]\",\"indexed\":false},{\"name\":\"values\",\"type\":\"uint256[]\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"TransferSingle\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"id\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ApprovalForAll\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"approved\",\"type\":\"bool\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod erc1155_pausable_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod erc1155_pausable_upgradeable {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod erc1155_pausable_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -110,11 +133,112 @@ pub mod erc1155_pausable_upgradeable {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `isApprovedForAll(address,address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn is_approved_for_all(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([233, 133, 233, 197])
+    }
+    #[doc = "Returns signature for method `paused():(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn paused(&self) -> self::ethcontract::contract::Signature<(), bool> {
+      self::ethcontract::contract::Signature::new([92, 151, 90, 187])
+    }
+    #[doc = "Returns signature for method `setApprovalForAll(address,bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn set_approval_for_all(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address, bool), ()> {
+      self::ethcontract::contract::Signature::new([162, 44, 180, 101])
+    }
+    #[doc = "Returns signature for method `uri(uint256):(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn uri(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), String> {
+      self::ethcontract::contract::Signature::new([14, 137, 52, 28])
+    }
+    #[doc = "Returns signature for method `balanceOf(address,uint256):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([0, 253, 213, 142])
+    }
+    #[doc = "Returns signature for method `balanceOfBatch(address[],uint256[]):(uint256[])`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of_batch(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        Vec<self::ethcontract::Address>,
+        Vec<self::ethcontract::U256>,
+      ),
+      Vec<self::ethcontract::U256>,
+    > {
+      self::ethcontract::contract::Signature::new([78, 18, 115, 244])
+    }
+    #[doc = "Returns signature for method `safeTransferFrom(address,address,uint256,uint256,bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn safe_transfer_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([242, 66, 67, 42])
+    }
+    #[doc = "Returns signature for method `safeBatchTransferFrom(address,address,uint256[],uint256[],bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn safe_batch_transfer_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        Vec<self::ethcontract::U256>,
+        Vec<self::ethcontract::U256>,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([46, 178, 194, 214])
+    }
+    #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn supports_interface(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
+    {
+      self::ethcontract::contract::Signature::new([1, 255, 201, 167])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -125,17 +249,21 @@ pub mod erc1155_pausable_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn safe_batch_transfer_from(
+    pub fn is_approved_for_all(
       &self,
-      from: self::ethcontract::Address,
-      to: self::ethcontract::Address,
-      ids: Vec<self::ethcontract::U256>,
-      amounts: Vec<self::ethcontract::U256>,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      account: self::ethcontract::Address,
+      operator: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
       self
         .instance
-        .method([46, 178, 194, 214], (from, to, ids, amounts, data))
+        .view_method([233, 133, 233, 197], (account, operator))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn paused(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([92, 151, 90, 187], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -150,6 +278,27 @@ pub mod erc1155_pausable_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn uri(
+      &self,
+      p0: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([14, 137, 52, 28], (p0,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      account: self::ethcontract::Address,
+      id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([0, 253, 213, 142], (account, id))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn balance_of_batch(
       &self,
       accounts: Vec<self::ethcontract::Address>,
@@ -158,13 +307,6 @@ pub mod erc1155_pausable_upgradeable {
       self
         .instance
         .view_method([78, 18, 115, 244], (accounts, ids))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn paused(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([92, 151, 90, 187], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -182,24 +324,17 @@ pub mod erc1155_pausable_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn uri(
+    pub fn safe_batch_transfer_from(
       &self,
-      p0: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      from: self::ethcontract::Address,
+      to: self::ethcontract::Address,
+      ids: Vec<self::ethcontract::U256>,
+      amounts: Vec<self::ethcontract::U256>,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .view_method([14, 137, 52, 28], (p0,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn is_approved_for_all(
-      &self,
-      account: self::ethcontract::Address,
-      operator: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([233, 133, 233, 197], (account, operator))
+        .method([46, 178, 194, 214], (from, to, ids, amounts, data))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -210,17 +345,6 @@ pub mod erc1155_pausable_upgradeable {
       self
         .instance
         .view_method([1, 255, 201, 167], (interface_id,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      account: self::ethcontract::Address,
-      id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([0, 253, 213, 142], (account, id))
         .expect("generated call")
     }
   }
@@ -234,6 +358,39 @@ pub mod erc1155_pausable_upgradeable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Paused {
+      pub account: self::ethcontract::Address,
+    }
+    impl Paused {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          98, 231, 140, 234, 1, 190, 227, 32, 205, 78, 66, 2, 112, 181, 234, 116, 0, 13, 17, 176,
+          201, 247, 71, 84, 235, 219, 252, 84, 75, 5, 162, 88,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Paused(address)`"]
+      pub fn abi_signature() -> &'static str {
+        "Paused(address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Paused {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (account,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Paused { account })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Uri {
       pub value: String,
@@ -263,6 +420,83 @@ pub mod erc1155_pausable_upgradeable {
       ) -> Result<Self, self::ethcontract::tokens::Error> {
         let (value, id) = self::ethcontract::tokens::Tokenize::from_token(token)?;
         Ok(Uri { value, id })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Unpaused {
+      pub account: self::ethcontract::Address,
+    }
+    impl Unpaused {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          93, 185, 238, 10, 73, 91, 242, 230, 255, 156, 145, 167, 131, 76, 27, 164, 253, 210, 68,
+          165, 232, 170, 78, 83, 123, 211, 138, 234, 228, 176, 115, 170,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Unpaused(address)`"]
+      pub fn abi_signature() -> &'static str {
+        "Unpaused(address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Unpaused {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (account,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Unpaused { account })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct TransferBatch {
+      pub operator: self::ethcontract::Address,
+      pub from: self::ethcontract::Address,
+      pub to: self::ethcontract::Address,
+      pub ids: Vec<self::ethcontract::U256>,
+      pub values: Vec<self::ethcontract::U256>,
+    }
+    impl TransferBatch {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          74, 57, 220, 6, 212, 192, 219, 198, 75, 112, 175, 144, 253, 105, 138, 35, 58, 81, 138,
+          165, 208, 126, 89, 93, 152, 59, 140, 5, 38, 200, 247, 251,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`TransferBatch(address,address,address,uint256[],uint256[])`"]
+      pub fn abi_signature() -> &'static str {
+        "TransferBatch(address,address,address,uint256[],uint256[])"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for TransferBatch {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (operator, from, to, ids, values) =
+          self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(TransferBatch {
+          operator,
+          from,
+          to,
+          ids,
+          values,
+        })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -313,39 +547,6 @@ pub mod erc1155_pausable_upgradeable {
       }
     }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Unpaused {
-      pub account: self::ethcontract::Address,
-    }
-    impl Unpaused {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          93, 185, 238, 10, 73, 91, 242, 230, 255, 156, 145, 167, 131, 76, 27, 164, 253, 210, 68,
-          165, 232, 170, 78, 83, 123, 211, 138, 234, 228, 176, 115, 170,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Unpaused(address)`"]
-      pub fn abi_signature() -> &'static str {
-        "Unpaused(address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Unpaused {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (account,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Unpaused { account })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct ApprovalForAll {
       pub account: self::ethcontract::Address,
       pub operator: self::ethcontract::Address,
@@ -384,83 +585,6 @@ pub mod erc1155_pausable_upgradeable {
         unimplemented!("events are only decoded, not encoded")
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Paused {
-      pub account: self::ethcontract::Address,
-    }
-    impl Paused {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          98, 231, 140, 234, 1, 190, 227, 32, 205, 78, 66, 2, 112, 181, 234, 116, 0, 13, 17, 176,
-          201, 247, 71, 84, 235, 219, 252, 84, 75, 5, 162, 88,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Paused(address)`"]
-      pub fn abi_signature() -> &'static str {
-        "Paused(address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Paused {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (account,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Paused { account })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct TransferBatch {
-      pub operator: self::ethcontract::Address,
-      pub from: self::ethcontract::Address,
-      pub to: self::ethcontract::Address,
-      pub ids: Vec<self::ethcontract::U256>,
-      pub values: Vec<self::ethcontract::U256>,
-    }
-    impl TransferBatch {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          74, 57, 220, 6, 212, 192, 219, 198, 75, 112, 175, 144, 253, 105, 138, 35, 58, 81, 138,
-          165, 208, 126, 89, 93, 152, 59, 140, 5, 38, 200, 247, 251,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`TransferBatch(address,address,address,uint256[],uint256[])`"]
-      pub fn abi_signature() -> &'static str {
-        "TransferBatch(address,address,address,uint256[],uint256[])"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for TransferBatch {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (operator, from, to, ids, values) =
-          self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(TransferBatch {
-          operator,
-          from,
-          to,
-          ids,
-          values,
-        })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -476,6 +600,18 @@ pub mod erc1155_pausable_upgradeable {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
+    pub fn paused(&self) -> self::event_builders::PausedBuilder {
+      self::event_builders::PausedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            98, 231, 140, 234, 1, 190, 227, 32, 205, 78, 66, 2, 112, 181, 234, 116, 0, 13, 17, 176,
+            201, 247, 71, 84, 235, 219, 252, 84, 75, 5, 162, 88,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
     pub fn uri(&self) -> self::event_builders::UriBuilder {
       self::event_builders::UriBuilder(
         self
@@ -483,18 +619,6 @@ pub mod erc1155_pausable_upgradeable {
           .event(self::ethcontract::H256([
             107, 183, 255, 112, 134, 25, 186, 6, 16, 203, 162, 149, 165, 133, 146, 224, 69, 29,
             238, 38, 34, 147, 140, 135, 85, 102, 118, 136, 218, 243, 82, 155,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn transfer_single(&self) -> self::event_builders::TransferSingleBuilder {
-      self::event_builders::TransferSingleBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            195, 213, 129, 104, 197, 174, 115, 151, 115, 29, 6, 61, 91, 191, 61, 101, 120, 84, 66,
-            115, 67, 244, 192, 131, 36, 15, 122, 172, 170, 45, 15, 98,
           ]))
           .expect("generated event filter"),
       )
@@ -512,30 +636,6 @@ pub mod erc1155_pausable_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn approval_for_all(&self) -> self::event_builders::ApprovalForAllBuilder {
-      self::event_builders::ApprovalForAllBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            23, 48, 126, 171, 57, 171, 97, 7, 232, 137, 152, 69, 173, 61, 89, 189, 150, 83, 242, 0,
-            242, 32, 146, 4, 137, 202, 43, 89, 55, 105, 108, 49,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn paused(&self) -> self::event_builders::PausedBuilder {
-      self::event_builders::PausedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            98, 231, 140, 234, 1, 190, 227, 32, 205, 78, 66, 2, 112, 181, 234, 116, 0, 13, 17, 176,
-            201, 247, 71, 84, 235, 219, 252, 84, 75, 5, 162, 88,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
     pub fn transfer_batch(&self) -> self::event_builders::TransferBatchBuilder {
       self::event_builders::TransferBatchBuilder(
         self
@@ -547,12 +647,93 @@ pub mod erc1155_pausable_upgradeable {
           .expect("generated event filter"),
       )
     }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn transfer_single(&self) -> self::event_builders::TransferSingleBuilder {
+      self::event_builders::TransferSingleBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            195, 213, 129, 104, 197, 174, 115, 151, 115, 29, 6, 61, 91, 191, 61, 101, 120, 84, 66,
+            115, 67, 244, 192, 131, 36, 15, 122, 172, 170, 45, 15, 98,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn approval_for_all(&self) -> self::event_builders::ApprovalForAllBuilder {
+      self::event_builders::ApprovalForAllBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            23, 48, 126, 171, 57, 171, 97, 7, 232, 137, 152, 69, 173, 61, 89, 189, 150, 83, 242, 0,
+            242, 32, 146, 4, 137, 202, 43, 89, 55, 105, 108, 49,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `Paused` events."]
+    pub struct PausedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Paused>,
+    );
+    impl PausedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Paused>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Paused>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `Uri` events."]
     pub struct UriBuilder(
       #[doc = r" The inner event builder."]
@@ -575,14 +756,14 @@ pub mod erc1155_pausable_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -615,81 +796,6 @@ pub mod erc1155_pausable_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `TransferSingle` events."]
-    pub struct TransferSingleBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::TransferSingle>,
-    );
-    impl TransferSingleBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the operator event parameter."]
-      pub fn operator(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = "Adds a filter for the from event parameter."]
-      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic1(topic);
-        self
-      }
-      #[doc = "Adds a filter for the to event parameter."]
-      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic2(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::TransferSingle>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::TransferSingle>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `Unpaused` events."]
     pub struct UnpausedBuilder(
       #[doc = r" The inner event builder."]
@@ -712,14 +818,14 @@ pub mod erc1155_pausable_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -741,136 +847,6 @@ pub mod erc1155_pausable_upgradeable {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::Unpaused>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `ApprovalForAll` events."]
-    pub struct ApprovalForAllBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ApprovalForAll>,
-    );
-    impl ApprovalForAllBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the account event parameter."]
-      pub fn account(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = "Adds a filter for the operator event parameter."]
-      pub fn operator(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
-        self.0 = (self.0).topic1(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::ApprovalForAll>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::ApprovalForAll>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Paused` events."]
-    pub struct PausedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Paused>,
-    );
-    impl PausedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Paused>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Paused>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -899,14 +875,14 @@ pub mod erc1155_pausable_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -952,6 +928,154 @@ pub mod erc1155_pausable_upgradeable {
         (self.0).stream()
       }
     }
+    #[doc = "A builder for creating a filtered stream of `TransferSingle` events."]
+    pub struct TransferSingleBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::TransferSingle>,
+    );
+    impl TransferSingleBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the operator event parameter."]
+      pub fn operator(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = "Adds a filter for the from event parameter."]
+      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic1(topic);
+        self
+      }
+      #[doc = "Adds a filter for the to event parameter."]
+      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic2(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::TransferSingle>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::TransferSingle>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `ApprovalForAll` events."]
+    pub struct ApprovalForAllBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ApprovalForAll>,
+    );
+    impl ApprovalForAllBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the account event parameter."]
+      pub fn account(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = "Adds a filter for the operator event parameter."]
+      pub fn operator(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic1(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::ApprovalForAll>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::ApprovalForAll>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
   }
   impl Contract {
     #[doc = r" Returns a log stream with all events."]
@@ -977,7 +1101,7 @@ pub mod erc1155_pausable_upgradeable {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([23 , 48 , 126 , 171 , 57 , 171 , 97 , 7 , 232 , 137 , 152 , 69 , 173 , 61 , 89 , 189 , 150 , 83 , 242 , 0 , 242 , 32 , 146 , 4 , 137 , 202 , 43 , 89 , 55 , 105 , 108 , 49]) => Ok (Event :: ApprovalForAll (log . clone () . decode (Contract :: artifact () . abi . event ("ApprovalForAll") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([98 , 231 , 140 , 234 , 1 , 190 , 227 , 32 , 205 , 78 , 66 , 2 , 112 , 181 , 234 , 116 , 0 , 13 , 17 , 176 , 201 , 247 , 71 , 84 , 235 , 219 , 252 , 84 , 75 , 5 , 162 , 88]) => Ok (Event :: Paused (log . clone () . decode (Contract :: artifact () . abi . event ("Paused") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([74 , 57 , 220 , 6 , 212 , 192 , 219 , 198 , 75 , 112 , 175 , 144 , 253 , 105 , 138 , 35 , 58 , 81 , 138 , 165 , 208 , 126 , 89 , 93 , 152 , 59 , 140 , 5 , 38 , 200 , 247 , 251]) => Ok (Event :: TransferBatch (log . clone () . decode (Contract :: artifact () . abi . event ("TransferBatch") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([195 , 213 , 129 , 104 , 197 , 174 , 115 , 151 , 115 , 29 , 6 , 61 , 91 , 191 , 61 , 101 , 120 , 84 , 66 , 115 , 67 , 244 , 192 , 131 , 36 , 15 , 122 , 172 , 170 , 45 , 15 , 98]) => Ok (Event :: TransferSingle (log . clone () . decode (Contract :: artifact () . abi . event ("TransferSingle") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([107 , 183 , 255 , 112 , 134 , 25 , 186 , 6 , 16 , 203 , 162 , 149 , 165 , 133 , 146 , 224 , 69 , 29 , 238 , 38 , 34 , 147 , 140 , 135 , 85 , 102 , 118 , 136 , 218 , 243 , 82 , 155]) => Ok (Event :: Uri (log . clone () . decode (Contract :: artifact () . abi . event ("URI") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([93 , 185 , 238 , 10 , 73 , 91 , 242 , 230 , 255 , 156 , 145 , 167 , 131 , 76 , 27 , 164 , 253 , 210 , 68 , 165 , 232 , 170 , 78 , 83 , 123 , 211 , 138 , 234 , 228 , 176 , 115 , 170]) => Ok (Event :: Unpaused (log . clone () . decode (Contract :: artifact () . abi . event ("Unpaused") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([23 , 48 , 126 , 171 , 57 , 171 , 97 , 7 , 232 , 137 , 152 , 69 , 173 , 61 , 89 , 189 , 150 , 83 , 242 , 0 , 242 , 32 , 146 , 4 , 137 , 202 , 43 , 89 , 55 , 105 , 108 , 49]) => Ok (Event :: ApprovalForAll (log . clone () . decode (Contract :: raw_contract () . abi . event ("ApprovalForAll") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([98 , 231 , 140 , 234 , 1 , 190 , 227 , 32 , 205 , 78 , 66 , 2 , 112 , 181 , 234 , 116 , 0 , 13 , 17 , 176 , 201 , 247 , 71 , 84 , 235 , 219 , 252 , 84 , 75 , 5 , 162 , 88]) => Ok (Event :: Paused (log . clone () . decode (Contract :: raw_contract () . abi . event ("Paused") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([74 , 57 , 220 , 6 , 212 , 192 , 219 , 198 , 75 , 112 , 175 , 144 , 253 , 105 , 138 , 35 , 58 , 81 , 138 , 165 , 208 , 126 , 89 , 93 , 152 , 59 , 140 , 5 , 38 , 200 , 247 , 251]) => Ok (Event :: TransferBatch (log . clone () . decode (Contract :: raw_contract () . abi . event ("TransferBatch") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([195 , 213 , 129 , 104 , 197 , 174 , 115 , 151 , 115 , 29 , 6 , 61 , 91 , 191 , 61 , 101 , 120 , 84 , 66 , 115 , 67 , 244 , 192 , 131 , 36 , 15 , 122 , 172 , 170 , 45 , 15 , 98]) => Ok (Event :: TransferSingle (log . clone () . decode (Contract :: raw_contract () . abi . event ("TransferSingle") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([107 , 183 , 255 , 112 , 134 , 25 , 186 , 6 , 16 , 203 , 162 , 149 , 165 , 133 , 146 , 224 , 69 , 29 , 238 , 38 , 34 , 147 , 140 , 135 , 85 , 102 , 118 , 136 , 218 , 243 , 82 , 155]) => Ok (Event :: Uri (log . clone () . decode (Contract :: raw_contract () . abi . event ("URI") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([93 , 185 , 238 , 10 , 73 , 91 , 242 , 230 , 255 , 156 , 145 , 167 , 131 , 76 , 27 , 164 , 253 , 210 , 68 , 165 , 232 , 170 , 78 , 83 , 123 , 211 , 138 , 234 , 228 , 176 , 115 , 170]) => Ok (Event :: Unpaused (log . clone () . decode (Contract :: raw_contract () . abi . event ("Unpaused") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

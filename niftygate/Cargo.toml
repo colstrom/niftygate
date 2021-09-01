@@ -1,6 +1,6 @@
 [package]
 name = "niftygate"
-version = "0.6.2"
+version = "0.6.3"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
@@ -9,18 +9,18 @@ documentation = "https://docs.rs/niftygate/"
 description = "Drop-in Proxy for Access Control via NFT Ownership"
 
 [dependencies]
-async-std = { version = "1.9.0", features = ["attributes"] }
+async-std = { version = "1.10.0", features = ["attributes"] }
 base64 = "0.13.0"
 console = "0.14.1"
 dialoguer = "0.8.0"
-ethcontract = { version = "0.12.2", default-features = false, features = ["derive"] }
+ethcontract = { version = "0.15.3", default-features = false, features = ["derive"] }
 hex = "0.4.3"
-niftygate-bindings = { path = "../niftygate-bindings", version = "0.6.2" }
+niftygate-bindings = { path = "../niftygate-bindings", version = "0.6.3" }
 secp256k1 = "0.20.3"
-serde = { version = "1.0.126", features = ["derive"] }
-serde_json = "1.0.64"
-structopt = "0.3.22"
+serde = { version = "1.0.130", features = ["derive"] }
+serde_json = "1.0.67"
+structopt = "0.3.23"
 strum = { version = "0.21.0", features = ["derive"] }
-surf = { version = "2.2.0", default-features = false, features = ["middleware-logger", "encoding", "h1-client-rustls"] }
+surf = { version = "2.3.1", default-features = false, features = ["middleware-logger", "encoding", "h1-client-rustls"] }
 tide = "0.16.0"
-web3 = { version = "0.16.0", default-features = false, features = ["signing", "ws-async-std", "url", "base64", "eip-1193"] }
+web3 = { version = "0.17.0", default-features = false, features = ["signing", "ws-async-std", "url", "base64", "eip-1193"] }

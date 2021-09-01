@@ -4,8 +4,8 @@
 // found in src/openzeppelin/contracts/generated directory. These are
 // committed in-tree, because it allows the crate to be built without
 // depending on any extra tooling like Truffle or Solidity.
-
-use ethcontract_generate::{Builder, ContractBindings, Source};
+use ethcontract::Contract;
+use ethcontract_generate::{loaders::TruffleLoader, ContractBindings, ContractBuilder};
 use heck::SnakeCase;
 use std::{
   ffi::OsStr,
@@ -36,8 +36,8 @@ fn sources(input_dir: PathBuf) -> WrappedResult<Vec<PathBuf>> {
 }
 
 // This maps sources to output files, and handles a naming issue.
-fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Source, PathBuf)>> {
-  let mut plan: Vec<(Source, PathBuf)> = vec![];
+fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Contract, PathBuf)>> {
+  let mut plan: Vec<(Contract, PathBuf)> = vec![];
 
   for source in sources {
     let file_stem = source
@@ -46,7 +46,7 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Source
       .to_str()
       .expect("filename is not valid Unicode")
       .to_snake_case();
-    let source = Source::Local(source.clone());
+    let source = TruffleLoader::new().load_contract_from_file(source.clone())?;
     let path = if file_stem.eq("create2") {
       output_dir.join("create_2.rs")
     } else {
@@ -62,20 +62,20 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Source
 // There's probably a better way to handle this, but there are multiple
 // source files with the same issue, and this doesn't need to be fast,
 // since it's not even run at build time, but manually when needed.
-fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
-  if let Ok(contract_bindings) = Builder::with_source(source.clone())
-    .with_visibility_modifier(Some("pub"))
+fn contract_bindings(contract: Contract) -> WrappedResult<ContractBindings> {
+  if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
     .add_event_derive("serde::Deserialize")
     .add_event_derive("serde::Serialize")
     .add_method_alias(
       String::from("safeTransferFrom(address,address,uint256,bytes)"),
       String::from("safe_transfer_from_with_data"),
     )
-    .generate()
+    .generate(&contract)
   {
-    Ok(contract_bindings)
-  } else if let Ok(contract_bindings) = Builder::with_source(source.clone())
-    .with_visibility_modifier(Some("pub"))
+    Ok(bindings)
+  } else if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
     .add_event_derive("serde::Deserialize")
     .add_event_derive("serde::Serialize")
     .add_method_alias(
@@ -94,11 +94,11 @@ fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
       String::from("cancel(uint256)"),
       String::from("cancel_proposal"),
     )
-    .generate()
+    .generate(&contract)
   {
-    Ok(contract_bindings)
-  } else if let Ok(contract_bindings) = Builder::with_source(source.clone())
-    .with_visibility_modifier(Some("pub"))
+    Ok(bindings)
+  } else if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
     .add_event_derive("serde::Deserialize")
     .add_event_derive("serde::Serialize")
     .add_method_alias(
@@ -113,16 +113,16 @@ fn contract_bindings(source: Source) -> WrappedResult<ContractBindings> {
       String::from("transferFromAndCall(address,address,uint256,bytes)"),
       String::from("transfer_from_and_call_with_data"),
     )
-    .generate()
+    .generate(&contract)
   {
-    Ok(contract_bindings)
+    Ok(bindings)
   } else {
     Ok(
-      Builder::with_source(source)
-        .with_visibility_modifier(Some("pub"))
+      ContractBuilder::new()
+        .visibility_modifier("pub")
         .add_event_derive("serde::Deserialize")
         .add_event_derive("serde::Serialize")
-        .generate()?,
+        .generate(&contract)?,
     )
   }
 }

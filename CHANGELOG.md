@@ -1,3 +1,14 @@
+# 0.6.3
+  - (dependency) async-std 1.9.0 -> 1.10.0
+  - (dependency) ethcontract 0.12.2 -> 0.15.3
+  - (dependency) ethcontract-generate 0.12.2 -> 0.15.3
+  - (dependency) serde 1.0.129 -> 1.0.130
+  - (dependency) serde_json 1.0.66 -> 1.0.67
+  - (dependency) structopt 0.3.22 -> 0.3.23
+  - (dependency) surf 2.2.0 -> 2.3.1
+  - (dependency) web3 0.16.0 -> 0.17.0
+  - (internal) regenerate bindings
+
 # 0.6.2
   - (internal) split into packages.
     - niftygate is the main package, containing the app and library.

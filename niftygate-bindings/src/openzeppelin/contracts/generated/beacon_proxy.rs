@@ -7,25 +7,26 @@ pub mod beacon_proxy {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"BeaconProxy\",\n  \"sourceName\": \"contracts/proxy/beacon/BeaconProxy.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"stateMutability\": \"payable\",\n      \"type\": \"constructor\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"previousAdmin\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"address\",\n          \"name\": \"newAdmin\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"AdminChanged\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"beacon\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"BeaconUpgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"implementation\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"Upgraded\",\n      \"type\": \"event\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"fallback\"\n    },\n    {\n      \"stateMutability\": \"payable\",\n      \"type\": \"receive\"\n    }\n  ],\n  \"bytecode\": \"0x608060405260405161098838038061098883398101604081905261002291610483565b61004d60017fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5161058e565b6000805160206109418339815191521461007757634e487b7160e01b600052600160045260246000fd5b6100838282600061008a565b50506105f3565b61009383610164565b6040516001600160a01b038416907f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e90600090a26000825111806100d45750805b1561015f5761015d836001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561011557600080fd5b505afa158015610129573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014d9190610469565b8361030460201b6100291760201c565b505b505050565b6101778161033060201b6100551760201c565b6101d65760405162461bcd60e51b815260206004820152602560248201527f455243313936373a206e657720626561636f6e206973206e6f74206120636f6e6044820152641d1c9858dd60da1b60648201526084015b60405180910390fd5b610259816001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561021257600080fd5b505afa158015610226573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061024a9190610469565b61033060201b6100551760201c565b6102be5760405162461bcd60e51b815260206004820152603060248201527f455243313936373a20626561636f6e20696d706c656d656e746174696f6e206960448201526f1cc81b9bdd08184818dbdb9d1c9858dd60821b60648201526084016101cd565b806102e360008051602061094183398151915260001b61033a60201b61005b1760201c565b80546001600160a01b0319166001600160a01b039290921691909117905550565b606061032983836040518060600160405280602781526020016109616027913961033d565b9392505050565b803b15155b919050565b90565b606061034884610330565b6103a35760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084016101cd565b600080856001600160a01b0316856040516103be919061053f565b600060405180830381855af49150503d80600081146103f9576040519150601f19603f3d011682016040523d82523d6000602084013e6103fe565b606091505b50909250905061040f828286610419565b9695505050505050565b60608315610428575081610329565b8251156104385782518084602001fd5b8160405162461bcd60e51b81526004016101cd919061055b565b80516001600160a01b038116811461033557600080fd5b60006020828403121561047a578081fd5b61032982610452565b60008060408385031215610495578081fd5b61049e83610452565b60208401519092506001600160401b03808211156104ba578283fd5b818501915085601f8301126104cd578283fd5b8151818111156104df576104df6105dd565b604051601f8201601f19908116603f01168101908382118183101715610507576105076105dd565b8160405282815288602084870101111561051f578586fd5b6105308360208301602088016105b1565b80955050505050509250929050565b600082516105518184602087016105b1565b9190910192915050565b600060208252825180602084015261057a8160408501602087016105b1565b601f01601f19169190910160400192915050565b6000828210156105ac57634e487b7160e01b81526011600452602481fd5b500390565b60005b838110156105cc5781810151838201526020016105b4565b8381111561015d5750506000910152565b634e487b7160e01b600052604160045260246000fd5b61033f806106026000396000f3fe60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a26469706673582212201cb996891e0e185f82d2c11ffc73eff0fcb823b001721fc4f725e35a9ed5dc4264736f6c63430008030033a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564\",\n  \"deployedBytecode\": \"0x60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a26469706673582212201cb996891e0e185f82d2c11ffc73eff0fcb823b001721fc4f725e35a9ed5dc4264736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"BeaconProxy\",\"abi\":[{\"type\":\"constructor\",\"inputs\":[{\"name\":\"beacon\",\"type\":\"address\"},{\"name\":\"data\",\"type\":\"bytes\"}]},{\"type\":\"event\",\"name\":\"AdminChanged\",\"inputs\":[{\"name\":\"previousAdmin\",\"type\":\"address\",\"indexed\":false},{\"name\":\"newAdmin\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"BeaconUpgraded\",\"inputs\":[{\"name\":\"beacon\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"receive\"},{\"type\":\"fallback\"}],\"bytecode\":\"608060405260405161098838038061098883398101604081905261002291610483565b61004d60017fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d5161058e565b6000805160206109418339815191521461007757634e487b7160e01b600052600160045260246000fd5b6100838282600061008a565b50506105f3565b61009383610164565b6040516001600160a01b038416907f1cf3b03a6cf19fa2baba4df148e9dcabedea7f8a5c07840e207e5c089be95d3e90600090a26000825111806100d45750805b1561015f5761015d836001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561011557600080fd5b505afa158015610129573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061014d9190610469565b8361030460201b6100291760201c565b505b505050565b6101778161033060201b6100551760201c565b6101d65760405162461bcd60e51b815260206004820152602560248201527f455243313936373a206e657720626561636f6e206973206e6f74206120636f6e6044820152641d1c9858dd60da1b60648201526084015b60405180910390fd5b610259816001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b15801561021257600080fd5b505afa158015610226573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061024a9190610469565b61033060201b6100551760201c565b6102be5760405162461bcd60e51b815260206004820152603060248201527f455243313936373a20626561636f6e20696d706c656d656e746174696f6e206960448201526f1cc81b9bdd08184818dbdb9d1c9858dd60821b60648201526084016101cd565b806102e360008051602061094183398151915260001b61033a60201b61005b1760201c565b80546001600160a01b0319166001600160a01b039290921691909117905550565b606061032983836040518060600160405280602781526020016109616027913961033d565b9392505050565b803b15155b919050565b90565b606061034884610330565b6103a35760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084016101cd565b600080856001600160a01b0316856040516103be919061053f565b600060405180830381855af49150503d80600081146103f9576040519150601f19603f3d011682016040523d82523d6000602084013e6103fe565b606091505b50909250905061040f828286610419565b9695505050505050565b60608315610428575081610329565b8251156104385782518084602001fd5b8160405162461bcd60e51b81526004016101cd919061055b565b80516001600160a01b038116811461033557600080fd5b60006020828403121561047a578081fd5b61032982610452565b60008060408385031215610495578081fd5b61049e83610452565b60208401519092506001600160401b03808211156104ba578283fd5b818501915085601f8301126104cd578283fd5b8151818111156104df576104df6105dd565b604051601f8201601f19908116603f01168101908382118183101715610507576105076105dd565b8160405282815288602084870101111561051f578586fd5b6105308360208301602088016105b1565b80955050505050509250929050565b600082516105518184602087016105b1565b9190910192915050565b600060208252825180602084015261057a8160408501602087016105b1565b601f01601f19169190910160400192915050565b6000828210156105ac57634e487b7160e01b81526011600452602481fd5b500390565b60005b838110156105cc5781810151838201526020016105b4565b8381111561015d5750506000910152565b634e487b7160e01b600052604160045260246000fd5b61033f806106026000396000f3fe60806040523661001357610011610017565b005b6100115b61002761002261005e565b610106565b565b606061004e83836040518060600160405280602781526020016102e36027913961012a565b9392505050565b3b151590565b90565b60006100917fa3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50546001600160a01b031690565b6001600160a01b0316635c60da1b6040518163ffffffff1660e01b815260040160206040518083038186803b1580156100c957600080fd5b505afa1580156100dd573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610101919061023c565b905090565b3660008037600080366000845af43d6000803e808015610125573d6000f35b3d6000fd5b6060833b61018e5760405162461bcd60e51b815260206004820152602660248201527f416464726573733a2064656c65676174652063616c6c20746f206e6f6e2d636f6044820152651b9d1c9858dd60d21b60648201526084015b60405180910390fd5b600080856001600160a01b0316856040516101a99190610263565b600060405180830381855af49150503d80600081146101e4576040519150601f19603f3d011682016040523d82523d6000602084013e6101e9565b606091505b50915091506101f9828286610203565b9695505050505050565b6060831561021257508161004e565b8251156102225782518084602001fd5b8160405162461bcd60e51b8152600401610185919061027f565b60006020828403121561024d578081fd5b81516001600160a01b038116811461004e578182fd5b600082516102758184602087016102b2565b9190910192915050565b600060208252825180602084015261029e8160408501602087016102b2565b601f01601f19169190910160400192915050565b60005b838110156102cd5781810151838201526020016102b5565b838111156102dc576000848401525b5050505056fe416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564a26469706673582212201cb996891e0e185f82d2c11ffc73eff0fcb823b001721fc4f725e35a9ed5dc4264736f6c63430008030033a3f0ad74e5423aebfd80d3ef4346578335a9a72aeaee59ff6cb3582b35133d50416464726573733a206c6f772d6c6576656c2064656c65676174652063616c6c206661696c6564\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod beacon_proxy {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod beacon_proxy {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod beacon_proxy {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -112,7 +135,7 @@ pub mod beacon_proxy {
   impl Contract {
     #[doc = "Generated by `ethcontract`"]
     #[allow(clippy::too_many_arguments)]
-    pub fn builder<F, T>(
+    pub fn builder<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       beacon: self::ethcontract::Address,
       data: self::ethcontract::tokens::Bytes<Vec<u8>>,
@@ -122,14 +145,25 @@ pub mod beacon_proxy {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::contract::DeployBuilder;
       use self::ethcontract::dyns::DynTransport;
       use self::ethcontract::web3::api::Web3;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let bytecode = Self::artifact().bytecode.clone();
+      let bytecode = Self::raw_contract().bytecode.clone();
       DeployBuilder::new(web3, bytecode, (beacon, data)).expect("valid deployment args")
     }
   }
@@ -139,7 +173,7 @@ pub mod beacon_proxy {
       cx
     }
     fn abi(_: &Self::Context) -> &self::ethcontract::common::Abi {
-      &Self::artifact().abi
+      &Self::raw_contract().abi
     }
     fn from_deployment(
       web3: self::ethcontract::dyns::DynWeb3,
@@ -154,6 +188,8 @@ pub mod beacon_proxy {
   struct Methods {
     instance: self::ethcontract::dyns::DynInstance,
   }
+  #[derive(Clone, Copy)]
+  struct Signatures;
   impl Contract {
     #[doc = r" Returns a method builder to setup a call to a smart"]
     #[doc = r" contract's fallback function."]
@@ -171,39 +207,6 @@ pub mod beacon_proxy {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct BeaconUpgraded {
-      pub beacon: self::ethcontract::Address,
-    }
-    impl BeaconUpgraded {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`BeaconUpgraded(address)`"]
-      pub fn abi_signature() -> &'static str {
-        "BeaconUpgraded(address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(BeaconUpgraded { beacon })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct AdminChanged {
       pub previous_admin: self::ethcontract::Address,
@@ -236,6 +239,39 @@ pub mod beacon_proxy {
           previous_admin,
           new_admin,
         })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct BeaconUpgraded {
+      pub beacon: self::ethcontract::Address,
+    }
+    impl BeaconUpgraded {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`BeaconUpgraded(address)`"]
+      pub fn abi_signature() -> &'static str {
+        "BeaconUpgraded(address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(BeaconUpgraded { beacon })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -289,18 +325,6 @@ pub mod beacon_proxy {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
-      self::event_builders::BeaconUpgradedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
     pub fn admin_changed(&self) -> self::event_builders::AdminChangedBuilder {
       self::event_builders::AdminChangedBuilder(
         self
@@ -308,6 +332,18 @@ pub mod beacon_proxy {
           .event(self::ethcontract::H256([
             126, 100, 77, 121, 66, 47, 23, 192, 30, 72, 148, 181, 244, 245, 136, 211, 49, 235, 250,
             40, 101, 61, 66, 174, 131, 45, 197, 158, 56, 201, 121, 143,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
+      self::event_builders::BeaconUpgradedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
           ]))
           .expect("generated event filter"),
       )
@@ -330,6 +366,63 @@ pub mod beacon_proxy {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
+    pub struct AdminChangedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
+    );
+    impl AdminChangedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
     pub struct BeaconUpgradedBuilder(
       #[doc = r" The inner event builder."]
@@ -352,14 +445,14 @@ pub mod beacon_proxy {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -392,63 +485,6 @@ pub mod beacon_proxy {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `AdminChanged` events."]
-    pub struct AdminChangedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AdminChanged>,
-    );
-    impl AdminChangedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::AdminChanged>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::AdminChanged>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
     pub struct UpgradedBuilder(
       #[doc = r" The inner event builder."]
@@ -471,14 +507,14 @@ pub mod beacon_proxy {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -536,7 +572,7 @@ pub mod beacon_proxy {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([126 , 100 , 77 , 121 , 66 , 47 , 23 , 192 , 30 , 72 , 148 , 181 , 244 , 245 , 136 , 211 , 49 , 235 , 250 , 40 , 101 , 61 , 66 , 174 , 131 , 45 , 197 , 158 , 56 , 201 , 121 , 143]) => Ok (Event :: AdminChanged (log . clone () . decode (Contract :: artifact () . abi . event ("AdminChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([28 , 243 , 176 , 58 , 108 , 241 , 159 , 162 , 186 , 186 , 77 , 241 , 72 , 233 , 220 , 171 , 237 , 234 , 127 , 138 , 92 , 7 , 132 , 14 , 32 , 126 , 92 , 8 , 155 , 233 , 93 , 62]) => Ok (Event :: BeaconUpgraded (log . clone () . decode (Contract :: artifact () . abi . event ("BeaconUpgraded") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([188 , 124 , 215 , 90 , 32 , 238 , 39 , 253 , 154 , 222 , 186 , 179 , 32 , 65 , 247 , 85 , 33 , 77 , 188 , 107 , 255 , 169 , 12 , 192 , 34 , 91 , 57 , 218 , 46 , 92 , 45 , 59]) => Ok (Event :: Upgraded (log . clone () . decode (Contract :: artifact () . abi . event ("Upgraded") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([126 , 100 , 77 , 121 , 66 , 47 , 23 , 192 , 30 , 72 , 148 , 181 , 244 , 245 , 136 , 211 , 49 , 235 , 250 , 40 , 101 , 61 , 66 , 174 , 131 , 45 , 197 , 158 , 56 , 201 , 121 , 143]) => Ok (Event :: AdminChanged (log . clone () . decode (Contract :: raw_contract () . abi . event ("AdminChanged") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([28 , 243 , 176 , 58 , 108 , 241 , 159 , 162 , 186 , 186 , 77 , 241 , 72 , 233 , 220 , 171 , 237 , 234 , 127 , 138 , 92 , 7 , 132 , 14 , 32 , 126 , 92 , 8 , 155 , 233 , 93 , 62]) => Ok (Event :: BeaconUpgraded (log . clone () . decode (Contract :: raw_contract () . abi . event ("BeaconUpgraded") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([188 , 124 , 215 , 90 , 32 , 238 , 39 , 253 , 154 , 222 , 186 , 179 , 32 , 65 , 247 , 85 , 33 , 77 , 188 , 107 , 255 , 169 , 12 , 192 , 34 , 91 , 57 , 218 , 46 , 92 , 45 , 59]) => Ok (Event :: Upgraded (log . clone () . decode (Contract :: raw_contract () . abi . event ("Upgraded") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

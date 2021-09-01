@@ -7,25 +7,26 @@ pub mod ierc777_upgradeable {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"IERC777Upgradeable\",\n  \"sourceName\": \"contracts/token/ERC777/IERC777Upgradeable.sol\",\n  \"abi\": [\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"tokenHolder\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"AuthorizedOperator\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"operatorData\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"Burned\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"operatorData\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"Minted\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"tokenHolder\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"RevokedOperator\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"from\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"to\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"bytes\",\n          \"name\": \"operatorData\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"Sent\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"authorizeOperator\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"owner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"balanceOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"burn\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"defaultOperators\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address[]\",\n          \"name\": \"\",\n          \"type\": \"address[]\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"granularity\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"tokenHolder\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"isOperatorFor\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"name\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"account\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"operatorData\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"operatorBurn\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"sender\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"operatorData\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"operatorSend\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"operator\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"revokeOperator\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"recipient\",\n          \"type\": \"address\"\n        },\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"amount\",\n          \"type\": \"uint256\"\n        },\n        {\n          \"internalType\": \"bytes\",\n          \"name\": \"data\",\n          \"type\": \"bytes\"\n        }\n      ],\n      \"name\": \"send\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"symbol\",\n      \"outputs\": [\n        {\n          \"internalType\": \"string\",\n          \"name\": \"\",\n          \"type\": \"string\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"totalSupply\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x\",\n  \"deployedBytecode\": \"0x\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC777Upgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"granularity\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"send\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"burn\",\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"defaultOperators\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"isOperatorFor\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"tokenHolder\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"operatorBurn\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"operatorData\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"revokeOperator\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"authorizeOperator\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"operatorSend\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"operatorData\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Minted\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"amount\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"data\",\"type\":\"bytes\",\"indexed\":false},{\"name\":\"operatorData\",\"type\":\"bytes\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RevokedOperator\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenHolder\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"AuthorizedOperator\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenHolder\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Sent\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"amount\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"data\",\"type\":\"bytes\",\"indexed\":false},{\"name\":\"operatorData\",\"type\":\"bytes\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Burned\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"amount\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"data\",\"type\":\"bytes\",\"indexed\":false},{\"name\":\"operatorData\",\"type\":\"bytes\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod ierc777_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod ierc777_upgradeable {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod ierc777_upgradeable {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -110,11 +133,143 @@ pub mod ierc777_upgradeable {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `granularity():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn granularity(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([85, 111, 13, 199])
+    }
+    #[doc = "Returns signature for method `send(address,uint256,bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn send(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([155, 217, 187, 198])
+    }
+    #[doc = "Returns signature for method `burn(uint256,bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn burn(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([254, 157, 147, 3])
+    }
+    #[doc = "Returns signature for method `defaultOperators():(address[])`."]
+    #[allow(clippy::type_complexity)]
+    pub fn default_operators(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), Vec<self::ethcontract::Address>> {
+      self::ethcontract::contract::Signature::new([6, 228, 133, 56])
+    }
+    #[doc = "Returns signature for method `isOperatorFor(address,address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn is_operator_for(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([217, 91, 99, 113])
+    }
+    #[doc = "Returns signature for method `operatorBurn(address,uint256,bytes,bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn operator_burn(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([252, 103, 60, 79])
+    }
+    #[doc = "Returns signature for method `revokeOperator(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn revoke_operator(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([250, 216, 179, 42])
+    }
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    }
+    #[doc = "Returns signature for method `name():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+    }
+    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
+    }
+    #[doc = "Returns signature for method `authorizeOperator(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn authorize_operator(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([149, 155, 140, 63])
+    }
+    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
+    }
+    #[doc = "Returns signature for method `operatorSend(address,address,uint256,bytes,bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn operator_send(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([98, 173, 27, 131])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -124,6 +279,124 @@ pub mod ierc777_upgradeable {
   }
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
+    #[doc = "Generated by `ethcontract`"]
+    pub fn granularity(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([85, 111, 13, 199], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn send(
+      &self,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([155, 217, 187, 198], (recipient, amount, data))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn burn(
+      &self,
+      amount: self::ethcontract::U256,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([254, 157, 147, 3], (amount, data))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn default_operators(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<Vec<self::ethcontract::Address>> {
+      self
+        .instance
+        .view_method([6, 228, 133, 56], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn is_operator_for(
+      &self,
+      operator: self::ethcontract::Address,
+      token_holder: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([217, 91, 99, 113], (operator, token_holder))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn operator_burn(
+      &self,
+      account: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+      operator_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([252, 103, 60, 79], (account, amount, data, operator_data))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn revoke_operator(
+      &self,
+      operator: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([250, 216, 179, 42], (operator,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([24, 22, 13, 221], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([6, 253, 222, 3], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([149, 216, 155, 65], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn authorize_operator(
+      &self,
+      operator: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([149, 155, 140, 63], (operator,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      owner: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([112, 160, 130, 49], (owner,))
+        .expect("generated call")
+    }
     #[doc = "Generated by `ethcontract`"]
     pub fn operator_send(
       &self,
@@ -141,124 +414,6 @@ pub mod ierc777_upgradeable {
         )
         .expect("generated call")
     }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn burn(
-      &self,
-      amount: self::ethcontract::U256,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([254, 157, 147, 3], (amount, data))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn granularity(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([85, 111, 13, 199], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      owner: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([112, 160, 130, 49], (owner,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn is_operator_for(
-      &self,
-      operator: self::ethcontract::Address,
-      token_holder: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([217, 91, 99, 113], (operator, token_holder))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([6, 253, 222, 3], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn default_operators(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<Vec<self::ethcontract::Address>> {
-      self
-        .instance
-        .view_method([6, 228, 133, 56], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn authorize_operator(
-      &self,
-      operator: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([149, 155, 140, 63], (operator,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn revoke_operator(
-      &self,
-      operator: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([250, 216, 179, 42], (operator,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn operator_burn(
-      &self,
-      account: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-      operator_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([252, 103, 60, 79], (account, amount, data, operator_data))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn send(
-      &self,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([155, 217, 187, 198], (recipient, amount, data))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([24, 22, 13, 221], ())
-        .expect("generated call")
-    }
   }
   impl std::ops::Deref for Contract {
     type Target = Methods;
@@ -270,87 +425,6 @@ pub mod ierc777_upgradeable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct RevokedOperator {
-      pub operator: self::ethcontract::Address,
-      pub token_holder: self::ethcontract::Address,
-    }
-    impl RevokedOperator {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          80, 84, 110, 102, 229, 244, 77, 114, 131, 101, 220, 57, 8, 198, 59, 197, 207, 238, 171,
-          71, 7, 34, 193, 103, 126, 48, 115, 166, 172, 41, 74, 161,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`RevokedOperator(address,address)`"]
-      pub fn abi_signature() -> &'static str {
-        "RevokedOperator(address,address)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for RevokedOperator {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (operator, token_holder) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(RevokedOperator {
-          operator,
-          token_holder,
-        })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Burned {
-      pub operator: self::ethcontract::Address,
-      pub from: self::ethcontract::Address,
-      pub amount: self::ethcontract::U256,
-      pub data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-      pub operator_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    }
-    impl Burned {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          167, 138, 155, 227, 167, 184, 98, 210, 105, 51, 173, 133, 251, 17, 216, 14, 246, 107,
-          143, 151, 45, 124, 187, 160, 102, 33, 213, 131, 148, 58, 64, 152,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Burned(address,address,uint256,bytes,bytes)`"]
-      pub fn abi_signature() -> &'static str {
-        "Burned(address,address,uint256,bytes,bytes)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Burned {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (operator, from, amount, data, operator_data) =
-          self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Burned {
-          operator,
-          from,
-          amount,
-          data,
-          operator_data,
-        })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Minted {
       pub operator: self::ethcontract::Address,
@@ -389,6 +463,80 @@ pub mod ierc777_upgradeable {
           amount,
           data,
           operator_data,
+        })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct RevokedOperator {
+      pub operator: self::ethcontract::Address,
+      pub token_holder: self::ethcontract::Address,
+    }
+    impl RevokedOperator {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          80, 84, 110, 102, 229, 244, 77, 114, 131, 101, 220, 57, 8, 198, 59, 197, 207, 238, 171,
+          71, 7, 34, 193, 103, 126, 48, 115, 166, 172, 41, 74, 161,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`RevokedOperator(address,address)`"]
+      pub fn abi_signature() -> &'static str {
+        "RevokedOperator(address,address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for RevokedOperator {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (operator, token_holder) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(RevokedOperator {
+          operator,
+          token_holder,
+        })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct AuthorizedOperator {
+      pub operator: self::ethcontract::Address,
+      pub token_holder: self::ethcontract::Address,
+    }
+    impl AuthorizedOperator {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          244, 202, 235, 45, 108, 168, 147, 42, 33, 90, 53, 61, 7, 3, 195, 38, 236, 45, 129, 252,
+          104, 23, 15, 50, 14, 178, 171, 73, 233, 223, 97, 249,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`AuthorizedOperator(address,address)`"]
+      pub fn abi_signature() -> &'static str {
+        "AuthorizedOperator(address,address)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for AuthorizedOperator {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (operator, token_holder) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(AuthorizedOperator {
+          operator,
+          token_holder,
         })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
@@ -442,36 +590,43 @@ pub mod ierc777_upgradeable {
       }
     }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct AuthorizedOperator {
+    pub struct Burned {
       pub operator: self::ethcontract::Address,
-      pub token_holder: self::ethcontract::Address,
+      pub from: self::ethcontract::Address,
+      pub amount: self::ethcontract::U256,
+      pub data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+      pub operator_data: self::ethcontract::tokens::Bytes<Vec<u8>>,
     }
-    impl AuthorizedOperator {
+    impl Burned {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          244, 202, 235, 45, 108, 168, 147, 42, 33, 90, 53, 61, 7, 3, 195, 38, 236, 45, 129, 252,
-          104, 23, 15, 50, 14, 178, 171, 73, 233, 223, 97, 249,
+          167, 138, 155, 227, 167, 184, 98, 210, 105, 51, 173, 133, 251, 17, 216, 14, 246, 107,
+          143, 151, 45, 124, 187, 160, 102, 33, 213, 131, 148, 58, 64, 152,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`AuthorizedOperator(address,address)`"]
+      #[doc = "`Burned(address,address,uint256,bytes,bytes)`"]
       pub fn abi_signature() -> &'static str {
-        "AuthorizedOperator(address,address)"
+        "Burned(address,address,uint256,bytes,bytes)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for AuthorizedOperator {
+    impl self::ethcontract::tokens::Tokenize for Burned {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (operator, token_holder) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(AuthorizedOperator {
+        let (operator, from, amount, data, operator_data) =
+          self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Burned {
           operator,
-          token_holder,
+          from,
+          amount,
+          data,
+          operator_data,
         })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
@@ -493,6 +648,18 @@ pub mod ierc777_upgradeable {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
+    pub fn minted(&self) -> self::event_builders::MintedBuilder {
+      self::event_builders::MintedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            47, 229, 190, 1, 70, 247, 76, 91, 206, 54, 192, 184, 9, 17, 175, 108, 125, 134, 255,
+            39, 232, 157, 92, 250, 97, 252, 104, 19, 39, 149, 78, 93,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
     pub fn revoked_operator(&self) -> self::event_builders::RevokedOperatorBuilder {
       self::event_builders::RevokedOperatorBuilder(
         self
@@ -505,25 +672,13 @@ pub mod ierc777_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn burned(&self) -> self::event_builders::BurnedBuilder {
-      self::event_builders::BurnedBuilder(
+    pub fn authorized_operator(&self) -> self::event_builders::AuthorizedOperatorBuilder {
+      self::event_builders::AuthorizedOperatorBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            167, 138, 155, 227, 167, 184, 98, 210, 105, 51, 173, 133, 251, 17, 216, 14, 246, 107,
-            143, 151, 45, 124, 187, 160, 102, 33, 213, 131, 148, 58, 64, 152,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn minted(&self) -> self::event_builders::MintedBuilder {
-      self::event_builders::MintedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            47, 229, 190, 1, 70, 247, 76, 91, 206, 54, 192, 184, 9, 17, 175, 108, 125, 134, 255,
-            39, 232, 157, 92, 250, 97, 252, 104, 19, 39, 149, 78, 93,
+            244, 202, 235, 45, 108, 168, 147, 42, 33, 90, 53, 61, 7, 3, 195, 38, 236, 45, 129, 252,
+            104, 23, 15, 50, 14, 178, 171, 73, 233, 223, 97, 249,
           ]))
           .expect("generated event filter"),
       )
@@ -541,13 +696,13 @@ pub mod ierc777_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn authorized_operator(&self) -> self::event_builders::AuthorizedOperatorBuilder {
-      self::event_builders::AuthorizedOperatorBuilder(
+    pub fn burned(&self) -> self::event_builders::BurnedBuilder {
+      self::event_builders::BurnedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            244, 202, 235, 45, 108, 168, 147, 42, 33, 90, 53, 61, 7, 3, 195, 38, 236, 45, 129, 252,
-            104, 23, 15, 50, 14, 178, 171, 73, 233, 223, 97, 249,
+            167, 138, 155, 227, 167, 184, 98, 210, 105, 51, 173, 133, 251, 17, 216, 14, 246, 107,
+            143, 151, 45, 124, 187, 160, 102, 33, 213, 131, 148, 58, 64, 152,
           ]))
           .expect("generated event filter"),
       )
@@ -558,6 +713,76 @@ pub mod ierc777_upgradeable {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `Minted` events."]
+    pub struct MintedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Minted>,
+    );
+    impl MintedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the operator event parameter."]
+      pub fn operator(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = "Adds a filter for the to event parameter."]
+      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic1(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Minted>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Minted>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `RevokedOperator` events."]
     pub struct RevokedOperatorBuilder(
       #[doc = r" The inner event builder."]
@@ -580,14 +805,14 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -631,12 +856,12 @@ pub mod ierc777_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `Burned` events."]
-    pub struct BurnedBuilder(
+    #[doc = "A builder for creating a filtered stream of `AuthorizedOperator` events."]
+    pub struct AuthorizedOperatorBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Burned>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AuthorizedOperator>,
     );
-    impl BurnedBuilder {
+    impl AuthorizedOperatorBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -653,14 +878,14 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -674,78 +899,11 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).topic0(topic);
         self
       }
-      #[doc = "Adds a filter for the from event parameter."]
-      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic1(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Burned>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Burned>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Minted` events."]
-    pub struct MintedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Minted>,
-    );
-    impl MintedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the operator event parameter."]
-      pub fn operator(
+      #[doc = "Adds a filter for the tokenHolder event parameter."]
+      pub fn token_holder(
         mut self,
         topic: self::ethcontract::Topic<self::ethcontract::Address>,
       ) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = "Adds a filter for the to event parameter."]
-      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic1(topic);
         self
       }
@@ -754,7 +912,7 @@ pub mod ierc777_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Minted>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::AuthorizedOperator>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -764,7 +922,7 @@ pub mod ierc777_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Minted>,
+          self::ethcontract::StreamEvent<self::event_data::AuthorizedOperator>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -793,14 +951,14 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -846,12 +1004,12 @@ pub mod ierc777_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `AuthorizedOperator` events."]
-    pub struct AuthorizedOperatorBuilder(
+    #[doc = "A builder for creating a filtered stream of `Burned` events."]
+    pub struct BurnedBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::AuthorizedOperator>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Burned>,
     );
-    impl AuthorizedOperatorBuilder {
+    impl BurnedBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -868,14 +1026,14 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -889,11 +1047,8 @@ pub mod ierc777_upgradeable {
         self.0 = (self.0).topic0(topic);
         self
       }
-      #[doc = "Adds a filter for the tokenHolder event parameter."]
-      pub fn token_holder(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
+      #[doc = "Adds a filter for the from event parameter."]
+      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic1(topic);
         self
       }
@@ -902,7 +1057,7 @@ pub mod ierc777_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::AuthorizedOperator>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Burned>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -912,7 +1067,7 @@ pub mod ierc777_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::AuthorizedOperator>,
+          self::ethcontract::StreamEvent<self::event_data::Burned>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -943,7 +1098,7 @@ pub mod ierc777_upgradeable {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([244 , 202 , 235 , 45 , 108 , 168 , 147 , 42 , 33 , 90 , 53 , 61 , 7 , 3 , 195 , 38 , 236 , 45 , 129 , 252 , 104 , 23 , 15 , 50 , 14 , 178 , 171 , 73 , 233 , 223 , 97 , 249]) => Ok (Event :: AuthorizedOperator (log . clone () . decode (Contract :: artifact () . abi . event ("AuthorizedOperator") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([167 , 138 , 155 , 227 , 167 , 184 , 98 , 210 , 105 , 51 , 173 , 133 , 251 , 17 , 216 , 14 , 246 , 107 , 143 , 151 , 45 , 124 , 187 , 160 , 102 , 33 , 213 , 131 , 148 , 58 , 64 , 152]) => Ok (Event :: Burned (log . clone () . decode (Contract :: artifact () . abi . event ("Burned") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([47 , 229 , 190 , 1 , 70 , 247 , 76 , 91 , 206 , 54 , 192 , 184 , 9 , 17 , 175 , 108 , 125 , 134 , 255 , 39 , 232 , 157 , 92 , 250 , 97 , 252 , 104 , 19 , 39 , 149 , 78 , 93]) => Ok (Event :: Minted (log . clone () . decode (Contract :: artifact () . abi . event ("Minted") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([80 , 84 , 110 , 102 , 229 , 244 , 77 , 114 , 131 , 101 , 220 , 57 , 8 , 198 , 59 , 197 , 207 , 238 , 171 , 71 , 7 , 34 , 193 , 103 , 126 , 48 , 115 , 166 , 172 , 41 , 74 , 161]) => Ok (Event :: RevokedOperator (log . clone () . decode (Contract :: artifact () . abi . event ("RevokedOperator") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([6 , 181 , 65 , 221 , 170 , 114 , 13 , 178 , 177 , 10 , 77 , 12 , 218 , 195 , 155 , 141 , 54 , 4 , 37 , 252 , 7 , 48 , 133 , 250 , 193 , 155 , 200 , 38 , 20 , 103 , 121 , 135]) => Ok (Event :: Sent (log . clone () . decode (Contract :: artifact () . abi . event ("Sent") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([244 , 202 , 235 , 45 , 108 , 168 , 147 , 42 , 33 , 90 , 53 , 61 , 7 , 3 , 195 , 38 , 236 , 45 , 129 , 252 , 104 , 23 , 15 , 50 , 14 , 178 , 171 , 73 , 233 , 223 , 97 , 249]) => Ok (Event :: AuthorizedOperator (log . clone () . decode (Contract :: raw_contract () . abi . event ("AuthorizedOperator") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([167 , 138 , 155 , 227 , 167 , 184 , 98 , 210 , 105 , 51 , 173 , 133 , 251 , 17 , 216 , 14 , 246 , 107 , 143 , 151 , 45 , 124 , 187 , 160 , 102 , 33 , 213 , 131 , 148 , 58 , 64 , 152]) => Ok (Event :: Burned (log . clone () . decode (Contract :: raw_contract () . abi . event ("Burned") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([47 , 229 , 190 , 1 , 70 , 247 , 76 , 91 , 206 , 54 , 192 , 184 , 9 , 17 , 175 , 108 , 125 , 134 , 255 , 39 , 232 , 157 , 92 , 250 , 97 , 252 , 104 , 19 , 39 , 149 , 78 , 93]) => Ok (Event :: Minted (log . clone () . decode (Contract :: raw_contract () . abi . event ("Minted") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([80 , 84 , 110 , 102 , 229 , 244 , 77 , 114 , 131 , 101 , 220 , 57 , 8 , 198 , 59 , 197 , 207 , 238 , 171 , 71 , 7 , 34 , 193 , 103 , 126 , 48 , 115 , 166 , 172 , 41 , 74 , 161]) => Ok (Event :: RevokedOperator (log . clone () . decode (Contract :: raw_contract () . abi . event ("RevokedOperator") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([6 , 181 , 65 , 221 , 170 , 114 , 13 , 178 , 177 , 10 , 77 , 12 , 218 , 195 , 155 , 141 , 54 , 4 , 37 , 252 , 7 , 48 , 133 , 250 , 193 , 155 , 200 , 38 , 20 , 103 , 121 , 135]) => Ok (Event :: Sent (log . clone () . decode (Contract :: raw_contract () . abi . event ("Sent") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }

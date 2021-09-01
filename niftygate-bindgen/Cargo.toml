@@ -1,6 +1,6 @@
 [package]
 name = "niftygate-bindgen"
-version = "0.6.2"
+version = "0.6.3"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
@@ -9,6 +9,6 @@ documentation = "https://docs.rs/niftygate/"
 description = "Generator of OpenZeppelin Bindings for NiftyGate"
 
 [dependencies]
-ethcontract = { version = "0.12.2", default-features = false, features = ["derive"] }
-ethcontract-generate = "0.12.2"
+ethcontract = { version = "0.15.3", default-features = false, features = ["derive"] }
+ethcontract-generate = "0.15.3"
 heck = "0.3.3"

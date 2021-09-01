@@ -7,25 +7,26 @@ pub mod refund_escrow {
     methods: Methods,
   }
   impl Contract {
-    #[doc = r" Retrieves the truffle artifact used to generate the type safe"]
+    #[doc = r" Retrieves the raw contract instance used to generate the type safe"]
     #[doc = r" API for this contract."]
-    pub fn artifact() -> &'static self::ethcontract::Artifact {
+    pub fn raw_contract() -> &'static self::ethcontract::Contract {
+      use self::ethcontract::common::artifact::truffle::TruffleLoader;
       use self::ethcontract::private::lazy_static;
-      use self::ethcontract::Artifact;
+      use self::ethcontract::Contract;
       lazy_static! {
-        pub static ref ARTIFACT: Artifact = {
-          # [allow (unused_mut)] let mut artifact = Artifact :: from_json ("{\n  \"_format\": \"hh-sol-artifact-1\",\n  \"contractName\": \"RefundEscrow\",\n  \"sourceName\": \"contracts/utils/escrow/RefundEscrow.sol\",\n  \"abi\": [\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"beneficiary_\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"constructor\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"weiAmount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Deposited\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"previousOwner\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"OwnershipTransferred\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [],\n      \"name\": \"RefundsClosed\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [],\n      \"name\": \"RefundsEnabled\",\n      \"type\": \"event\"\n    },\n    {\n      \"anonymous\": false,\n      \"inputs\": [\n        {\n          \"indexed\": true,\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        },\n        {\n          \"indexed\": false,\n          \"internalType\": \"uint256\",\n          \"name\": \"weiAmount\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"name\": \"Withdrawn\",\n      \"type\": \"event\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"beneficiary\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"beneficiaryWithdraw\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"close\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"refundee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"deposit\",\n      \"outputs\": [],\n      \"stateMutability\": \"payable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"depositsOf\",\n      \"outputs\": [\n        {\n          \"internalType\": \"uint256\",\n          \"name\": \"\",\n          \"type\": \"uint256\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"enableRefunds\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"owner\",\n      \"outputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"renounceOwnership\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [],\n      \"name\": \"state\",\n      \"outputs\": [\n        {\n          \"internalType\": \"enum RefundEscrow.State\",\n          \"name\": \"\",\n          \"type\": \"uint8\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"newOwner\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"transferOwnership\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address payable\",\n          \"name\": \"payee\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"withdraw\",\n      \"outputs\": [],\n      \"stateMutability\": \"nonpayable\",\n      \"type\": \"function\"\n    },\n    {\n      \"inputs\": [\n        {\n          \"internalType\": \"address\",\n          \"name\": \"\",\n          \"type\": \"address\"\n        }\n      ],\n      \"name\": \"withdrawalAllowed\",\n      \"outputs\": [\n        {\n          \"internalType\": \"bool\",\n          \"name\": \"\",\n          \"type\": \"bool\"\n        }\n      ],\n      \"stateMutability\": \"view\",\n      \"type\": \"function\"\n    }\n  ],\n  \"bytecode\": \"0x60a060405234801561001057600080fd5b50604051610c17380380610c1783398101604081905261002f91610117565b610038336100c7565b6001600160a01b0381166100a85760405162461bcd60e51b815260206004820152602d60248201527f526566756e64457363726f773a2062656e65666963696172792069732074686560448201526c207a65726f206164647265737360981b606482015260840160405180910390fd5b60601b6001600160601b0319166080526002805460ff19169055610145565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600060208284031215610128578081fd5b81516001600160a01b038116811461013e578182fd5b9392505050565b60805160601c610aae6101696000396000818160bb01526105cf0152610aae6000f3fe6080604052600436106100a75760003560e01c80638da5cb5b116100645780638da5cb5b146101895780639af6549a146101a7578063c19d93fb146101bc578063e3a9db1a146101dc578063f2fde38b14610220578063f340fa0114610240576100a7565b806338af3eed146100ac57806343d726d6146100f857806351cff8d91461010f578063685ca1941461012f578063715018a61461015f5780638c52dc4114610174575b600080fd5b3480156100b857600080fd5b507f00000000000000000000000000000000000000000000000000000000000000005b6040516001600160a01b0390911681526020015b60405180910390f35b34801561010457600080fd5b5061010d610253565b005b34801561011b57600080fd5b5061010d61012a3660046109bf565b610349565b34801561013b57600080fd5b5061014f61014a3660046109bf565b6103c6565b60405190151581526020016100ef565b34801561016b57600080fd5b5061010d6103fc565b34801561018057600080fd5b5061010d610432565b34801561019557600080fd5b506000546001600160a01b03166100db565b3480156101b357600080fd5b5061010d610529565b3480156101c857600080fd5b5060025460ff166040516100ef91906109e2565b3480156101e857600080fd5b506102126101f73660046109bf565b6001600160a01b031660009081526001602052604090205490565b6040519081526020016100ef565b34801561022c57600080fd5b5061010d61023b3660046109bf565b6105f5565b61010d61024e3660046109bf565b61068d565b6000546001600160a01b031633146102865760405162461bcd60e51b815260040161027d90610a0a565b60405180910390fd5b600061029460025460ff1690565b60028111156102b357634e487b7160e01b600052602160045260246000fd5b146103125760405162461bcd60e51b815260206004820152602960248201527f526566756e64457363726f773a2063616e206f6e6c7920636c6f7365207768696044820152686c652061637469766560b81b606482015260840161027d565b6002805460ff1916811790556040517f088672c3a6e342f7cd94a65ba63b79df24a8973927b4d05d803c44bbf787d12f90600090a1565b610352816103c6565b6103ba5760405162461bcd60e51b815260206004820152603360248201527f436f6e646974696f6e616c457363726f773a207061796565206973206e6f7420604482015272616c6c6f77656420746f20776974686472617760681b606482015260840161027d565b6103c381610724565b50565b600060016103d660025460ff1690565b60028111156103f557634e487b7160e01b600052602160045260246000fd5b1492915050565b6000546001600160a01b031633146104265760405162461bcd60e51b815260040161027d90610a0a565b61043060006107bd565b565b6000546001600160a01b0316331461045c5760405162461bcd60e51b815260040161027d90610a0a565b600061046a60025460ff1690565b600281111561048957634e487b7160e01b600052602160045260246000fd5b146104f15760405162461bcd60e51b815260206004820152603260248201527f526566756e64457363726f773a2063616e206f6e6c7920656e61626c6520726560448201527166756e6473207768696c652061637469766560701b606482015260840161027d565b6002805460ff191660011790556040517f599d8e5a83cffb867d051598c4d70e805d59802d8081c1c7d6dffc5b6aca2b8990600090a1565b6002805460ff16600281111561054f57634e487b7160e01b600052602160045260246000fd5b146105c25760405162461bcd60e51b815260206004820152603860248201527f526566756e64457363726f773a2062656e65666963696172792063616e206f6e60448201527f6c79207769746864726177207768696c6520636c6f7365640000000000000000606482015260840161027d565b6104306001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000164761080d565b6000546001600160a01b0316331461061f5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166106845760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b606482015260840161027d565b6103c3816107bd565b600061069b60025460ff1690565b60028111156106ba57634e487b7160e01b600052602160045260246000fd5b1461071b5760405162461bcd60e51b815260206004820152602b60248201527f526566756e64457363726f773a2063616e206f6e6c79206465706f736974207760448201526a68696c652061637469766560a81b606482015260840161027d565b6103c38161092b565b6000546001600160a01b0316331461074e5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166000818152600160205260408120805491905590610776908261080d565b816001600160a01b03167f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d5826040516107b191815260200190565b60405180910390a25050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b8047101561085d5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e6365000000604482015260640161027d565b6000826001600160a01b03168260405160006040518083038185875af1925050503d80600081146108aa576040519150601f19603f3d011682016040523d82523d6000602084013e6108af565b606091505b50509050806109265760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d61792068617665207265766572746564000000000000606482015260840161027d565b505050565b6000546001600160a01b031633146109555760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b03811660009081526001602052604081208054349283929161097f908490610a3f565b90915550506040518181526001600160a01b038316907f2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c4906020016107b1565b6000602082840312156109d0578081fd5b81356109db81610a63565b9392505050565b6020810160038310610a0457634e487b7160e01b600052602160045260246000fd5b91905290565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60008219821115610a5e57634e487b7160e01b81526011600452602481fd5b500190565b6001600160a01b03811681146103c357600080fdfea2646970667358221220fcf0fd8037f372c1eae94dba60e7f9dc6b92aaa5db82e6051e33f045d837612c64736f6c63430008030033\",\n  \"deployedBytecode\": \"0x6080604052600436106100a75760003560e01c80638da5cb5b116100645780638da5cb5b146101895780639af6549a146101a7578063c19d93fb146101bc578063e3a9db1a146101dc578063f2fde38b14610220578063f340fa0114610240576100a7565b806338af3eed146100ac57806343d726d6146100f857806351cff8d91461010f578063685ca1941461012f578063715018a61461015f5780638c52dc4114610174575b600080fd5b3480156100b857600080fd5b507f00000000000000000000000000000000000000000000000000000000000000005b6040516001600160a01b0390911681526020015b60405180910390f35b34801561010457600080fd5b5061010d610253565b005b34801561011b57600080fd5b5061010d61012a3660046109bf565b610349565b34801561013b57600080fd5b5061014f61014a3660046109bf565b6103c6565b60405190151581526020016100ef565b34801561016b57600080fd5b5061010d6103fc565b34801561018057600080fd5b5061010d610432565b34801561019557600080fd5b506000546001600160a01b03166100db565b3480156101b357600080fd5b5061010d610529565b3480156101c857600080fd5b5060025460ff166040516100ef91906109e2565b3480156101e857600080fd5b506102126101f73660046109bf565b6001600160a01b031660009081526001602052604090205490565b6040519081526020016100ef565b34801561022c57600080fd5b5061010d61023b3660046109bf565b6105f5565b61010d61024e3660046109bf565b61068d565b6000546001600160a01b031633146102865760405162461bcd60e51b815260040161027d90610a0a565b60405180910390fd5b600061029460025460ff1690565b60028111156102b357634e487b7160e01b600052602160045260246000fd5b146103125760405162461bcd60e51b815260206004820152602960248201527f526566756e64457363726f773a2063616e206f6e6c7920636c6f7365207768696044820152686c652061637469766560b81b606482015260840161027d565b6002805460ff1916811790556040517f088672c3a6e342f7cd94a65ba63b79df24a8973927b4d05d803c44bbf787d12f90600090a1565b610352816103c6565b6103ba5760405162461bcd60e51b815260206004820152603360248201527f436f6e646974696f6e616c457363726f773a207061796565206973206e6f7420604482015272616c6c6f77656420746f20776974686472617760681b606482015260840161027d565b6103c381610724565b50565b600060016103d660025460ff1690565b60028111156103f557634e487b7160e01b600052602160045260246000fd5b1492915050565b6000546001600160a01b031633146104265760405162461bcd60e51b815260040161027d90610a0a565b61043060006107bd565b565b6000546001600160a01b0316331461045c5760405162461bcd60e51b815260040161027d90610a0a565b600061046a60025460ff1690565b600281111561048957634e487b7160e01b600052602160045260246000fd5b146104f15760405162461bcd60e51b815260206004820152603260248201527f526566756e64457363726f773a2063616e206f6e6c7920656e61626c6520726560448201527166756e6473207768696c652061637469766560701b606482015260840161027d565b6002805460ff191660011790556040517f599d8e5a83cffb867d051598c4d70e805d59802d8081c1c7d6dffc5b6aca2b8990600090a1565b6002805460ff16600281111561054f57634e487b7160e01b600052602160045260246000fd5b146105c25760405162461bcd60e51b815260206004820152603860248201527f526566756e64457363726f773a2062656e65666963696172792063616e206f6e60448201527f6c79207769746864726177207768696c6520636c6f7365640000000000000000606482015260840161027d565b6104306001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000164761080d565b6000546001600160a01b0316331461061f5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166106845760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b606482015260840161027d565b6103c3816107bd565b600061069b60025460ff1690565b60028111156106ba57634e487b7160e01b600052602160045260246000fd5b1461071b5760405162461bcd60e51b815260206004820152602b60248201527f526566756e64457363726f773a2063616e206f6e6c79206465706f736974207760448201526a68696c652061637469766560a81b606482015260840161027d565b6103c38161092b565b6000546001600160a01b0316331461074e5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166000818152600160205260408120805491905590610776908261080d565b816001600160a01b03167f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d5826040516107b191815260200190565b60405180910390a25050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b8047101561085d5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e6365000000604482015260640161027d565b6000826001600160a01b03168260405160006040518083038185875af1925050503d80600081146108aa576040519150601f19603f3d011682016040523d82523d6000602084013e6108af565b606091505b50509050806109265760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d61792068617665207265766572746564000000000000606482015260840161027d565b505050565b6000546001600160a01b031633146109555760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b03811660009081526001602052604081208054349283929161097f908490610a3f565b90915550506040518181526001600160a01b038316907f2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c4906020016107b1565b6000602082840312156109d0578081fd5b81356109db81610a63565b9392505050565b6020810160038310610a0457634e487b7160e01b600052602160045260246000fd5b91905290565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60008219821115610a5e57634e487b7160e01b81526011600452602481fd5b500190565b6001600160a01b03811681146103c357600080fdfea2646970667358221220fcf0fd8037f372c1eae94dba60e7f9dc6b92aaa5db82e6051e33f045d837612c64736f6c63430008030033\",\n  \"linkReferences\": {},\n  \"deployedLinkReferences\": {}\n}\n") . expect ("valid artifact JSON") ;
-          artifact
+        pub static ref CONTRACT: Contract = {
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"RefundEscrow\",\"abi\":[{\"type\":\"constructor\",\"inputs\":[{\"name\":\"beneficiary_\",\"type\":\"address\"}]},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"state\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"withdrawalAllowed\",\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"beneficiary\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"enableRefunds\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"depositsOf\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"beneficiaryWithdraw\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"deposit\",\"inputs\":[{\"name\":\"refundee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"close\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"withdraw\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Withdrawn\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RefundsEnabled\",\"inputs\":[],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Deposited\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RefundsClosed\",\"inputs\":[],\"anonymous\":false}],\"bytecode\":\"60a060405234801561001057600080fd5b50604051610c17380380610c1783398101604081905261002f91610117565b610038336100c7565b6001600160a01b0381166100a85760405162461bcd60e51b815260206004820152602d60248201527f526566756e64457363726f773a2062656e65666963696172792069732074686560448201526c207a65726f206164647265737360981b606482015260840160405180910390fd5b60601b6001600160601b0319166080526002805460ff19169055610145565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b600060208284031215610128578081fd5b81516001600160a01b038116811461013e578182fd5b9392505050565b60805160601c610aae6101696000396000818160bb01526105cf0152610aae6000f3fe6080604052600436106100a75760003560e01c80638da5cb5b116100645780638da5cb5b146101895780639af6549a146101a7578063c19d93fb146101bc578063e3a9db1a146101dc578063f2fde38b14610220578063f340fa0114610240576100a7565b806338af3eed146100ac57806343d726d6146100f857806351cff8d91461010f578063685ca1941461012f578063715018a61461015f5780638c52dc4114610174575b600080fd5b3480156100b857600080fd5b507f00000000000000000000000000000000000000000000000000000000000000005b6040516001600160a01b0390911681526020015b60405180910390f35b34801561010457600080fd5b5061010d610253565b005b34801561011b57600080fd5b5061010d61012a3660046109bf565b610349565b34801561013b57600080fd5b5061014f61014a3660046109bf565b6103c6565b60405190151581526020016100ef565b34801561016b57600080fd5b5061010d6103fc565b34801561018057600080fd5b5061010d610432565b34801561019557600080fd5b506000546001600160a01b03166100db565b3480156101b357600080fd5b5061010d610529565b3480156101c857600080fd5b5060025460ff166040516100ef91906109e2565b3480156101e857600080fd5b506102126101f73660046109bf565b6001600160a01b031660009081526001602052604090205490565b6040519081526020016100ef565b34801561022c57600080fd5b5061010d61023b3660046109bf565b6105f5565b61010d61024e3660046109bf565b61068d565b6000546001600160a01b031633146102865760405162461bcd60e51b815260040161027d90610a0a565b60405180910390fd5b600061029460025460ff1690565b60028111156102b357634e487b7160e01b600052602160045260246000fd5b146103125760405162461bcd60e51b815260206004820152602960248201527f526566756e64457363726f773a2063616e206f6e6c7920636c6f7365207768696044820152686c652061637469766560b81b606482015260840161027d565b6002805460ff1916811790556040517f088672c3a6e342f7cd94a65ba63b79df24a8973927b4d05d803c44bbf787d12f90600090a1565b610352816103c6565b6103ba5760405162461bcd60e51b815260206004820152603360248201527f436f6e646974696f6e616c457363726f773a207061796565206973206e6f7420604482015272616c6c6f77656420746f20776974686472617760681b606482015260840161027d565b6103c381610724565b50565b600060016103d660025460ff1690565b60028111156103f557634e487b7160e01b600052602160045260246000fd5b1492915050565b6000546001600160a01b031633146104265760405162461bcd60e51b815260040161027d90610a0a565b61043060006107bd565b565b6000546001600160a01b0316331461045c5760405162461bcd60e51b815260040161027d90610a0a565b600061046a60025460ff1690565b600281111561048957634e487b7160e01b600052602160045260246000fd5b146104f15760405162461bcd60e51b815260206004820152603260248201527f526566756e64457363726f773a2063616e206f6e6c7920656e61626c6520726560448201527166756e6473207768696c652061637469766560701b606482015260840161027d565b6002805460ff191660011790556040517f599d8e5a83cffb867d051598c4d70e805d59802d8081c1c7d6dffc5b6aca2b8990600090a1565b6002805460ff16600281111561054f57634e487b7160e01b600052602160045260246000fd5b146105c25760405162461bcd60e51b815260206004820152603860248201527f526566756e64457363726f773a2062656e65666963696172792063616e206f6e60448201527f6c79207769746864726177207768696c6520636c6f7365640000000000000000606482015260840161027d565b6104306001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000164761080d565b6000546001600160a01b0316331461061f5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166106845760405162461bcd60e51b815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201526564647265737360d01b606482015260840161027d565b6103c3816107bd565b600061069b60025460ff1690565b60028111156106ba57634e487b7160e01b600052602160045260246000fd5b1461071b5760405162461bcd60e51b815260206004820152602b60248201527f526566756e64457363726f773a2063616e206f6e6c79206465706f736974207760448201526a68696c652061637469766560a81b606482015260840161027d565b6103c38161092b565b6000546001600160a01b0316331461074e5760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b0381166000818152600160205260408120805491905590610776908261080d565b816001600160a01b03167f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d5826040516107b191815260200190565b60405180910390a25050565b600080546001600160a01b038381166001600160a01b0319831681178455604051919092169283917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09190a35050565b8047101561085d5760405162461bcd60e51b815260206004820152601d60248201527f416464726573733a20696e73756666696369656e742062616c616e6365000000604482015260640161027d565b6000826001600160a01b03168260405160006040518083038185875af1925050503d80600081146108aa576040519150601f19603f3d011682016040523d82523d6000602084013e6108af565b606091505b50509050806109265760405162461bcd60e51b815260206004820152603a60248201527f416464726573733a20756e61626c6520746f2073656e642076616c75652c207260448201527f6563697069656e74206d61792068617665207265766572746564000000000000606482015260840161027d565b505050565b6000546001600160a01b031633146109555760405162461bcd60e51b815260040161027d90610a0a565b6001600160a01b03811660009081526001602052604081208054349283929161097f908490610a3f565b90915550506040518181526001600160a01b038316907f2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c4906020016107b1565b6000602082840312156109d0578081fd5b81356109db81610a63565b9392505050565b6020810160038310610a0457634e487b7160e01b600052602160045260246000fd5b91905290565b6020808252818101527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604082015260600190565b60008219821115610a5e57634e487b7160e01b81526011600452602481fd5b500190565b6001600160a01b03811681146103c357600080fdfea2646970667358221220fcf0fd8037f372c1eae94dba60e7f9dc6b92aaa5db82e6051e33f045d837612c64736f6c63430008030033\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          contract
         };
       }
-      &ARTIFACT
+      &CONTRACT
     }
     #[doc = r" Creates a new contract instance with the specified `web3`"]
     #[doc = r" provider at the given `Address`."]
     #[doc = r""]
     #[doc = r" Note that this does not verify that a contract with a matching"]
     #[doc = r" `Abi` is actually deployed at the given address."]
-    pub fn at<F, T>(
+    pub fn at<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
     ) -> Self
@@ -34,7 +35,18 @@ pub mod refund_escrow {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       Contract::with_deployment_info(web3, address, None)
     }
@@ -46,7 +58,7 @@ pub mod refund_escrow {
     #[doc = r" Note that this does not verify that a contract with a matching `Abi` is"]
     #[doc = r" actually deployed at the given address nor that the transaction hash,"]
     #[doc = r" when provided, is actually for this contract deployment."]
-    pub fn with_deployment_info<F, T>(
+    pub fn with_deployment_info<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       address: self::ethcontract::Address,
       deployment_information: Option<ethcontract::common::DeploymentInformation>,
@@ -56,14 +68,25 @@ pub mod refund_escrow {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::transport::DynTransport;
       use self::ethcontract::web3::api::Web3;
       use self::ethcontract::Instance;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let abi = Self::artifact().abi.clone();
+      let abi = Self::raw_contract().abi.clone();
       let instance = Instance::with_deployment_info(web3, abi, address, deployment_information);
       Contract::from_raw(instance)
     }
@@ -112,7 +135,7 @@ pub mod refund_escrow {
   impl Contract {
     #[doc = "Generated by `ethcontract`"]
     #[allow(clippy::too_many_arguments)]
-    pub fn builder<F, T>(
+    pub fn builder<F, B, T>(
       web3: &self::ethcontract::web3::api::Web3<T>,
       beneficiary: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynDeployBuilder<Self>
@@ -121,14 +144,25 @@ pub mod refund_escrow {
           Output = Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>,
         > + Send
         + 'static,
-      T: self::ethcontract::web3::Transport<Out = F> + Send + Sync + 'static,
+      B: std::future::Future<
+          Output = Result<
+            Vec<Result<self::ethcontract::json::Value, self::ethcontract::web3::Error>>,
+            self::ethcontract::web3::Error,
+          >,
+        > + Send
+        + 'static,
+      T: self::ethcontract::web3::Transport<Out = F>
+        + self::ethcontract::web3::BatchTransport<Batch = B>
+        + Send
+        + Sync
+        + 'static,
     {
       use self::ethcontract::contract::DeployBuilder;
       use self::ethcontract::dyns::DynTransport;
       use self::ethcontract::web3::api::Web3;
       let transport = DynTransport::new(web3.transport().clone());
       let web3 = Web3::new(transport);
-      let bytecode = Self::artifact().bytecode.clone();
+      let bytecode = Self::raw_contract().bytecode.clone();
       DeployBuilder::new(web3, bytecode, (beneficiary,)).expect("valid deployment args")
     }
   }
@@ -138,7 +172,7 @@ pub mod refund_escrow {
       cx
     }
     fn abi(_: &Self::Context) -> &self::ethcontract::common::Abi {
-      &Self::artifact().abi
+      &Self::raw_contract().abi
     }
     fn from_deployment(
       web3: self::ethcontract::dyns::DynWeb3,
@@ -150,11 +184,95 @@ pub mod refund_escrow {
     }
   }
   impl Contract {
+    #[doc = r" Returns an object that allows accessing typed method signatures."]
+    pub fn signatures() -> Signatures {
+      Signatures
+    }
     #[doc = r" Retrieves a reference to type containing all the generated"]
     #[doc = r" contract methods. This can be used for methods where the name"]
     #[doc = r" would collide with a common method (like `at` or `deployed`)."]
     pub fn methods(&self) -> &Methods {
       &self.methods
+    }
+  }
+  #[doc = r" Type containing signatures for all methods for generated contract type."]
+  #[derive(Clone, Copy)]
+  pub struct Signatures;
+  impl Signatures {
+    #[doc = "Returns signature for method `transferOwnership(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_ownership(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([242, 253, 227, 139])
+    }
+    #[doc = "Returns signature for method `renounceOwnership()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn renounce_ownership(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([113, 80, 24, 166])
+    }
+    #[doc = "Returns signature for method `state():(uint8)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn state(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([193, 157, 147, 251])
+    }
+    #[doc = "Returns signature for method `withdrawalAllowed(address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn withdrawal_allowed(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), bool> {
+      self::ethcontract::contract::Signature::new([104, 92, 161, 148])
+    }
+    #[doc = "Returns signature for method `beneficiary():(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn beneficiary(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
+      self::ethcontract::contract::Signature::new([56, 175, 62, 237])
+    }
+    #[doc = "Returns signature for method `enableRefunds()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn enable_refunds(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([140, 82, 220, 65])
+    }
+    #[doc = "Returns signature for method `depositsOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn deposits_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([227, 169, 219, 26])
+    }
+    #[doc = "Returns signature for method `beneficiaryWithdraw()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn beneficiary_withdraw(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([154, 246, 84, 154])
+    }
+    #[doc = "Returns signature for method `deposit(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn deposit(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([243, 64, 250, 1])
+    }
+    #[doc = "Returns signature for method `close()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn close(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([67, 215, 38, 214])
+    }
+    #[doc = "Returns signature for method `withdraw(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn withdraw(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([81, 207, 248, 217])
+    }
+    #[doc = "Returns signature for method `owner():(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn owner(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
+      self::ethcontract::contract::Signature::new([141, 165, 203, 91])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -165,10 +283,70 @@ pub mod refund_escrow {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
+    pub fn transfer_ownership(
+      &self,
+      new_owner: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([242, 253, 227, 139], (new_owner,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn renounce_ownership(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([113, 80, 24, 166], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn state(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
       self
         .instance
         .view_method([193, 157, 147, 251], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn withdrawal_allowed(
+      &self,
+      p0: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([104, 92, 161, 148], (p0,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn beneficiary(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([56, 175, 62, 237], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn enable_refunds(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([140, 82, 220, 65], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn deposits_of(
+      &self,
+      payee: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([227, 169, 219, 26], (payee,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn beneficiary_withdraw(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([154, 246, 84, 154], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -186,13 +364,6 @@ pub mod refund_escrow {
       self
         .instance
         .method([67, 215, 38, 214], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn renounce_ownership(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([113, 80, 24, 166], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -214,59 +385,6 @@ pub mod refund_escrow {
         .view_method([141, 165, 203, 91], ())
         .expect("generated call")
     }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_ownership(
-      &self,
-      new_owner: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([242, 253, 227, 139], (new_owner,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn withdrawal_allowed(
-      &self,
-      p0: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([104, 92, 161, 148], (p0,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn beneficiary_withdraw(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([154, 246, 84, 154], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn beneficiary(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([56, 175, 62, 237], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn deposits_of(
-      &self,
-      payee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([227, 169, 219, 26], (payee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn enable_refunds(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([140, 82, 220, 65], ())
-        .expect("generated call")
-    }
   }
   impl std::ops::Deref for Contract {
     type Target = Methods;
@@ -278,102 +396,6 @@ pub mod refund_escrow {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct RefundsClosed();
-    impl RefundsClosed {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          8, 134, 114, 195, 166, 227, 66, 247, 205, 148, 166, 91, 166, 59, 121, 223, 36, 168, 151,
-          57, 39, 180, 208, 93, 128, 60, 68, 187, 247, 135, 209, 47,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`RefundsClosed()`"]
-      pub fn abi_signature() -> &'static str {
-        "RefundsClosed()"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for RefundsClosed {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let () = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(RefundsClosed())
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct RefundsEnabled();
-    impl RefundsEnabled {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          89, 157, 142, 90, 131, 207, 251, 134, 125, 5, 21, 152, 196, 215, 14, 128, 93, 89, 128,
-          45, 128, 129, 193, 199, 214, 223, 252, 91, 106, 202, 43, 137,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`RefundsEnabled()`"]
-      pub fn abi_signature() -> &'static str {
-        "RefundsEnabled()"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for RefundsEnabled {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let () = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(RefundsEnabled())
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Deposited {
-      pub payee: self::ethcontract::Address,
-      pub wei_amount: self::ethcontract::U256,
-    }
-    impl Deposited {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
-          79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Deposited(address,uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "Deposited(address,uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Deposited {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (payee, wei_amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Deposited { payee, wei_amount })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Withdrawn {
       pub payee: self::ethcontract::Address,
@@ -445,6 +467,102 @@ pub mod refund_escrow {
         unimplemented!("events are only decoded, not encoded")
       }
     }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct RefundsEnabled();
+    impl RefundsEnabled {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          89, 157, 142, 90, 131, 207, 251, 134, 125, 5, 21, 152, 196, 215, 14, 128, 93, 89, 128,
+          45, 128, 129, 193, 199, 214, 223, 252, 91, 106, 202, 43, 137,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`RefundsEnabled()`"]
+      pub fn abi_signature() -> &'static str {
+        "RefundsEnabled()"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for RefundsEnabled {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let () = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(RefundsEnabled())
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Deposited {
+      pub payee: self::ethcontract::Address,
+      pub wei_amount: self::ethcontract::U256,
+    }
+    impl Deposited {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
+          79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Deposited(address,uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "Deposited(address,uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Deposited {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (payee, wei_amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Deposited { payee, wei_amount })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct RefundsClosed();
+    impl RefundsClosed {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          8, 134, 114, 195, 166, 227, 66, 247, 205, 148, 166, 91, 166, 59, 121, 223, 36, 168, 151,
+          57, 39, 180, 208, 93, 128, 60, 68, 187, 247, 135, 209, 47,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`RefundsClosed()`"]
+      pub fn abi_signature() -> &'static str {
+        "RefundsClosed()"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for RefundsClosed {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let () = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(RefundsClosed())
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -460,13 +578,25 @@ pub mod refund_escrow {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn refunds_closed(&self) -> self::event_builders::RefundsClosedBuilder {
-      self::event_builders::RefundsClosedBuilder(
+    pub fn withdrawn(&self) -> self::event_builders::WithdrawnBuilder {
+      self::event_builders::WithdrawnBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            8, 134, 114, 195, 166, 227, 66, 247, 205, 148, 166, 91, 166, 59, 121, 223, 36, 168,
-            151, 57, 39, 180, 208, 93, 128, 60, 68, 187, 247, 135, 209, 47,
+            112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173,
+            184, 121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn ownership_transferred(&self) -> self::event_builders::OwnershipTransferredBuilder {
+      self::event_builders::OwnershipTransferredBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            139, 224, 7, 156, 83, 22, 89, 20, 19, 68, 205, 31, 208, 164, 242, 132, 25, 73, 127,
+            151, 34, 163, 218, 175, 227, 180, 24, 111, 107, 100, 87, 224,
           ]))
           .expect("generated event filter"),
       )
@@ -496,25 +626,13 @@ pub mod refund_escrow {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn withdrawn(&self) -> self::event_builders::WithdrawnBuilder {
-      self::event_builders::WithdrawnBuilder(
+    pub fn refunds_closed(&self) -> self::event_builders::RefundsClosedBuilder {
+      self::event_builders::RefundsClosedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173,
-            184, 121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn ownership_transferred(&self) -> self::event_builders::OwnershipTransferredBuilder {
-      self::event_builders::OwnershipTransferredBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            139, 224, 7, 156, 83, 22, 89, 20, 19, 68, 205, 31, 208, 164, 242, 132, 25, 73, 127,
-            151, 34, 163, 218, 175, 227, 180, 24, 111, 107, 100, 87, 224,
+            8, 134, 114, 195, 166, 227, 66, 247, 205, 148, 166, 91, 166, 59, 121, 223, 36, 168,
+            151, 57, 39, 180, 208, 93, 128, 60, 68, 187, 247, 135, 209, 47,
           ]))
           .expect("generated event filter"),
       )
@@ -525,182 +643,6 @@ pub mod refund_escrow {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `RefundsClosed` events."]
-    pub struct RefundsClosedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::RefundsClosed>,
-    );
-    impl RefundsClosedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::RefundsClosed>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::RefundsClosed>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `RefundsEnabled` events."]
-    pub struct RefundsEnabledBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::RefundsEnabled>,
-    );
-    impl RefundsEnabledBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::RefundsEnabled>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::RefundsEnabled>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Deposited` events."]
-    pub struct DepositedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Deposited>,
-    );
-    impl DepositedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" The polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the payee event parameter."]
-      pub fn payee(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Deposited>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Deposited>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `Withdrawn` events."]
     pub struct WithdrawnBuilder(
       #[doc = r" The inner event builder."]
@@ -723,14 +665,14 @@ pub mod refund_escrow {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -785,14 +727,14 @@ pub mod refund_escrow {
         self.0 = (self.0).to_block(block);
         self
       }
-      #[doc = r" Limit the number of events that can be retrieved by this filter."]
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
       #[doc = r""]
       #[doc = r" Note that this parameter is non-standard."]
       pub fn limit(mut self, value: usize) -> Self {
         self.0 = (self.0).limit(value);
         self
       }
-      #[doc = r" The polling interval. This is used as the interval between"]
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
       #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
       pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
         self.0 = (self.0).poll_interval(value);
@@ -836,6 +778,182 @@ pub mod refund_escrow {
         (self.0).stream()
       }
     }
+    #[doc = "A builder for creating a filtered stream of `RefundsEnabled` events."]
+    pub struct RefundsEnabledBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::RefundsEnabled>,
+    );
+    impl RefundsEnabledBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::RefundsEnabled>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::RefundsEnabled>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `Deposited` events."]
+    pub struct DepositedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Deposited>,
+    );
+    impl DepositedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the payee event parameter."]
+      pub fn payee(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Deposited>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Deposited>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `RefundsClosed` events."]
+    pub struct RefundsClosedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::RefundsClosed>,
+    );
+    impl RefundsClosedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::RefundsClosed>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::RefundsClosed>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
   }
   impl Contract {
     #[doc = r" Returns a log stream with all events."]
@@ -860,7 +978,7 @@ pub mod refund_escrow {
     fn parse_log(
       log: self::ethcontract::RawLog,
     ) -> Result<Self, self::ethcontract::errors::ExecutionError> {
-      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([45 , 164 , 102 , 167 , 178 , 67 , 4 , 244 , 126 , 135 , 250 , 46 , 30 , 90 , 129 , 185 , 131 , 28 , 229 , 79 , 236 , 25 , 5 , 92 , 226 , 119 , 202 , 47 , 57 , 186 , 66 , 196]) => Ok (Event :: Deposited (log . clone () . decode (Contract :: artifact () . abi . event ("Deposited") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([139 , 224 , 7 , 156 , 83 , 22 , 89 , 20 , 19 , 68 , 205 , 31 , 208 , 164 , 242 , 132 , 25 , 73 , 127 , 151 , 34 , 163 , 218 , 175 , 227 , 180 , 24 , 111 , 107 , 100 , 87 , 224]) => Ok (Event :: OwnershipTransferred (log . clone () . decode (Contract :: artifact () . abi . event ("OwnershipTransferred") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([8 , 134 , 114 , 195 , 166 , 227 , 66 , 247 , 205 , 148 , 166 , 91 , 166 , 59 , 121 , 223 , 36 , 168 , 151 , 57 , 39 , 180 , 208 , 93 , 128 , 60 , 68 , 187 , 247 , 135 , 209 , 47]) => Ok (Event :: RefundsClosed (log . clone () . decode (Contract :: artifact () . abi . event ("RefundsClosed") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([89 , 157 , 142 , 90 , 131 , 207 , 251 , 134 , 125 , 5 , 21 , 152 , 196 , 215 , 14 , 128 , 93 , 89 , 128 , 45 , 128 , 129 , 193 , 199 , 214 , 223 , 252 , 91 , 106 , 202 , 43 , 137]) => Ok (Event :: RefundsEnabled (log . clone () . decode (Contract :: artifact () . abi . event ("RefundsEnabled") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([112 , 132 , 245 , 71 , 102 , 24 , 216 , 230 , 11 , 17 , 239 , 13 , 125 , 63 , 6 , 145 , 70 , 85 , 173 , 184 , 121 , 62 , 40 , 255 , 127 , 1 , 141 , 76 , 118 , 213 , 5 , 213]) => Ok (Event :: Withdrawn (log . clone () . decode (Contract :: artifact () . abi . event ("Withdrawn") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
+      let standard_event = log . topics . get (0) . copied () . map (| topic | match topic { self :: ethcontract :: H256 ([45 , 164 , 102 , 167 , 178 , 67 , 4 , 244 , 126 , 135 , 250 , 46 , 30 , 90 , 129 , 185 , 131 , 28 , 229 , 79 , 236 , 25 , 5 , 92 , 226 , 119 , 202 , 47 , 57 , 186 , 66 , 196]) => Ok (Event :: Deposited (log . clone () . decode (Contract :: raw_contract () . abi . event ("Deposited") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([139 , 224 , 7 , 156 , 83 , 22 , 89 , 20 , 19 , 68 , 205 , 31 , 208 , 164 , 242 , 132 , 25 , 73 , 127 , 151 , 34 , 163 , 218 , 175 , 227 , 180 , 24 , 111 , 107 , 100 , 87 , 224]) => Ok (Event :: OwnershipTransferred (log . clone () . decode (Contract :: raw_contract () . abi . event ("OwnershipTransferred") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([8 , 134 , 114 , 195 , 166 , 227 , 66 , 247 , 205 , 148 , 166 , 91 , 166 , 59 , 121 , 223 , 36 , 168 , 151 , 57 , 39 , 180 , 208 , 93 , 128 , 60 , 68 , 187 , 247 , 135 , 209 , 47]) => Ok (Event :: RefundsClosed (log . clone () . decode (Contract :: raw_contract () . abi . event ("RefundsClosed") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([89 , 157 , 142 , 90 , 131 , 207 , 251 , 134 , 125 , 5 , 21 , 152 , 196 , 215 , 14 , 128 , 93 , 89 , 128 , 45 , 128 , 129 , 193 , 199 , 214 , 223 , 252 , 91 , 106 , 202 , 43 , 137]) => Ok (Event :: RefundsEnabled (log . clone () . decode (Contract :: raw_contract () . abi . event ("RefundsEnabled") . expect ("generated event decode")) ?)) , self :: ethcontract :: H256 ([112 , 132 , 245 , 71 , 102 , 24 , 216 , 230 , 11 , 17 , 239 , 13 , 125 , 63 , 6 , 145 , 70 , 85 , 173 , 184 , 121 , 62 , 40 , 255 , 127 , 1 , 141 , 76 , 118 , 213 , 5 , 213]) => Ok (Event :: Withdrawn (log . clone () . decode (Contract :: raw_contract () . abi . event ("Withdrawn") . expect ("generated event decode")) ?)) , _ => Err (self :: ethcontract :: errors :: ExecutionError :: from (self :: ethcontract :: common :: abi :: Error :: InvalidData)) , }) ;
       if let Some(Ok(data)) = standard_event {
         return Ok(data);
       }
