@@ -196,12 +196,12 @@ fn generate<T: AsRef<OsStr>>(input: T, output: T) -> WrappedResult<()> {
 
 fn main() -> WrappedResult<()> {
   generate(
-    "node_modules/@openzeppelin/contracts/build/contracts",
-    "src/openzeppelin/contracts",
+    "niftygate-bindgen/node_modules/@openzeppelin/contracts/build/contracts",
+    "niftygate-bindings/src/openzeppelin/contracts",
   )?;
   generate(
-    "node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
-    "src/openzeppelin/contracts_upgradeable",
+    "niftygate-bindgen/node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
+    "niftygate-bindings/src/openzeppelin/contracts_upgradeable",
   )?;
 
   Ok(())

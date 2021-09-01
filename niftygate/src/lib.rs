@@ -1,7 +1,8 @@
 pub mod application;
 pub mod command;
 pub mod middleware;
-pub mod openzeppelin;
+
+pub use niftygate_bindings::openzeppelin;
 
 pub mod prelude {
   pub use ethcontract;

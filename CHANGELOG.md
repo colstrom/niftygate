@@ -1,3 +1,11 @@
+# 0.6.2
+  - (internal) split into packages.
+    - niftygate is the main package, containing the app and library.
+    - niftygate-bindings contains the bindings for various smart contracts.
+    - niftygate-bindgen contains the code generator for the contract bindings.
+    - there should be no impact to compatibility with this change.
+    - this resolves an ongoing challenge with dependency upgrades.
+
 # 0.6.1
   - (library) updated bindings for OpenZeppelin contracts to 4.3.1 - see [Changelog](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.3/CHANGELOG.md) for details.
   - (internal) added support for (I)GovernorCompatiblityBravo contracts to generator.
