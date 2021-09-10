@@ -4,6 +4,7 @@
 // found in src/openzeppelin/contracts/generated directory. These are
 // committed in-tree, because it allows the crate to be built without
 // depending on any extra tooling like Truffle or Solidity.
+use anyhow::Result;
 use ethcontract::Contract;
 use ethcontract_generate::{loaders::TruffleLoader, ContractBindings, ContractBuilder};
 use heck::SnakeCase;
@@ -12,11 +13,8 @@ use std::{
   path::{Path, PathBuf},
 };
 
-pub type WrappedError = Box<dyn std::error::Error>;
-pub type WrappedResult<T> = std::result::Result<T, WrappedError>;
-
 // This just finds all the .json files in a directory. Not much to see.
-fn sources(input_dir: PathBuf) -> WrappedResult<Vec<PathBuf>> {
+fn sources(input_dir: PathBuf) -> Result<Vec<PathBuf>> {
   let mut sources: Vec<PathBuf> = vec![];
 
   for entry in input_dir.read_dir()? {
@@ -36,7 +34,7 @@ fn sources(input_dir: PathBuf) -> WrappedResult<Vec<PathBuf>> {
 }
 
 // This maps sources to output files, and handles a naming issue.
-fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Contract, PathBuf)>> {
+fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> Result<Vec<(Contract, PathBuf)>> {
   let mut plan: Vec<(Contract, PathBuf)> = vec![];
 
   for source in sources {
@@ -62,7 +60,7 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> WrappedResult<Vec<(Contra
 // There's probably a better way to handle this, but there are multiple
 // source files with the same issue, and this doesn't need to be fast,
 // since it's not even run at build time, but manually when needed.
-fn contract_bindings(contract: Contract) -> WrappedResult<ContractBindings> {
+fn contract_bindings(contract: Contract) -> Result<ContractBindings> {
   if let Ok(bindings) = ContractBuilder::new()
     .visibility_modifier("pub")
     .add_event_derive("serde::Deserialize")
@@ -157,7 +155,7 @@ fn write_module(path: PathBuf, output_files: Vec<PathBuf>) -> std::io::Result<()
 // This makes no attempts to preserve modifications or anything. It will
 // blithely stomp all over anything in the "generated" directory, because
 // that words have meanings, and that directory has that name for a reason.
-fn generate<T: AsRef<OsStr>>(input: T, output: T) -> WrappedResult<()> {
+fn generate<T: AsRef<OsStr>>(input: T, output: T) -> Result<()> {
   let input_dir = Path::new(input.as_ref()).to_path_buf();
   let sources = sources(input_dir)?;
 
@@ -194,7 +192,7 @@ fn generate<T: AsRef<OsStr>>(input: T, output: T) -> WrappedResult<()> {
   Ok(())
 }
 
-fn main() -> WrappedResult<()> {
+fn main() -> Result<()> {
   generate(
     "niftygate-bindgen/node_modules/@openzeppelin/contracts/build/contracts",
     "niftygate-bindings/src/openzeppelin/contracts",

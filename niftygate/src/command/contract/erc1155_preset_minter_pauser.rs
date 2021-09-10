@@ -179,7 +179,7 @@ pub enum SendCommand {
 impl SendCommand {
   #[rustfmt::skip]
   pub fn build(self, web3: &DynWeb3, address: Address) -> SendReturn {
-    let contract = Contract::at(&web3, address);
+    let contract = Contract::at(web3, address);
     match self {
       Self::Burn { account, id, value }
         => contract.burn(account, id, value).into(),

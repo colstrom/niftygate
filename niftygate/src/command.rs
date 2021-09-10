@@ -7,6 +7,7 @@ use tide::{
   http::{headers::HeaderName, Url},
   log,
 };
+use tide_rustls::TlsListener;
 use web3::types::{Address, U256};
 
 mod contract;
@@ -241,9 +242,25 @@ pub enum Options {
 
     #[structopt(env, long, takes_value = false, help = "provide ERC777 symbols")]
     provides_erc777_symbol: bool,
+
+    #[structopt(
+      env,
+      long,
+      takes_value = false,
+      requires = "tls-certificate-path",
+      requires = "tls-key-path"
+    )]
+    with_tls: bool,
+
+    #[structopt(env, long, value_name = "Path")]
+    tls_certificate_path: Option<PathBuf>,
+
+    #[structopt(env, long, value_name = "Path")]
+    tls_key_path: Option<PathBuf>,
   },
   Contract(contract::Command),
   Guide(guide::Command),
+  Certificate(niftygate_certificate::command::Command),
 }
 
 pub async fn run() -> WrappedResult<()> {
@@ -255,13 +272,14 @@ pub async fn run() -> WrappedResult<()> {
     Options::Units { .. } => {
       if let Some(max) = BalanceScale::VARIANTS.iter().map(|&s| s.len()).max() {
         for &variant in BalanceScale::VARIANTS {
-          let scale = BalanceScale::from_str(&variant)?.scale();
+          let scale = BalanceScale::from_str(variant)?.scale();
           println!("{:<pad$} => {}", &variant, scale, pad = max);
         }
       };
     }
     Options::Contract(command) => command.execute().await?,
     Options::Guide(command) => command.execute()?,
+    Options::Certificate(command) => command.execute()?,
     Options::Web3 {
       address_header,
       backend,
@@ -310,6 +328,9 @@ pub async fn run() -> WrappedResult<()> {
       secret_key_file,
       signature_header,
       web3_rpc_url,
+      with_tls,
+      tls_certificate_path,
+      tls_key_path,
       ..
     } => {
       let secret_key = match (secret_key_data, secret_key_file) {
@@ -403,10 +424,22 @@ pub async fn run() -> WrappedResult<()> {
       };
 
       log::with_level(log::LevelFilter::Debug);
-      crate::application::proxy::server(config)
-        .await?
-        .listen(listen)
-        .await?;
+
+      let server = crate::application::proxy::server(config).await?;
+
+      if with_tls {
+        match (tls_certificate_path, tls_key_path) {
+          (Some(tls_certificate_path), Some(tls_key_path)) =>
+          server.listen(
+            TlsListener::build()
+              .addrs(&listen)
+              .cert(&tls_certificate_path)
+              .key(&tls_key_path)).await?,
+              _ => panic!("Missing either certificate or key. CLI argument validation should have prevented this. (╯°□°)╯︵ ┻━┻"),
+          }
+      } else {
+        server.listen(&listen).await?
+      }
     }
   }
 

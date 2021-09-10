@@ -20,7 +20,7 @@ pub struct DeployCommand {
 
 impl DeployCommand {
   pub fn build(self, web3: &DynWeb3) -> DynDeployBuilder<Contract> {
-    Contract::builder(&web3, self.name, self.symbol)
+    Contract::builder(web3, self.name, self.symbol)
   }
 }
 
@@ -174,7 +174,7 @@ pub enum SendCommand {
 impl SendCommand {
   #[rustfmt::skip]
   pub fn build(self, web3: &DynWeb3, address: Address) -> SendReturn {
-    let contract = Contract::at(&web3, address);
+    let contract = Contract::at(web3, address);
     match self {
       Self::Approve { spender, amount }
         => contract.approve(spender, amount).into(),

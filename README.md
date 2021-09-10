@@ -1,4 +1,23 @@
-# niftygate - Signature-Based Authenticating Proxy
+# niftygate - Drop-in Access Control via NFT Ownership
+
+## The Pitch
+
+Gate access to anything on the web, using any smart contract, deployed to any blockchain, without modifying your code.
+
+## Overview
+
+If you think of a token like a ticket to your club, NiftyGate would be the bouncer at the door.
+
+  - Compatible with the typical token standards, both fungible and not (ERC20, ERC721, ERC777, and ERC1155).
+  - Plays nice with any blockchain that speaks Web3 via WebSockets.
+  - Sits in front of anything that speaks HTTP.
+  - Has an embedded mode for use with client applications.
+  - Integrates with any auth system that supports HTTP headers.
+  - Comes with tools for choosing, deploying, debugging, and auditing compatible smart contracts.
+  - All shipped as  single, self-contained binary.
+
+  - Cross-platform (tested on Linux and macOS, should work elsewhere).
+  - Open Source (MIT licensed), and written in Rust.
 
 ## What is it?
 
@@ -282,10 +301,11 @@ simple questions, and present you with a recommendation.
   - Support for [ERC-721 (Non-Fungible Token Standard)](https://eips.ethereum.org/EIPS/eip-721)
   - Support for [ERC-1155 (Multi Token Standard)](https://eips.ethereum.org/EIPS/eip-1155)
 - 0.3 - Observability for Smart Contracts
+- 0.5 - Support Upgradeable Smart Contracts
+- 0.6 - Renamed from sig-proxy to NiftyGate
+- 0.7 - TLS Support
 
 ## Wishlist (in no particular order)
-
-TLS Support
 
 Support for [RFC-7486 (HTTP Origin-Bound Authentication)](https://tools.ietf.org/html/rfc7486)
   - Replacing fixed messages with random challenges, adding nonces and expiration, etc.

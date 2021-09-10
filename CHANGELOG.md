@@ -1,3 +1,23 @@
+# 0.7.0
+  - (feature) add TLS support!
+  - (commandline) added --with-tls option.
+  - (commandline) added --tls-certificate-path option.
+  - (commandline) added --tls-key-path option.
+  - (feature + commandline) added "certificate" subcommand.
+    - (package) this is also available standalone via the "niftygate-certificate" crate.
+    - can generate self-signed certificates, CA certs, and can sign certs.
+    - this provides a way to generate and sign certificates without external tools.
+    - includes support for constrained authorities
+      - can restrict the number of intermediate authorities allowed.
+      - can limit the scope of the authority based on DNS, IP, Directory Name, or Email.
+      - constraints can be combined, and exclusions are supported.
+  - (lint) fixed collapsible_if(s)
+  - (lint) fixed needless_borrow(s)
+  - (lint) fixed redundant_static_lifetimes(s)
+  - (depencency) added anyhow
+  - (dependency) added thiserror
+  - (dependency) added tide-rustls
+
 # 0.6.3
   - (dependency) async-std 1.9.0 -> 1.10.0
   - (dependency) ethcontract 0.12.2 -> 0.15.3
