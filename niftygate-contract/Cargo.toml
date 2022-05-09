@@ -1,0 +1,24 @@
+[package]
+name = "niftygate-contract"
+version = "0.8.0"
+authors = ["Chris Olstrom <chris@olstrom.com>"]
+edition = "2018"
+license = "MIT"
+repository = "https://github.com/colstrom/niftygate/"
+documentation = "https://docs.rs/niftygate-contract/"
+description = "Standalone Contract Utility from NiftyGate"
+
+[dependencies]
+anyhow = "1.0.57"
+async-std = { version = "1.11.0", features = ["attributes"] }
+chrono = "0.4.19"
+ethcontract = { version = "0.17.0", default-features = false, features = [
+  "derive", "ws-async-std", "ws-tls-async-std"
+] }
+hex = "0.4.3"
+humantime = "2.1.0"
+niftygate-bindings = { path = "../niftygate-bindings", version = "0.8.0" }
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+structopt = "0.3.26"
+tide = "0.16.0"

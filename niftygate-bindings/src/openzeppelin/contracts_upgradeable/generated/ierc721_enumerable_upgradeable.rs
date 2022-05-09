@@ -15,7 +15,7 @@ pub mod ierc721_enumerable_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC721EnumerableUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getApproved\",\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"operator\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"isApprovedForAll\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"operator\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"ownerOf\",\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"tokenOfOwnerByIndex\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"index\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"balance\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"tokenByIndex\",\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"setApprovalForAll\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenId\",\"type\":\"uint256\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ApprovalForAll\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"approved\",\"type\":\"bool\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"approved\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenId\",\"type\":\"uint256\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC721EnumerableUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"isApprovedForAll\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"operator\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"safeTransferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"ownerOf\",\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"balance\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getApproved\",\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"operator\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"tokenByIndex\",\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"tokenOfOwnerByIndex\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"index\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setApprovalForAll\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"approved\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenId\",\"type\":\"uint256\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ApprovalForAll\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"operator\",\"type\":\"address\",\"indexed\":true},{\"name\":\"approved\",\"type\":\"bool\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"tokenId\",\"type\":\"uint256\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,25 +148,12 @@ pub mod ierc721_enumerable_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `approve(address,uint256)`."]
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn approve(
+    pub fn total_supply(
       &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      (),
-    > {
-      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
-    }
-    #[doc = "Returns signature for method `getApproved(uint256):(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn get_approved(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::U256,),
-      self::ethcontract::Address,
-    > {
-      self::ethcontract::contract::Signature::new([8, 24, 18, 252])
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
     }
     #[doc = "Returns signature for method `isApprovedForAll(address,address):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -177,50 +164,6 @@ pub mod ierc721_enumerable_upgradeable {
       bool,
     > {
       self::ethcontract::contract::Signature::new([233, 133, 233, 197])
-    }
-    #[doc = "Returns signature for method `ownerOf(uint256):(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn owner_of(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::U256,),
-      self::ethcontract::Address,
-    > {
-      self::ethcontract::contract::Signature::new([99, 82, 33, 30])
-    }
-    #[doc = "Returns signature for method `tokenOfOwnerByIndex(address,uint256):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn token_of_owner_by_index(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([47, 116, 92, 89])
-    }
-    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn balance_of(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address,),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
-    }
-    #[doc = "Returns signature for method `transferFrom(address,address,uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn transfer_from(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::Address,
-        self::ethcontract::U256,
-      ),
-      (),
-    > {
-      self::ethcontract::contract::Signature::new([35, 184, 114, 221])
     }
     #[doc = "Returns signature for method `safeTransferFrom(address,address,uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -251,6 +194,46 @@ pub mod ierc721_enumerable_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([184, 141, 79, 222])
     }
+    #[doc = "Returns signature for method `ownerOf(uint256):(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn owner_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::U256,),
+      self::ethcontract::Address,
+    > {
+      self::ethcontract::contract::Signature::new([99, 82, 33, 30])
+    }
+    #[doc = "Returns signature for method `approve(address,uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn approve(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
+    }
+    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
+    }
+    #[doc = "Returns signature for method `getApproved(uint256):(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_approved(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::U256,),
+      self::ethcontract::Address,
+    > {
+      self::ethcontract::contract::Signature::new([8, 24, 18, 252])
+    }
     #[doc = "Returns signature for method `tokenByIndex(uint256):(uint256)`."]
     #[allow(clippy::type_complexity)]
     pub fn token_by_index(
@@ -259,12 +242,36 @@ pub mod ierc721_enumerable_upgradeable {
     {
       self::ethcontract::contract::Signature::new([79, 108, 204, 231])
     }
-    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[doc = "Returns signature for method `tokenOfOwnerByIndex(address,uint256):(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn total_supply(
+    pub fn token_of_owner_by_index(
       &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([47, 116, 92, 89])
+    }
+    #[doc = "Returns signature for method `transferFrom(address,address,uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([35, 184, 114, 221])
+    }
+    #[doc = "Returns signature for method `setApprovalForAll(address,bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn set_approval_for_all(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address, bool), ()> {
+      self::ethcontract::contract::Signature::new([162, 44, 180, 101])
     }
     #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -273,13 +280,6 @@ pub mod ierc721_enumerable_upgradeable {
     ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
     {
       self::ethcontract::contract::Signature::new([1, 255, 201, 167])
-    }
-    #[doc = "Returns signature for method `setApprovalForAll(address,bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn set_approval_for_all(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address, bool), ()> {
-      self::ethcontract::contract::Signature::new([162, 44, 180, 101])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -290,24 +290,12 @@ pub mod ierc721_enumerable_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn approve(
+    pub fn total_supply(
       &self,
-      to: self::ethcontract::Address,
-      token_id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .method([9, 94, 167, 179], (to, token_id))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn get_approved(
-      &self,
-      token_id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([8, 24, 18, 252], (token_id,))
+        .view_method([24, 22, 13, 221], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -319,49 +307,6 @@ pub mod ierc721_enumerable_upgradeable {
       self
         .instance
         .view_method([233, 133, 233, 197], (owner, operator))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn owner_of(
-      &self,
-      token_id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([99, 82, 33, 30], (token_id,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn token_of_owner_by_index(
-      &self,
-      owner: self::ethcontract::Address,
-      index: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([47, 116, 92, 89], (owner, index))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      owner: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([112, 160, 130, 49], (owner,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_from(
-      &self,
-      from: self::ethcontract::Address,
-      to: self::ethcontract::Address,
-      token_id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([35, 184, 114, 221], (from, to, token_id))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -390,6 +335,47 @@ pub mod ierc721_enumerable_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn owner_of(
+      &self,
+      token_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([99, 82, 33, 30], (token_id,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn approve(
+      &self,
+      to: self::ethcontract::Address,
+      token_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([9, 94, 167, 179], (to, token_id))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      owner: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([112, 160, 130, 49], (owner,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn get_approved(
+      &self,
+      token_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([8, 24, 18, 252], (token_id,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn token_by_index(
       &self,
       index: self::ethcontract::U256,
@@ -400,22 +386,26 @@ pub mod ierc721_enumerable_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
+    pub fn token_of_owner_by_index(
       &self,
+      owner: self::ethcontract::Address,
+      index: self::ethcontract::U256,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([24, 22, 13, 221], ())
+        .view_method([47, 116, 92, 89], (owner, index))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn supports_interface(
+    pub fn transfer_from(
       &self,
-      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      from: self::ethcontract::Address,
+      to: self::ethcontract::Address,
+      token_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .view_method([1, 255, 201, 167], (interface_id,))
+        .method([35, 184, 114, 221], (from, to, token_id))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -427,6 +417,16 @@ pub mod ierc721_enumerable_upgradeable {
       self
         .instance
         .method([162, 44, 180, 101], (operator, approved))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn supports_interface(
+      &self,
+      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([1, 255, 201, 167], (interface_id,))
         .expect("generated call")
     }
   }
@@ -441,35 +441,39 @@ pub mod ierc721_enumerable_upgradeable {
   pub mod event_data {
     use super::ethcontract;
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Transfer {
-      pub from: self::ethcontract::Address,
-      pub to: self::ethcontract::Address,
+    pub struct Approval {
+      pub owner: self::ethcontract::Address,
+      pub approved: self::ethcontract::Address,
       pub token_id: self::ethcontract::U256,
     }
-    impl Transfer {
+    impl Approval {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
-          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
+          140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
+          192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Transfer(address,address,uint256)`"]
+      #[doc = "`Approval(address,address,uint256)`"]
       pub fn abi_signature() -> &'static str {
-        "Transfer(address,address,uint256)"
+        "Approval(address,address,uint256)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for Transfer {
+    impl self::ethcontract::tokens::Tokenize for Approval {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (from, to, token_id) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Transfer { from, to, token_id })
+        let (owner, approved, token_id) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Approval {
+          owner,
+          approved,
+          token_id,
+        })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -515,39 +519,35 @@ pub mod ierc721_enumerable_upgradeable {
       }
     }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Approval {
-      pub owner: self::ethcontract::Address,
-      pub approved: self::ethcontract::Address,
+    pub struct Transfer {
+      pub from: self::ethcontract::Address,
+      pub to: self::ethcontract::Address,
       pub token_id: self::ethcontract::U256,
     }
-    impl Approval {
+    impl Transfer {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
-          192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
+          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
+          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Approval(address,address,uint256)`"]
+      #[doc = "`Transfer(address,address,uint256)`"]
       pub fn abi_signature() -> &'static str {
-        "Approval(address,address,uint256)"
+        "Transfer(address,address,uint256)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for Approval {
+    impl self::ethcontract::tokens::Tokenize for Transfer {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (owner, approved, token_id) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Approval {
-          owner,
-          approved,
-          token_id,
-        })
+        let (from, to, token_id) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Transfer { from, to, token_id })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -568,13 +568,13 @@ pub mod ierc721_enumerable_upgradeable {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn transfer(&self) -> self::event_builders::TransferBuilder {
-      self::event_builders::TransferBuilder(
+    pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
+      self::event_builders::ApprovalBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
-            167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
+            140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
+            192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
           ]))
           .expect("generated event filter"),
       )
@@ -592,13 +592,13 @@ pub mod ierc721_enumerable_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
-      self::event_builders::ApprovalBuilder(
+    pub fn transfer(&self) -> self::event_builders::TransferBuilder {
+      self::event_builders::TransferBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            140, 91, 225, 229, 235, 236, 125, 91, 209, 79, 113, 66, 125, 30, 132, 243, 221, 3, 20,
-            192, 247, 178, 41, 30, 91, 32, 10, 200, 199, 195, 185, 37,
+            221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
+            167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
           ]))
           .expect("generated event filter"),
       )
@@ -609,12 +609,12 @@ pub mod ierc721_enumerable_upgradeable {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
-    pub struct TransferBuilder(
+    #[doc = "A builder for creating a filtered stream of `Approval` events."]
+    pub struct ApprovalBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Approval>,
     );
-    impl TransferBuilder {
+    impl ApprovalBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -644,13 +644,16 @@ pub mod ierc721_enumerable_upgradeable {
         self.0 = (self.0).poll_interval(value);
         self
       }
-      #[doc = "Adds a filter for the from event parameter."]
-      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+      #[doc = "Adds a filter for the owner event parameter."]
+      pub fn owner(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic0(topic);
         self
       }
-      #[doc = "Adds a filter for the to event parameter."]
-      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+      #[doc = "Adds a filter for the approved event parameter."]
+      pub fn approved(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
         self.0 = (self.0).topic1(topic);
         self
       }
@@ -664,7 +667,7 @@ pub mod ierc721_enumerable_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Approval>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -674,7 +677,7 @@ pub mod ierc721_enumerable_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Transfer>,
+          self::ethcontract::StreamEvent<self::event_data::Approval>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -751,12 +754,12 @@ pub mod ierc721_enumerable_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `Approval` events."]
-    pub struct ApprovalBuilder(
+    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
+    pub struct TransferBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Approval>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
     );
-    impl ApprovalBuilder {
+    impl TransferBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -786,16 +789,13 @@ pub mod ierc721_enumerable_upgradeable {
         self.0 = (self.0).poll_interval(value);
         self
       }
-      #[doc = "Adds a filter for the owner event parameter."]
-      pub fn owner(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+      #[doc = "Adds a filter for the from event parameter."]
+      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic0(topic);
         self
       }
-      #[doc = "Adds a filter for the approved event parameter."]
-      pub fn approved(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
+      #[doc = "Adds a filter for the to event parameter."]
+      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic1(topic);
         self
       }
@@ -809,7 +809,7 @@ pub mod ierc721_enumerable_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Approval>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -819,7 +819,7 @@ pub mod ierc721_enumerable_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Approval>,
+          self::ethcontract::StreamEvent<self::event_data::Transfer>,
           self::ethcontract::errors::EventError,
         >,
       > {

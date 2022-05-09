@@ -1,0 +1,27 @@
+appenders:
+  stdout:
+    kind: console
+  js:
+    kind: file
+    path: js.log
+    encoder:
+      pattern: "{m}{n}"
+  rs:
+    kind: file
+    path: rs.log
+    encoder:
+      pattern: "{m}{n}"
+# root:
+#   level: warn
+#   appenders:
+#     - stdout
+
+loggers:
+  quick_js::console::log:
+    level: info
+    appenders:
+      - js
+  niftygate_asset::solidity::artifact::uncompress:
+    level: info
+    appenders:
+      - rs

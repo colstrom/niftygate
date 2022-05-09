@@ -15,7 +15,7 @@ pub mod governor_votes_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"GovernorVotesUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"proposalDeadline\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"hashProposal\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getVotes\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"castVoteBySig\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"},{\"name\":\"v\",\"type\":\"uint8\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"version\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"quorum\",\"inputs\":[{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"castVote\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"proposalSnapshot\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"state\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"propose\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"description\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"votingPeriod\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"COUNTING_MODE\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"BALLOT_TYPEHASH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"castVoteWithReason\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"},{\"name\":\"reason\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"execute\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"hasVoted\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"token\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"votingDelay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"ProposalCanceled\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ProposalCreated\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"proposer\",\"type\":\"address\",\"indexed\":false},{\"name\":\"targets\",\"type\":\"address[]\",\"indexed\":false},{\"name\":\"values\",\"type\":\"uint256[]\",\"indexed\":false},{\"name\":\"signatures\",\"type\":\"string[]\",\"indexed\":false},{\"name\":\"calldatas\",\"type\":\"bytes[]\",\"indexed\":false},{\"name\":\"startBlock\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"endBlock\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"description\",\"type\":\"string\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ProposalExecuted\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"VoteCast\",\"inputs\":[{\"name\":\"voter\",\"type\":\"address\",\"indexed\":true},{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"support\",\"type\":\"uint8\",\"indexed\":false},{\"name\":\"weight\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"reason\",\"type\":\"string\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"GovernorVotesUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"COUNTING_MODE\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"state\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"quorum\",\"inputs\":[{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"castVoteWithReason\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"},{\"name\":\"reason\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"castVoteBySig\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"},{\"name\":\"v\",\"type\":\"uint8\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"hasVoted\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"version\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"execute\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"hashProposal\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"descriptionHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"BALLOT_TYPEHASH\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"propose\",\"inputs\":[{\"name\":\"targets\",\"type\":\"address[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"calldatas\",\"type\":\"bytes[]\"},{\"name\":\"description\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getVotes\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"castVote\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"},{\"name\":\"support\",\"type\":\"uint8\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"proposalSnapshot\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"token\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"proposalDeadline\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"votingPeriod\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"votingDelay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"ProposalExecuted\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"VoteCast\",\"inputs\":[{\"name\":\"voter\",\"type\":\"address\",\"indexed\":true},{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"support\",\"type\":\"uint8\",\"indexed\":false},{\"name\":\"weight\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"reason\",\"type\":\"string\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ProposalCreated\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"proposer\",\"type\":\"address\",\"indexed\":false},{\"name\":\"targets\",\"type\":\"address[]\",\"indexed\":false},{\"name\":\"values\",\"type\":\"uint256[]\",\"indexed\":false},{\"name\":\"signatures\",\"type\":\"string[]\",\"indexed\":false},{\"name\":\"calldatas\",\"type\":\"bytes[]\",\"indexed\":false},{\"name\":\"startBlock\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"endBlock\",\"type\":\"uint256\",\"indexed\":false},{\"name\":\"description\",\"type\":\"string\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ProposalCanceled\",\"inputs\":[{\"name\":\"proposalId\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,13 +148,87 @@ pub mod governor_votes_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `proposalDeadline(uint256):(uint256)`."]
+    #[doc = "Returns signature for method `COUNTING_MODE():(string)`."]
     #[allow(clippy::type_complexity)]
-    pub fn proposal_deadline(
+    pub fn counting_mode(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([221, 78, 43, 165])
+    }
+    #[doc = "Returns signature for method `state(uint256):(uint8)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn state(&self) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), u8> {
+      self::ethcontract::contract::Signature::new([62, 79, 73, 230])
+    }
+    #[doc = "Returns signature for method `quorum(uint256):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn quorum(
       &self,
     ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
     {
-      self::ethcontract::contract::Signature::new([192, 31, 158, 55])
+      self::ethcontract::contract::Signature::new([248, 206, 86, 10])
+    }
+    #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn supports_interface(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
+    {
+      self::ethcontract::contract::Signature::new([1, 255, 201, 167])
+    }
+    #[doc = "Returns signature for method `castVoteWithReason(uint256,uint8,string):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn cast_vote_with_reason(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::U256, u8, String),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([123, 60, 113, 211])
+    }
+    #[doc = "Returns signature for method `castVoteBySig(uint256,uint8,uint8,bytes32,bytes32):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn cast_vote_by_sig(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::U256,
+        u8,
+        u8,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+      ),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([59, 204, 244, 253])
+    }
+    #[doc = "Returns signature for method `hasVoted(uint256,address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn has_voted(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::U256, self::ethcontract::Address),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([67, 133, 150, 50])
+    }
+    #[doc = "Returns signature for method `version():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn version(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([84, 253, 77, 80])
+    }
+    #[doc = "Returns signature for method `execute(address[],uint256[],bytes[],bytes32):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn execute(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        Vec<self::ethcontract::Address>,
+        Vec<self::ethcontract::U256>,
+        Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+      ),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([38, 86, 34, 125])
     }
     #[doc = "Returns signature for method `hashProposal(address[],uint256[],bytes[],bytes32):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -176,6 +250,29 @@ pub mod governor_votes_upgradeable {
     pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
       self::ethcontract::contract::Signature::new([6, 253, 222, 3])
     }
+    #[doc = "Returns signature for method `BALLOT_TYPEHASH():(bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn ballot_typehash(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::tokens::Bytes<[u8; 32]>>
+    {
+      self::ethcontract::contract::Signature::new([222, 170, 167, 204])
+    }
+    #[doc = "Returns signature for method `propose(address[],uint256[],bytes[],string):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn propose(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        Vec<self::ethcontract::Address>,
+        Vec<self::ethcontract::U256>,
+        Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
+        String,
+      ),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([125, 94, 129, 226])
+    }
     #[doc = "Returns signature for method `getVotes(address,uint256):(uint256)`."]
     #[allow(clippy::type_complexity)]
     pub fn get_votes(
@@ -185,35 +282,6 @@ pub mod governor_votes_upgradeable {
       self::ethcontract::U256,
     > {
       self::ethcontract::contract::Signature::new([235, 144, 25, 212])
-    }
-    #[doc = "Returns signature for method `castVoteBySig(uint256,uint8,uint8,bytes32,bytes32):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn cast_vote_by_sig(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::U256,
-        u8,
-        u8,
-        self::ethcontract::tokens::Bytes<[u8; 32]>,
-        self::ethcontract::tokens::Bytes<[u8; 32]>,
-      ),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([59, 204, 244, 253])
-    }
-    #[doc = "Returns signature for method `version():(string)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn version(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([84, 253, 77, 80])
-    }
-    #[doc = "Returns signature for method `quorum(uint256):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn quorum(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
-    {
-      self::ethcontract::contract::Signature::new([248, 206, 86, 10])
     }
     #[doc = "Returns signature for method `castVote(uint256,uint8):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -233,25 +301,18 @@ pub mod governor_votes_upgradeable {
     {
       self::ethcontract::contract::Signature::new([45, 99, 246, 147])
     }
-    #[doc = "Returns signature for method `state(uint256):(uint8)`."]
+    #[doc = "Returns signature for method `token():(address)`."]
     #[allow(clippy::type_complexity)]
-    pub fn state(&self) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), u8> {
-      self::ethcontract::contract::Signature::new([62, 79, 73, 230])
+    pub fn token(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
+      self::ethcontract::contract::Signature::new([252, 12, 84, 106])
     }
-    #[doc = "Returns signature for method `propose(address[],uint256[],bytes[],string):(uint256)`."]
+    #[doc = "Returns signature for method `proposalDeadline(uint256):(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn propose(
+    pub fn proposal_deadline(
       &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        Vec<self::ethcontract::Address>,
-        Vec<self::ethcontract::U256>,
-        Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
-        String,
-      ),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([125, 94, 129, 226])
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
+    {
+      self::ethcontract::contract::Signature::new([192, 31, 158, 55])
     }
     #[doc = "Returns signature for method `votingPeriod():(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -259,67 +320,6 @@ pub mod governor_votes_upgradeable {
       &self,
     ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
       self::ethcontract::contract::Signature::new([2, 162, 81, 163])
-    }
-    #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn supports_interface(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
-    {
-      self::ethcontract::contract::Signature::new([1, 255, 201, 167])
-    }
-    #[doc = "Returns signature for method `COUNTING_MODE():(string)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn counting_mode(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([221, 78, 43, 165])
-    }
-    #[doc = "Returns signature for method `BALLOT_TYPEHASH():(bytes32)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn ballot_typehash(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::tokens::Bytes<[u8; 32]>>
-    {
-      self::ethcontract::contract::Signature::new([222, 170, 167, 204])
-    }
-    #[doc = "Returns signature for method `castVoteWithReason(uint256,uint8,string):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn cast_vote_with_reason(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::U256, u8, String),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([123, 60, 113, 211])
-    }
-    #[doc = "Returns signature for method `execute(address[],uint256[],bytes[],bytes32):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn execute(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        Vec<self::ethcontract::Address>,
-        Vec<self::ethcontract::U256>,
-        Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
-        self::ethcontract::tokens::Bytes<[u8; 32]>,
-      ),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([38, 86, 34, 125])
-    }
-    #[doc = "Returns signature for method `hasVoted(uint256,address):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn has_voted(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::U256, self::ethcontract::Address),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([67, 133, 150, 50])
-    }
-    #[doc = "Returns signature for method `token():(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn token(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
-      self::ethcontract::contract::Signature::new([252, 12, 84, 106])
     }
     #[doc = "Returns signature for method `votingDelay():(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -337,13 +337,100 @@ pub mod governor_votes_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn proposal_deadline(
+    pub fn counting_mode(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([221, 78, 43, 165], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn state(
       &self,
       proposal_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+      self
+        .instance
+        .view_method([62, 79, 73, 230], (proposal_id,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn quorum(
+      &self,
+      block_number: self::ethcontract::U256,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([192, 31, 158, 55], (proposal_id,))
+        .view_method([248, 206, 86, 10], (block_number,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn supports_interface(
+      &self,
+      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([1, 255, 201, 167], (interface_id,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn cast_vote_with_reason(
+      &self,
+      proposal_id: self::ethcontract::U256,
+      support: u8,
+      reason: String,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .method([123, 60, 113, 211], (proposal_id, support, reason))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn cast_vote_by_sig(
+      &self,
+      proposal_id: self::ethcontract::U256,
+      support: u8,
+      v: u8,
+      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
+      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .method([59, 204, 244, 253], (proposal_id, support, v, r, s))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn has_voted(
+      &self,
+      proposal_id: self::ethcontract::U256,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([67, 133, 150, 50], (proposal_id, account))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn version(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([84, 253, 77, 80], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn execute(
+      &self,
+      targets: Vec<self::ethcontract::Address>,
+      values: Vec<self::ethcontract::U256>,
+      calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
+      description_hash: self::ethcontract::tokens::Bytes<[u8; 32]>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .method(
+          [38, 86, 34, 125],
+          (targets, values, calldatas, description_hash),
+        )
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -370,6 +457,32 @@ pub mod governor_votes_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn ballot_typehash(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 32]>>
+    {
+      self
+        .instance
+        .view_method([222, 170, 167, 204], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn propose(
+      &self,
+      targets: Vec<self::ethcontract::Address>,
+      values: Vec<self::ethcontract::U256>,
+      calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
+      description: String,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .method(
+          [125, 94, 129, 226],
+          (targets, values, calldatas, description),
+        )
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn get_votes(
       &self,
       account: self::ethcontract::Address,
@@ -378,37 +491,6 @@ pub mod governor_votes_upgradeable {
       self
         .instance
         .view_method([235, 144, 25, 212], (account, block_number))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn cast_vote_by_sig(
-      &self,
-      proposal_id: self::ethcontract::U256,
-      support: u8,
-      v: u8,
-      r: self::ethcontract::tokens::Bytes<[u8; 32]>,
-      s: self::ethcontract::tokens::Bytes<[u8; 32]>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .method([59, 204, 244, 253], (proposal_id, support, v, r, s))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn version(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([84, 253, 77, 80], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn quorum(
-      &self,
-      block_number: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([248, 206, 86, 10], (block_number,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -433,29 +515,22 @@ pub mod governor_votes_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn state(
+    pub fn token(
       &self,
-      proposal_id: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
       self
         .instance
-        .view_method([62, 79, 73, 230], (proposal_id,))
+        .view_method([252, 12, 84, 106], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn propose(
+    pub fn proposal_deadline(
       &self,
-      targets: Vec<self::ethcontract::Address>,
-      values: Vec<self::ethcontract::U256>,
-      calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
-      description: String,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
+      proposal_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .method(
-          [125, 94, 129, 226],
-          (targets, values, calldatas, description),
-        )
+        .view_method([192, 31, 158, 55], (proposal_id,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -465,81 +540,6 @@ pub mod governor_votes_upgradeable {
       self
         .instance
         .view_method([2, 162, 81, 163], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn supports_interface(
-      &self,
-      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([1, 255, 201, 167], (interface_id,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn counting_mode(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([221, 78, 43, 165], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn ballot_typehash(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 32]>>
-    {
-      self
-        .instance
-        .view_method([222, 170, 167, 204], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn cast_vote_with_reason(
-      &self,
-      proposal_id: self::ethcontract::U256,
-      support: u8,
-      reason: String,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .method([123, 60, 113, 211], (proposal_id, support, reason))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn execute(
-      &self,
-      targets: Vec<self::ethcontract::Address>,
-      values: Vec<self::ethcontract::U256>,
-      calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
-      description_hash: self::ethcontract::tokens::Bytes<[u8; 32]>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .method(
-          [38, 86, 34, 125],
-          (targets, values, calldatas, description_hash),
-        )
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn has_voted(
-      &self,
-      proposal_id: self::ethcontract::U256,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([67, 133, 150, 50], (proposal_id, account))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn token(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([252, 12, 84, 106], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -562,100 +562,6 @@ pub mod governor_votes_upgradeable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct ProposalCanceled {
-      pub proposal_id: self::ethcontract::U256,
-    }
-    impl ProposalCanceled {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          120, 156, 245, 91, 233, 128, 115, 157, 173, 29, 6, 153, 185, 59, 88, 232, 6, 181, 28,
-          157, 150, 97, 155, 250, 143, 224, 162, 138, 186, 167, 179, 12,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`ProposalCanceled(uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "ProposalCanceled(uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for ProposalCanceled {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (proposal_id,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(ProposalCanceled { proposal_id })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct ProposalCreated {
-      pub proposal_id: self::ethcontract::U256,
-      pub proposer: self::ethcontract::Address,
-      pub targets: Vec<self::ethcontract::Address>,
-      pub values: Vec<self::ethcontract::U256>,
-      pub signatures: Vec<String>,
-      pub calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
-      pub start_block: self::ethcontract::U256,
-      pub end_block: self::ethcontract::U256,
-      pub description: String,
-    }
-    impl ProposalCreated {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          125, 132, 166, 38, 58, 224, 217, 141, 51, 41, 189, 123, 70, 187, 78, 141, 111, 152, 205,
-          53, 167, 173, 180, 92, 39, 76, 139, 127, 213, 235, 213, 224,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)`"]
-      pub fn abi_signature() -> &'static str {
-        "ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for ProposalCreated {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (
-          proposal_id,
-          proposer,
-          targets,
-          values,
-          signatures,
-          calldatas,
-          start_block,
-          end_block,
-          description,
-        ) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(ProposalCreated {
-          proposal_id,
-          proposer,
-          targets,
-          values,
-          signatures,
-          calldatas,
-          start_block,
-          end_block,
-          description,
-        })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct ProposalExecuted {
       pub proposal_id: self::ethcontract::U256,
@@ -733,6 +639,100 @@ pub mod governor_votes_upgradeable {
         unimplemented!("events are only decoded, not encoded")
       }
     }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct ProposalCreated {
+      pub proposal_id: self::ethcontract::U256,
+      pub proposer: self::ethcontract::Address,
+      pub targets: Vec<self::ethcontract::Address>,
+      pub values: Vec<self::ethcontract::U256>,
+      pub signatures: Vec<String>,
+      pub calldatas: Vec<self::ethcontract::tokens::Bytes<Vec<u8>>>,
+      pub start_block: self::ethcontract::U256,
+      pub end_block: self::ethcontract::U256,
+      pub description: String,
+    }
+    impl ProposalCreated {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          125, 132, 166, 38, 58, 224, 217, 141, 51, 41, 189, 123, 70, 187, 78, 141, 111, 152, 205,
+          53, 167, 173, 180, 92, 39, 76, 139, 127, 213, 235, 213, 224,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)`"]
+      pub fn abi_signature() -> &'static str {
+        "ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for ProposalCreated {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (
+          proposal_id,
+          proposer,
+          targets,
+          values,
+          signatures,
+          calldatas,
+          start_block,
+          end_block,
+          description,
+        ) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(ProposalCreated {
+          proposal_id,
+          proposer,
+          targets,
+          values,
+          signatures,
+          calldatas,
+          start_block,
+          end_block,
+          description,
+        })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct ProposalCanceled {
+      pub proposal_id: self::ethcontract::U256,
+    }
+    impl ProposalCanceled {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          120, 156, 245, 91, 233, 128, 115, 157, 173, 29, 6, 153, 185, 59, 88, 232, 6, 181, 28,
+          157, 150, 97, 155, 250, 143, 224, 162, 138, 186, 167, 179, 12,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`ProposalCanceled(uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "ProposalCanceled(uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for ProposalCanceled {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (proposal_id,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(ProposalCanceled { proposal_id })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -747,30 +747,6 @@ pub mod governor_votes_upgradeable {
     instance: &'a self::ethcontract::dyns::DynInstance,
   }
   impl Events<'_> {
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn proposal_canceled(&self) -> self::event_builders::ProposalCanceledBuilder {
-      self::event_builders::ProposalCanceledBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            120, 156, 245, 91, 233, 128, 115, 157, 173, 29, 6, 153, 185, 59, 88, 232, 6, 181, 28,
-            157, 150, 97, 155, 250, 143, 224, 162, 138, 186, 167, 179, 12,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn proposal_created(&self) -> self::event_builders::ProposalCreatedBuilder {
-      self::event_builders::ProposalCreatedBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            125, 132, 166, 38, 58, 224, 217, 141, 51, 41, 189, 123, 70, 187, 78, 141, 111, 152,
-            205, 53, 167, 173, 180, 92, 39, 76, 139, 127, 213, 235, 213, 224,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
     #[doc = r" Generated by `ethcontract`."]
     pub fn proposal_executed(&self) -> self::event_builders::ProposalExecutedBuilder {
       self::event_builders::ProposalExecutedBuilder(
@@ -795,126 +771,36 @@ pub mod governor_votes_upgradeable {
           .expect("generated event filter"),
       )
     }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn proposal_created(&self) -> self::event_builders::ProposalCreatedBuilder {
+      self::event_builders::ProposalCreatedBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            125, 132, 166, 38, 58, 224, 217, 141, 51, 41, 189, 123, 70, 187, 78, 141, 111, 152,
+            205, 53, 167, 173, 180, 92, 39, 76, 139, 127, 213, 235, 213, 224,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn proposal_canceled(&self) -> self::event_builders::ProposalCanceledBuilder {
+      self::event_builders::ProposalCanceledBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            120, 156, 245, 91, 233, 128, 115, 157, 173, 29, 6, 153, 185, 59, 88, 232, 6, 181, 28,
+            157, 150, 97, 155, 250, 143, 224, 162, 138, 186, 167, 179, 12,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `ProposalCanceled` events."]
-    pub struct ProposalCanceledBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ProposalCanceled>,
-    );
-    impl ProposalCanceledBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limits the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" Sets the polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::ProposalCanceled>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::ProposalCanceled>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `ProposalCreated` events."]
-    pub struct ProposalCreatedBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ProposalCreated>,
-    );
-    impl ProposalCreatedBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limits the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" Sets the polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::ProposalCreated>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::ProposalCreated>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
     #[doc = "A builder for creating a filtered stream of `ProposalExecuted` events."]
     pub struct ProposalExecutedBuilder(
       #[doc = r" The inner event builder."]
@@ -1028,6 +914,120 @@ pub mod governor_votes_upgradeable {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::VoteCast>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `ProposalCreated` events."]
+    pub struct ProposalCreatedBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ProposalCreated>,
+    );
+    impl ProposalCreatedBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::ProposalCreated>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::ProposalCreated>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
+    #[doc = "A builder for creating a filtered stream of `ProposalCanceled` events."]
+    pub struct ProposalCanceledBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::ProposalCanceled>,
+    );
+    impl ProposalCanceledBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::ProposalCanceled>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::ProposalCanceled>,
           self::ethcontract::errors::EventError,
         >,
       > {

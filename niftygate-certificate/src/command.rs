@@ -4,6 +4,7 @@ use structopt::StructOpt;
 pub mod generate;
 
 #[derive(Debug, StructOpt)]
+#[structopt(about = "Utilities for dealing with Certificates")]
 pub enum Command {
   Generate(generate::Command),
 }

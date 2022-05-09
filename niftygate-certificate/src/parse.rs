@@ -1,14 +1,18 @@
 use crate::constants::*;
-use chrono::{DateTime, Utc};
 use rcgen::{
   CidrSubnet, DistinguishedName, DnType, ExtendedKeyUsagePurpose, GeneralSubtree, KeyIdMethod,
   KeyUsagePurpose, SanType, SignatureAlgorithm,
 };
 use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 use thiserror::Error;
+use time::{OffsetDateTime, format_description::well_known::Rfc3339};
 
-pub(crate) fn datetime_utc(datetime: &str) -> Result<DateTime<Utc>, chrono::ParseError> {
-  Ok(DateTime::parse_from_rfc3339(datetime)?.into())
+// pub(crate) fn datetime_utc(datetime: &str) -> Result<DateTime<Utc>, chrono::ParseError> {
+//   Ok(DateTime::parse_from_rfc3339(datetime)?.into())
+// }
+
+pub(crate) fn offset_date_time(datetime: &str) -> Result<OffsetDateTime, time::error::Parse> {
+  time::OffsetDateTime::parse(datetime, &Rfc3339)
 }
 
 #[derive(Debug, Error)]

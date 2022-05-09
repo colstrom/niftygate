@@ -1,13 +1,13 @@
 use ethcontract::{dyns::DynTransport, web3::transports::WebSocket};
-use niftygate::{
-  middleware::{
-    ethereum::{prelude::*, *},
-    *,
-  },
-  WrappedResult,
+use niftygate::middleware::{
+  ethereum::{prelude::*, *},
+  *,
 };
 use std::str::FromStr;
 use tide::{http::Url, log};
+
+pub type WrappedError = Box<dyn std::error::Error>;
+pub type WrappedResult<T> = std::result::Result<T, WrappedError>;
 
 #[async_std::main]
 async fn main() -> WrappedResult<()> {

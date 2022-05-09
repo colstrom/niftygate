@@ -15,7 +15,7 @@ pub mod conditional_escrow_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ConditionalEscrowUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"withdrawalAllowed\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"depositsOf\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"deposit\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"withdraw\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Withdrawn\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Deposited\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ConditionalEscrowUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"renounceOwnership\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"owner\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"withdrawalAllowed\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"deposit\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"withdraw\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferOwnership\",\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"depositsOf\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Deposited\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"OwnershipTransferred\",\"inputs\":[{\"name\":\"previousOwner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newOwner\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Withdrawn\",\"inputs\":[{\"name\":\"payee\",\"type\":\"address\",\"indexed\":true},{\"name\":\"weiAmount\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -153,6 +153,11 @@ pub mod conditional_escrow_upgradeable {
     pub fn renounce_ownership(&self) -> self::ethcontract::contract::Signature<(), ()> {
       self::ethcontract::contract::Signature::new([113, 80, 24, 166])
     }
+    #[doc = "Returns signature for method `owner():(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn owner(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
+      self::ethcontract::contract::Signature::new([141, 165, 203, 91])
+    }
     #[doc = "Returns signature for method `withdrawalAllowed(address):(bool)`."]
     #[allow(clippy::type_complexity)]
     pub fn withdrawal_allowed(
@@ -160,10 +165,31 @@ pub mod conditional_escrow_upgradeable {
     ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), bool> {
       self::ethcontract::contract::Signature::new([104, 92, 161, 148])
     }
-    #[doc = "Returns signature for method `owner():(address)`."]
+    #[doc = "Returns signature for method `deposit(address)`."]
     #[allow(clippy::type_complexity)]
-    pub fn owner(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
-      self::ethcontract::contract::Signature::new([141, 165, 203, 91])
+    pub fn deposit(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([243, 64, 250, 1])
+    }
+    #[doc = "Returns signature for method `initialize()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn initialize(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([129, 41, 252, 28])
+    }
+    #[doc = "Returns signature for method `withdraw(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn withdraw(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([81, 207, 248, 217])
+    }
+    #[doc = "Returns signature for method `transferOwnership(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer_ownership(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([242, 253, 227, 139])
     }
     #[doc = "Returns signature for method `depositsOf(address):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -174,32 +200,6 @@ pub mod conditional_escrow_upgradeable {
       self::ethcontract::U256,
     > {
       self::ethcontract::contract::Signature::new([227, 169, 219, 26])
-    }
-    #[doc = "Returns signature for method `transferOwnership(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn transfer_ownership(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
-      self::ethcontract::contract::Signature::new([242, 253, 227, 139])
-    }
-    #[doc = "Returns signature for method `deposit(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn deposit(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
-      self::ethcontract::contract::Signature::new([243, 64, 250, 1])
-    }
-    #[doc = "Returns signature for method `withdraw(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn withdraw(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
-      self::ethcontract::contract::Signature::new([81, 207, 248, 217])
-    }
-    #[doc = "Returns signature for method `initialize()`."]
-    #[allow(clippy::type_complexity)]
-    pub fn initialize(&self) -> self::ethcontract::contract::Signature<(), ()> {
-      self::ethcontract::contract::Signature::new([129, 41, 252, 28])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -217,16 +217,6 @@ pub mod conditional_escrow_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn withdrawal_allowed(
-      &self,
-      payee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([104, 92, 161, 148], (payee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn owner(
       &self,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
@@ -236,23 +226,13 @@ pub mod conditional_escrow_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn deposits_of(
+    pub fn withdrawal_allowed(
       &self,
       payee: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
       self
         .instance
-        .view_method([227, 169, 219, 26], (payee,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer_ownership(
-      &self,
-      new_owner: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([242, 253, 227, 139], (new_owner,))
+        .view_method([104, 92, 161, 148], (payee,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -266,6 +246,13 @@ pub mod conditional_escrow_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn initialize(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([129, 41, 252, 28], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn withdraw(
       &self,
       payee: self::ethcontract::Address,
@@ -276,10 +263,23 @@ pub mod conditional_escrow_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn initialize(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+    pub fn transfer_ownership(
+      &self,
+      new_owner: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .method([129, 41, 252, 28], ())
+        .method([242, 253, 227, 139], (new_owner,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn deposits_of(
+      &self,
+      payee: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([227, 169, 219, 26], (payee,))
         .expect("generated call")
     }
   }
@@ -294,34 +294,34 @@ pub mod conditional_escrow_upgradeable {
   pub mod event_data {
     use super::ethcontract;
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Withdrawn {
+    pub struct Deposited {
       pub payee: self::ethcontract::Address,
       pub wei_amount: self::ethcontract::U256,
     }
-    impl Withdrawn {
+    impl Deposited {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173, 184,
-          121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
+          45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
+          79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Withdrawn(address,uint256)`"]
+      #[doc = "`Deposited(address,uint256)`"]
       pub fn abi_signature() -> &'static str {
-        "Withdrawn(address,uint256)"
+        "Deposited(address,uint256)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for Withdrawn {
+    impl self::ethcontract::tokens::Tokenize for Deposited {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
         let (payee, wei_amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Withdrawn { payee, wei_amount })
+        Ok(Deposited { payee, wei_amount })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -365,34 +365,34 @@ pub mod conditional_escrow_upgradeable {
       }
     }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Deposited {
+    pub struct Withdrawn {
       pub payee: self::ethcontract::Address,
       pub wei_amount: self::ethcontract::U256,
     }
-    impl Deposited {
+    impl Withdrawn {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
-          79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
+          112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173, 184,
+          121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Deposited(address,uint256)`"]
+      #[doc = "`Withdrawn(address,uint256)`"]
       pub fn abi_signature() -> &'static str {
-        "Deposited(address,uint256)"
+        "Withdrawn(address,uint256)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for Deposited {
+    impl self::ethcontract::tokens::Tokenize for Withdrawn {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
         let (payee, wei_amount) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Deposited { payee, wei_amount })
+        Ok(Withdrawn { payee, wei_amount })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -413,13 +413,13 @@ pub mod conditional_escrow_upgradeable {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn withdrawn(&self) -> self::event_builders::WithdrawnBuilder {
-      self::event_builders::WithdrawnBuilder(
+    pub fn deposited(&self) -> self::event_builders::DepositedBuilder {
+      self::event_builders::DepositedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173,
-            184, 121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
+            45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
+            79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
           ]))
           .expect("generated event filter"),
       )
@@ -437,13 +437,13 @@ pub mod conditional_escrow_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn deposited(&self) -> self::event_builders::DepositedBuilder {
-      self::event_builders::DepositedBuilder(
+    pub fn withdrawn(&self) -> self::event_builders::WithdrawnBuilder {
+      self::event_builders::WithdrawnBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            45, 164, 102, 167, 178, 67, 4, 244, 126, 135, 250, 46, 30, 90, 129, 185, 131, 28, 229,
-            79, 236, 25, 5, 92, 226, 119, 202, 47, 57, 186, 66, 196,
+            112, 132, 245, 71, 102, 24, 216, 230, 11, 17, 239, 13, 125, 63, 6, 145, 70, 85, 173,
+            184, 121, 62, 40, 255, 127, 1, 141, 76, 118, 213, 5, 213,
           ]))
           .expect("generated event filter"),
       )
@@ -454,12 +454,12 @@ pub mod conditional_escrow_upgradeable {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `Withdrawn` events."]
-    pub struct WithdrawnBuilder(
+    #[doc = "A builder for creating a filtered stream of `Deposited` events."]
+    pub struct DepositedBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Withdrawn>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Deposited>,
     );
-    impl WithdrawnBuilder {
+    impl DepositedBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -499,7 +499,7 @@ pub mod conditional_escrow_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Withdrawn>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Deposited>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -509,7 +509,7 @@ pub mod conditional_escrow_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Withdrawn>,
+          self::ethcontract::StreamEvent<self::event_data::Deposited>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -589,12 +589,12 @@ pub mod conditional_escrow_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `Deposited` events."]
-    pub struct DepositedBuilder(
+    #[doc = "A builder for creating a filtered stream of `Withdrawn` events."]
+    pub struct WithdrawnBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Deposited>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Withdrawn>,
     );
-    impl DepositedBuilder {
+    impl WithdrawnBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -634,7 +634,7 @@ pub mod conditional_escrow_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Deposited>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Withdrawn>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -644,7 +644,7 @@ pub mod conditional_escrow_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Deposited>,
+          self::ethcontract::StreamEvent<self::event_data::Withdrawn>,
           self::ethcontract::errors::EventError,
         >,
       > {

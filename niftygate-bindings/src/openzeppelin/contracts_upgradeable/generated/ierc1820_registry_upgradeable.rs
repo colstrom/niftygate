@@ -15,7 +15,7 @@ pub mod ierc1820_registry_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC1820RegistryUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"updateERC165Cache\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getInterfaceImplementer\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"_interfaceHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"implementsERC165InterfaceNoCache\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getManager\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"implementsERC165Interface\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"interfaceHash\",\"inputs\":[{\"name\":\"interfaceName\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"setInterfaceImplementer\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"_interfaceHash\",\"type\":\"bytes32\"},{\"name\":\"implementer\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setManager\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"newManager\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"InterfaceImplementerSet\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"interfaceHash\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"implementer\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ManagerChanged\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newManager\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC1820RegistryUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"getManager\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"implementsERC165Interface\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"interfaceHash\",\"inputs\":[{\"name\":\"interfaceName\",\"type\":\"string\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"pure\"},{\"type\":\"function\",\"name\":\"setInterfaceImplementer\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"_interfaceHash\",\"type\":\"bytes32\"},{\"name\":\"implementer\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"implementsERC165InterfaceNoCache\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"getInterfaceImplementer\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"_interfaceHash\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"updateERC165Cache\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setManager\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"newManager\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"InterfaceImplementerSet\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"interfaceHash\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"implementer\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"ManagerChanged\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"newManager\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,45 +148,6 @@ pub mod ierc1820_registry_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `updateERC165Cache(address,bytes4)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn update_erc165_cache(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::tokens::Bytes<[u8; 4]>,
-      ),
-      (),
-    > {
-      self::ethcontract::contract::Signature::new([164, 30, 125, 81])
-    }
-    #[doc = "Returns signature for method `getInterfaceImplementer(address,bytes32):(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn get_interface_implementer(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::tokens::Bytes<[u8; 32]>,
-      ),
-      self::ethcontract::Address,
-    > {
-      self::ethcontract::contract::Signature::new([170, 187, 184, 202])
-    }
-    #[doc = "Returns signature for method `implementsERC165InterfaceNoCache(address,bytes4):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn implements_erc165_interface_no_cache(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::tokens::Bytes<[u8; 4]>,
-      ),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([183, 5, 103, 101])
-    }
     #[doc = "Returns signature for method `getManager(address):(address)`."]
     #[allow(clippy::type_complexity)]
     pub fn get_manager(
@@ -232,6 +193,45 @@ pub mod ierc1820_registry_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([41, 150, 90, 29])
     }
+    #[doc = "Returns signature for method `implementsERC165InterfaceNoCache(address,bytes4):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn implements_erc165_interface_no_cache(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::tokens::Bytes<[u8; 4]>,
+      ),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([183, 5, 103, 101])
+    }
+    #[doc = "Returns signature for method `getInterfaceImplementer(address,bytes32):(address)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_interface_implementer(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+      ),
+      self::ethcontract::Address,
+    > {
+      self::ethcontract::contract::Signature::new([170, 187, 184, 202])
+    }
+    #[doc = "Returns signature for method `updateERC165Cache(address,bytes4)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn update_erc165_cache(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::tokens::Bytes<[u8; 4]>,
+      ),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([164, 30, 125, 81])
+    }
     #[doc = "Returns signature for method `setManager(address,address)`."]
     #[allow(clippy::type_complexity)]
     pub fn set_manager(
@@ -250,39 +250,6 @@ pub mod ierc1820_registry_upgradeable {
   }
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
-    #[doc = "Generated by `ethcontract`"]
-    pub fn update_erc165_cache(
-      &self,
-      account: self::ethcontract::Address,
-      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([164, 30, 125, 81], (account, interface_id))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn get_interface_implementer(
-      &self,
-      account: self::ethcontract::Address,
-      interface_hash: self::ethcontract::tokens::Bytes<[u8; 32]>,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([170, 187, 184, 202], (account, interface_hash))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn implements_erc165_interface_no_cache(
-      &self,
-      account: self::ethcontract::Address,
-      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
-      self
-        .instance
-        .view_method([183, 5, 103, 101], (account, interface_id))
-        .expect("generated call")
-    }
     #[doc = "Generated by `ethcontract`"]
     pub fn get_manager(
       &self,
@@ -325,6 +292,39 @@ pub mod ierc1820_registry_upgradeable {
       self
         .instance
         .method([41, 150, 90, 29], (account, interface_hash, implementer))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn implements_erc165_interface_no_cache(
+      &self,
+      account: self::ethcontract::Address,
+      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      self
+        .instance
+        .view_method([183, 5, 103, 101], (account, interface_id))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn get_interface_implementer(
+      &self,
+      account: self::ethcontract::Address,
+      interface_hash: self::ethcontract::tokens::Bytes<[u8; 32]>,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([170, 187, 184, 202], (account, interface_hash))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn update_erc165_cache(
+      &self,
+      account: self::ethcontract::Address,
+      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([164, 30, 125, 81], (account, interface_id))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]

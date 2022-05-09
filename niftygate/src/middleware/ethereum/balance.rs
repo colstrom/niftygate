@@ -19,7 +19,7 @@ use std::{result, str::FromStr};
 use strum::{AsRefStr, EnumString, EnumVariantNames};
 use tide::{utils::async_trait, Middleware, Next, Request, Response, Result};
 
-#[derive(AsRefStr, Clone, Debug, EnumString, EnumVariantNames)]
+#[derive(AsRefStr, Clone, Copy, Debug, EnumString, EnumVariantNames)]
 pub enum BalanceScale {
   Wei,
   Kwei,

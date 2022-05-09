@@ -15,7 +15,7 @@ pub mod ierc20_metadata_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC20MetadataUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC20MetadataUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -158,17 +158,25 @@ pub mod ierc20_metadata_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([9, 94, 167, 179])
     }
-    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[doc = "Returns signature for method `name():(string)`."]
     #[allow(clippy::type_complexity)]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
     }
-    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[doc = "Returns signature for method `decimals():(uint8)`."]
     #[allow(clippy::type_complexity)]
-    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
+    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    }
+    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
     }
     #[doc = "Returns signature for method `transferFrom(address,address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -184,16 +192,6 @@ pub mod ierc20_metadata_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([35, 184, 114, 221])
     }
-    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn transfer(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
-    }
     #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
     #[allow(clippy::type_complexity)]
     pub fn allowance(
@@ -204,10 +202,12 @@ pub mod ierc20_metadata_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([221, 98, 237, 62])
     }
-    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
-      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
     }
     #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -219,10 +219,10 @@ pub mod ierc20_metadata_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([112, 160, 130, 49])
     }
-    #[doc = "Returns signature for method `name():(string)`."]
+    #[doc = "Returns signature for method `symbol():(string)`."]
     #[allow(clippy::type_complexity)]
-    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -244,19 +244,28 @@ pub mod ierc20_metadata_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
       self
         .instance
-        .view_method([24, 22, 13, 221], ())
+        .view_method([6, 253, 222, 3], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
       self
         .instance
-        .view_method([149, 216, 155, 65], ())
+        .view_method([49, 60, 229, 103], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn transfer(
+      &self,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([169, 5, 156, 187], (recipient, amount))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -272,17 +281,6 @@ pub mod ierc20_metadata_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn transfer(
-      &self,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([169, 5, 156, 187], (recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn allowance(
       &self,
       owner: self::ethcontract::Address,
@@ -294,10 +292,12 @@ pub mod ierc20_metadata_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([49, 60, 229, 103], ())
+        .view_method([24, 22, 13, 221], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -311,10 +311,10 @@ pub mod ierc20_metadata_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
       self
         .instance
-        .view_method([6, 253, 222, 3], ())
+        .view_method([149, 216, 155, 65], ())
         .expect("generated call")
     }
   }

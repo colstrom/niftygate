@@ -15,7 +15,7 @@ pub mod erc20_snapshot_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20SnapshotUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupplyAt\",\"inputs\":[{\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOfAt\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Snapshot\",\"inputs\":[{\"name\":\"id\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20SnapshotUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupplyAt\",\"inputs\":[{\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"balanceOfAt\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"snapshotId\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Snapshot\",\"inputs\":[{\"name\":\"id\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,38 +148,25 @@ pub mod erc20_snapshot_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
-    pub fn balance_of(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address,),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
-    }
-    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn decrease_allowance(
+    pub fn approve(
       &self,
     ) -> self::ethcontract::contract::Signature<
       (self::ethcontract::Address, self::ethcontract::U256),
       bool,
     > {
-      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
+      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
     }
-    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
-    }
-    #[doc = "Returns signature for method `totalSupplyAt(uint256):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn total_supply_at(
+    pub fn allowance(
       &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
-    {
-      self::ethcontract::contract::Signature::new([152, 27, 36, 208])
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
     }
     #[doc = "Returns signature for method `name():(string)`."]
     #[allow(clippy::type_complexity)]
@@ -192,6 +179,34 @@ pub mod erc20_snapshot_upgradeable {
       &self,
     ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
       self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    }
+    #[doc = "Returns signature for method `totalSupplyAt(uint256):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn total_supply_at(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), self::ethcontract::U256>
+    {
+      self::ethcontract::contract::Signature::new([152, 27, 36, 208])
+    }
+    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn transfer(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
+    }
+    #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn balance_of(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address,),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([112, 160, 130, 49])
     }
     #[doc = "Returns signature for method `transferFrom(address,address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -207,15 +222,15 @@ pub mod erc20_snapshot_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([35, 184, 114, 221])
     }
-    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
+    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
-    pub fn allowance(
+    pub fn decrease_allowance(
       &self,
     ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::Address),
-      self::ethcontract::U256,
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
     > {
-      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
+      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
     }
     #[doc = "Returns signature for method `balanceOfAt(address,uint256):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -227,10 +242,10 @@ pub mod erc20_snapshot_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([78, 226, 205, 126])
     }
-    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[doc = "Returns signature for method `symbol():(string)`."]
     #[allow(clippy::type_complexity)]
-    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
-      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
     }
     #[doc = "Returns signature for method `increaseAllowance(address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -242,25 +257,10 @@ pub mod erc20_snapshot_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([57, 80, 147, 81])
     }
-    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
+    #[doc = "Returns signature for method `decimals():(uint8)`."]
     #[allow(clippy::type_complexity)]
-    pub fn approve(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
-    }
-    #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn transfer(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([169, 5, 156, 187])
+    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -271,41 +271,25 @@ pub mod erc20_snapshot_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn balance_of(
-      &self,
-      account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([112, 160, 130, 49], (account,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn decrease_allowance(
+    pub fn approve(
       &self,
       spender: self::ethcontract::Address,
-      subtracted_value: self::ethcontract::U256,
+      amount: self::ethcontract::U256,
     ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
       self
         .instance
-        .method([164, 87, 194, 215], (spender, subtracted_value))
+        .method([9, 94, 167, 179], (spender, amount))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply_at(
+    pub fn allowance(
       &self,
-      snapshot_id: self::ethcontract::U256,
+      owner: self::ethcontract::Address,
+      spender: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([152, 27, 36, 208], (snapshot_id,))
+        .view_method([221, 98, 237, 62], (owner, spender))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -325,6 +309,37 @@ pub mod erc20_snapshot_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply_at(
+      &self,
+      snapshot_id: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([152, 27, 36, 208], (snapshot_id,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn transfer(
+      &self,
+      recipient: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([169, 5, 156, 187], (recipient, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn balance_of(
+      &self,
+      account: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([112, 160, 130, 49], (account,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn transfer_from(
       &self,
       sender: self::ethcontract::Address,
@@ -337,14 +352,14 @@ pub mod erc20_snapshot_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn allowance(
+    pub fn decrease_allowance(
       &self,
-      owner: self::ethcontract::Address,
       spender: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      subtracted_value: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
       self
         .instance
-        .view_method([221, 98, 237, 62], (owner, spender))
+        .method([164, 87, 194, 215], (spender, subtracted_value))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -359,10 +374,10 @@ pub mod erc20_snapshot_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
       self
         .instance
-        .view_method([49, 60, 229, 103], ())
+        .view_method([149, 216, 155, 65], ())
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -377,25 +392,10 @@ pub mod erc20_snapshot_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn approve(
-      &self,
-      spender: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
       self
         .instance
-        .method([9, 94, 167, 179], (spender, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn transfer(
-      &self,
-      recipient: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([169, 5, 156, 187], (recipient, amount))
+        .view_method([49, 60, 229, 103], ())
         .expect("generated call")
     }
   }
@@ -409,6 +409,41 @@ pub mod erc20_snapshot_upgradeable {
   #[doc = r" events."]
   pub mod event_data {
     use super::ethcontract;
+    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
+    pub struct Transfer {
+      pub from: self::ethcontract::Address,
+      pub to: self::ethcontract::Address,
+      pub value: self::ethcontract::U256,
+    }
+    impl Transfer {
+      #[doc = r" Retrieves the signature for the event this data corresponds to."]
+      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
+      #[doc = r" this event."]
+      pub fn signature() -> self::ethcontract::H256 {
+        self::ethcontract::H256([
+          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
+          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
+        ])
+      }
+      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
+      #[doc = r" to. For this event the value should always be:"]
+      #[doc = r""]
+      #[doc = "`Transfer(address,address,uint256)`"]
+      pub fn abi_signature() -> &'static str {
+        "Transfer(address,address,uint256)"
+      }
+    }
+    impl self::ethcontract::tokens::Tokenize for Transfer {
+      fn from_token(
+        token: self::ethcontract::common::abi::Token,
+      ) -> Result<Self, self::ethcontract::tokens::Error> {
+        let (from, to, value) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Transfer { from, to, value })
+      }
+      fn into_token(self) -> self::ethcontract::common::abi::Token {
+        unimplemented!("events are only decoded, not encoded")
+      }
+    }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
     pub struct Approval {
       pub owner: self::ethcontract::Address,
@@ -481,41 +516,6 @@ pub mod erc20_snapshot_upgradeable {
         unimplemented!("events are only decoded, not encoded")
       }
     }
-    #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Transfer {
-      pub from: self::ethcontract::Address,
-      pub to: self::ethcontract::Address,
-      pub value: self::ethcontract::U256,
-    }
-    impl Transfer {
-      #[doc = r" Retrieves the signature for the event this data corresponds to."]
-      #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
-      #[doc = r" this event."]
-      pub fn signature() -> self::ethcontract::H256 {
-        self::ethcontract::H256([
-          221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
-          167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
-        ])
-      }
-      #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
-      #[doc = r" to. For this event the value should always be:"]
-      #[doc = r""]
-      #[doc = "`Transfer(address,address,uint256)`"]
-      pub fn abi_signature() -> &'static str {
-        "Transfer(address,address,uint256)"
-      }
-    }
-    impl self::ethcontract::tokens::Tokenize for Transfer {
-      fn from_token(
-        token: self::ethcontract::common::abi::Token,
-      ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (from, to, value) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Transfer { from, to, value })
-      }
-      fn into_token(self) -> self::ethcontract::common::abi::Token {
-        unimplemented!("events are only decoded, not encoded")
-      }
-    }
   }
   impl Contract {
     #[doc = r" Retrieves a handle to a type containing for creating event"]
@@ -530,6 +530,18 @@ pub mod erc20_snapshot_upgradeable {
     instance: &'a self::ethcontract::dyns::DynInstance,
   }
   impl Events<'_> {
+    #[doc = r" Generated by `ethcontract`."]
+    pub fn transfer(&self) -> self::event_builders::TransferBuilder {
+      self::event_builders::TransferBuilder(
+        self
+          .instance
+          .event(self::ethcontract::H256([
+            221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
+            167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
+          ]))
+          .expect("generated event filter"),
+      )
+    }
     #[doc = r" Generated by `ethcontract`."]
     pub fn approval(&self) -> self::event_builders::ApprovalBuilder {
       self::event_builders::ApprovalBuilder(
@@ -554,24 +566,79 @@ pub mod erc20_snapshot_upgradeable {
           .expect("generated event filter"),
       )
     }
-    #[doc = r" Generated by `ethcontract`."]
-    pub fn transfer(&self) -> self::event_builders::TransferBuilder {
-      self::event_builders::TransferBuilder(
-        self
-          .instance
-          .event(self::ethcontract::H256([
-            221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43,
-            167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239,
-          ]))
-          .expect("generated event filter"),
-      )
-    }
   }
   #[doc = r" Module containing the generated event stream builders with type safe"]
   #[doc = r" filter methods for this contract's events."]
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
+    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
+    pub struct TransferBuilder(
+      #[doc = r" The inner event builder."]
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
+    );
+    impl TransferBuilder {
+      #[doc = r" Sets the starting block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the latest block."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).from_block(block);
+        self
+      }
+      #[doc = r" Sets the last block from which to stream logs for."]
+      #[doc = r""]
+      #[doc = r" If left unset defaults to the streaming until the end of days."]
+      #[allow(clippy::wrong_self_convention)]
+      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
+        self.0 = (self.0).to_block(block);
+        self
+      }
+      #[doc = r" Limits the number of events that can be retrieved by this filter."]
+      #[doc = r""]
+      #[doc = r" Note that this parameter is non-standard."]
+      pub fn limit(mut self, value: usize) -> Self {
+        self.0 = (self.0).limit(value);
+        self
+      }
+      #[doc = r" Sets the polling interval. This is used as the interval between"]
+      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
+      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
+        self.0 = (self.0).poll_interval(value);
+        self
+      }
+      #[doc = "Adds a filter for the from event parameter."]
+      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic0(topic);
+        self
+      }
+      #[doc = "Adds a filter for the to event parameter."]
+      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+        self.0 = (self.0).topic1(topic);
+        self
+      }
+      #[doc = r" Returns a future that resolves with a collection of all existing"]
+      #[doc = r" logs matching the builder parameters."]
+      pub async fn query(
+        self,
+      ) -> std::result::Result<
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
+        self::ethcontract::errors::EventError,
+      > {
+        (self.0).query().await
+      }
+      #[doc = r" Creates an event stream from the current event builder."]
+      pub fn stream(
+        self,
+      ) -> impl self::ethcontract::futures::stream::Stream<
+        Item = std::result::Result<
+          self::ethcontract::StreamEvent<self::event_data::Transfer>,
+          self::ethcontract::errors::EventError,
+        >,
+      > {
+        (self.0).stream()
+      }
+    }
     #[doc = "A builder for creating a filtered stream of `Approval` events."]
     pub struct ApprovalBuilder(
       #[doc = r" The inner event builder."]
@@ -693,73 +760,6 @@ pub mod erc20_snapshot_upgradeable {
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
           self::ethcontract::StreamEvent<self::event_data::Snapshot>,
-          self::ethcontract::errors::EventError,
-        >,
-      > {
-        (self.0).stream()
-      }
-    }
-    #[doc = "A builder for creating a filtered stream of `Transfer` events."]
-    pub struct TransferBuilder(
-      #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Transfer>,
-    );
-    impl TransferBuilder {
-      #[doc = r" Sets the starting block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the latest block."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn from_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).from_block(block);
-        self
-      }
-      #[doc = r" Sets the last block from which to stream logs for."]
-      #[doc = r""]
-      #[doc = r" If left unset defaults to the streaming until the end of days."]
-      #[allow(clippy::wrong_self_convention)]
-      pub fn to_block(mut self, block: self::ethcontract::BlockNumber) -> Self {
-        self.0 = (self.0).to_block(block);
-        self
-      }
-      #[doc = r" Limits the number of events that can be retrieved by this filter."]
-      #[doc = r""]
-      #[doc = r" Note that this parameter is non-standard."]
-      pub fn limit(mut self, value: usize) -> Self {
-        self.0 = (self.0).limit(value);
-        self
-      }
-      #[doc = r" Sets the polling interval. This is used as the interval between"]
-      #[doc = r" consecutive `eth_getFilterChanges` calls to get filter updates."]
-      pub fn poll_interval(mut self, value: std::time::Duration) -> Self {
-        self.0 = (self.0).poll_interval(value);
-        self
-      }
-      #[doc = "Adds a filter for the from event parameter."]
-      pub fn from(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic0(topic);
-        self
-      }
-      #[doc = "Adds a filter for the to event parameter."]
-      pub fn to(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
-        self.0 = (self.0).topic1(topic);
-        self
-      }
-      #[doc = r" Returns a future that resolves with a collection of all existing"]
-      #[doc = r" logs matching the builder parameters."]
-      pub async fn query(
-        self,
-      ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Transfer>>,
-        self::ethcontract::errors::EventError,
-      > {
-        (self.0).query().await
-      }
-      #[doc = r" Creates an event stream from the current event builder."]
-      pub fn stream(
-        self,
-      ) -> impl self::ethcontract::futures::stream::Stream<
-        Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Transfer>,
           self::ethcontract::errors::EventError,
         >,
       > {

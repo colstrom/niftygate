@@ -15,7 +15,7 @@ pub mod i_access_control_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IAccessControlUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"hasRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"renounceRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"grantRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getRoleAdmin\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"revokeRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"RoleAdminChanged\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"previousAdminRole\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"newAdminRole\",\"type\":\"bytes32\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleGranted\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"sender\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleRevoked\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"sender\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IAccessControlUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"grantRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"renounceRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"revokeRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"getRoleAdmin\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"hasRole\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\"},{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"RoleAdminChanged\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"previousAdminRole\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"newAdminRole\",\"type\":\"bytes32\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleGranted\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"sender\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"RoleRevoked\",\"inputs\":[{\"name\":\"role\",\"type\":\"bytes32\",\"indexed\":true},{\"name\":\"account\",\"type\":\"address\",\"indexed\":true},{\"name\":\"sender\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,18 +148,18 @@ pub mod i_access_control_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `hasRole(bytes32,address):(bool)`."]
+    #[doc = "Returns signature for method `grantRole(bytes32,address)`."]
     #[allow(clippy::type_complexity)]
-    pub fn has_role(
+    pub fn grant_role(
       &self,
     ) -> self::ethcontract::contract::Signature<
       (
         self::ethcontract::tokens::Bytes<[u8; 32]>,
         self::ethcontract::Address,
       ),
-      bool,
+      (),
     > {
-      self::ethcontract::contract::Signature::new([145, 209, 72, 84])
+      self::ethcontract::contract::Signature::new([47, 47, 241, 93])
     }
     #[doc = "Returns signature for method `renounceRole(bytes32,address)`."]
     #[allow(clippy::type_complexity)]
@@ -174,29 +174,6 @@ pub mod i_access_control_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([54, 86, 138, 190])
     }
-    #[doc = "Returns signature for method `grantRole(bytes32,address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn grant_role(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::tokens::Bytes<[u8; 32]>,
-        self::ethcontract::Address,
-      ),
-      (),
-    > {
-      self::ethcontract::contract::Signature::new([47, 47, 241, 93])
-    }
-    #[doc = "Returns signature for method `getRoleAdmin(bytes32):(bytes32)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn get_role_admin(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::tokens::Bytes<[u8; 32]>,),
-      self::ethcontract::tokens::Bytes<[u8; 32]>,
-    > {
-      self::ethcontract::contract::Signature::new([36, 138, 156, 163])
-    }
     #[doc = "Returns signature for method `revokeRole(bytes32,address)`."]
     #[allow(clippy::type_complexity)]
     pub fn revoke_role(
@@ -210,6 +187,29 @@ pub mod i_access_control_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([213, 71, 116, 31])
     }
+    #[doc = "Returns signature for method `getRoleAdmin(bytes32):(bytes32)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn get_role_admin(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::tokens::Bytes<[u8; 32]>,),
+      self::ethcontract::tokens::Bytes<[u8; 32]>,
+    > {
+      self::ethcontract::contract::Signature::new([36, 138, 156, 163])
+    }
+    #[doc = "Returns signature for method `hasRole(bytes32,address):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn has_role(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::tokens::Bytes<[u8; 32]>,
+        self::ethcontract::Address,
+      ),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([145, 209, 72, 84])
+    }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
   #[derive(Clone)]
@@ -219,14 +219,14 @@ pub mod i_access_control_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn has_role(
+    pub fn grant_role(
       &self,
       role: self::ethcontract::tokens::Bytes<[u8; 32]>,
       account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .view_method([145, 209, 72, 84], (role, account))
+        .method([47, 47, 241, 93], (role, account))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -241,14 +241,14 @@ pub mod i_access_control_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn grant_role(
+    pub fn revoke_role(
       &self,
       role: self::ethcontract::tokens::Bytes<[u8; 32]>,
       account: self::ethcontract::Address,
     ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .method([47, 47, 241, 93], (role, account))
+        .method([213, 71, 116, 31], (role, account))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -263,14 +263,14 @@ pub mod i_access_control_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn revoke_role(
+    pub fn has_role(
       &self,
       role: self::ethcontract::tokens::Bytes<[u8; 32]>,
       account: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
       self
         .instance
-        .method([213, 71, 116, 31], (role, account))
+        .view_method([145, 209, 72, 84], (role, account))
         .expect("generated call")
     }
   }

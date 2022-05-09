@@ -1,14 +1,15 @@
 use crate::{constants::*, load, parse, RawCertificate};
 use anyhow::Result;
-use chrono::{DateTime, Utc};
 use rcgen::{
   BasicConstraints, Certificate, CertificateParams, CustomExtension, DistinguishedName,
   ExtendedKeyUsagePurpose, GeneralSubtree, IsCa, KeyIdMethod, KeyPair, KeyUsagePurpose,
   NameConstraints, SanType, SignatureAlgorithm,
 };
+use time::OffsetDateTime;
 use std::{fmt::Debug, path::PathBuf};
 use structopt::StructOpt;
 use thiserror::Error;
+// use time::OffsetDateTime;
 
 #[derive(Debug, Error)]
 enum CommandError {
@@ -17,7 +18,7 @@ enum CommandError {
 }
 
 #[derive(Debug, StructOpt)]
-#[structopt(about = "Generates a Self-Signed Certificate")]
+#[structopt(about = "Generates a Certificate")]
 pub struct Command {
   #[structopt(env, long, takes_value = false)]
   is_authority: bool,
@@ -58,10 +59,12 @@ pub struct Command {
   #[structopt(env, long, short = "c", value_name = "Path", requires = "ca-certificate", parse(try_from_str = load::key_pair))]
   ca_key: Option<KeyPair>,
 
-  #[structopt(env, long, short = "B", value_name = "RFC3339", default_value = "1975-01-01T00:00:00+00:00", parse(try_from_str = parse::datetime_utc))]
-  valid_not_before: DateTime<Utc>,
-  #[structopt(env, long, short = "A", value_name = "RFC3339", default_value = "2999-04-20T03:13:37+00:00", parse(try_from_str = parse::datetime_utc))]
-  valid_not_after: DateTime<Utc>,
+  // #[structopt(env, long, short = "B", value_name = "RFC3339", default_value = "1975-01-01T00:00:00+00:00", parse(try_from_str = parse::datetime_utc))]
+  #[structopt(env, long, short = "B", value_name = "RFC3339", default_value = "1975-01-01T00:00:00+00:00", parse(try_from_str = parse::offset_date_time))]
+  valid_not_before: OffsetDateTime,
+  // #[structopt(env, long, short = "A", value_name = "RFC3339", default_value = "2999-04-20T03:13:37+00:00", parse(try_from_str = parse::datetime_utc))]
+  #[structopt(env, long, short = "A", value_name = "RFC3339", default_value = "2999-04-20T03:13:37+00:00", parse(try_from_str = parse::offset_date_time))]
+  valid_not_after: OffsetDateTime,
 
   #[structopt(env, long, short = "n", value_name = "DN", default_value = "CN=niftygate certificate", parse(try_from_str = parse::distinguished_name))]
   distinguished_name: DistinguishedName,

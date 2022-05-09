@@ -15,7 +15,7 @@ pub mod ierc1155_receiver_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC1155ReceiverUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"onERC1155Received\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"id\",\"type\":\"uint256\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"onERC1155BatchReceived\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"ids\",\"type\":\"uint256[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"IERC1155ReceiverUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"supportsInterface\",\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"onERC1155BatchReceived\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"ids\",\"type\":\"uint256[]\"},{\"name\":\"values\",\"type\":\"uint256[]\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"onERC1155Received\",\"inputs\":[{\"name\":\"operator\",\"type\":\"address\"},{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"id\",\"type\":\"uint256\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes4\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,21 +148,13 @@ pub mod ierc1155_receiver_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `onERC1155Received(address,address,uint256,uint256,bytes):(bytes4)`."]
+    #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
     #[allow(clippy::type_complexity)]
-    pub fn on_erc1155_received(
+    pub fn supports_interface(
       &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::Address,
-        self::ethcontract::U256,
-        self::ethcontract::U256,
-        self::ethcontract::tokens::Bytes<Vec<u8>>,
-      ),
-      self::ethcontract::tokens::Bytes<[u8; 4]>,
-    > {
-      self::ethcontract::contract::Signature::new([242, 58, 110, 97])
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
+    {
+      self::ethcontract::contract::Signature::new([1, 255, 201, 167])
     }
     #[doc = "Returns signature for method `onERC1155BatchReceived(address,address,uint256[],uint256[],bytes):(bytes4)`."]
     #[allow(clippy::type_complexity)]
@@ -180,13 +172,21 @@ pub mod ierc1155_receiver_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([188, 25, 124, 129])
     }
-    #[doc = "Returns signature for method `supportsInterface(bytes4):(bool)`."]
+    #[doc = "Returns signature for method `onERC1155Received(address,address,uint256,uint256,bytes):(bytes4)`."]
     #[allow(clippy::type_complexity)]
-    pub fn supports_interface(
+    pub fn on_erc1155_received(
       &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 4]>,), bool>
-    {
-      self::ethcontract::contract::Signature::new([1, 255, 201, 167])
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        self::ethcontract::U256,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+      ),
+      self::ethcontract::tokens::Bytes<[u8; 4]>,
+    > {
+      self::ethcontract::contract::Signature::new([242, 58, 110, 97])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -197,17 +197,13 @@ pub mod ierc1155_receiver_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn on_erc1155_received(
+    pub fn supports_interface(
       &self,
-      operator: self::ethcontract::Address,
-      from: self::ethcontract::Address,
-      id: self::ethcontract::U256,
-      value: self::ethcontract::U256,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 4]>> {
+      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
       self
         .instance
-        .method([242, 58, 110, 97], (operator, from, id, value, data))
+        .view_method([1, 255, 201, 167], (interface_id,))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -225,13 +221,17 @@ pub mod ierc1155_receiver_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn supports_interface(
+    pub fn on_erc1155_received(
       &self,
-      interface_id: self::ethcontract::tokens::Bytes<[u8; 4]>,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<bool> {
+      operator: self::ethcontract::Address,
+      from: self::ethcontract::Address,
+      id: self::ethcontract::U256,
+      value: self::ethcontract::U256,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::tokens::Bytes<[u8; 4]>> {
       self
         .instance
-        .view_method([1, 255, 201, 167], (interface_id,))
+        .method([242, 58, 110, 97], (operator, from, id, value, data))
         .expect("generated call")
     }
   }

@@ -1,7 +1,10 @@
+use std::str::FromStr;
+
 pub mod application;
 pub mod command;
 pub mod middleware;
 
+pub use command::Command;
 pub use niftygate_bindings::openzeppelin;
 
 pub mod prelude {
@@ -12,7 +15,10 @@ pub mod prelude {
   pub use tide;
 }
 
+#[deprecated(since = "0.7.1", note = "use anyhow::Error instead")]
 pub type WrappedError = Box<dyn std::error::Error>;
+#[allow(deprecated)]
+#[deprecated(since = "0.7.1", note = "use anyhow::Result instead")]
 pub type WrappedResult<T> = std::result::Result<T, WrappedError>;
 
 mod util {
@@ -28,5 +34,14 @@ mod util {
     Ok(Web3::new(DynTransport::new(
       WebSocket::new(url.as_str()).await?,
     )))
+  }
+}
+#[derive(Debug)]
+pub struct HexData(Vec<u8>);
+
+impl FromStr for HexData {
+  type Err = hex::FromHexError;
+  fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+    hex::decode(s).map(Self)
   }
 }

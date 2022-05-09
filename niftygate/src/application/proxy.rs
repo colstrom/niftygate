@@ -1,10 +1,8 @@
-use crate::{
-  middleware::{
-    ethereum::{prelude::*, *},
-    *,
-  },
-  WrappedResult,
+use crate::middleware::{
+  ethereum::{prelude::*, *},
+  *,
 };
+use anyhow::Result;
 use tide::Server;
 
 pub struct ERC1155Config {
@@ -66,9 +64,15 @@ pub struct Config {
   pub signature_header: HeaderName,
 }
 
-pub async fn server(config: Config) -> WrappedResult<Server<()>> {
+pub async fn server(config: Config) -> Result<Server<()>> {
   let mut server = tide::new();
   server.with(ProvidesForwardedHeader);
+
+  let cors = tide::security::CorsMiddleware::new()
+    .allow_origin(tide::security::Origin::from("*"))
+    .allow_credentials(false)
+    .allow_methods("GET, POST, OPTIONS".parse::<HeaderValue>().unwrap());
+  server.with(cors);
 
   let web3 = crate::util::web3_from_url(config.web3_rpc_url).await?;
 

@@ -15,7 +15,7 @@ pub mod i_compound_timelock_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ICompoundTimelockUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"MAXIMUM_DELAY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"queuedTransactions\",\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"setDelay\",\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPendingAdmin\",\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"executeTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"admin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"pendingAdmin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"cancelTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"queueTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"GRACE_PERIOD\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MINIMUM_DELAY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"acceptAdmin\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"delay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"receive\"}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ICompoundTimelockUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"admin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MINIMUM_DELAY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"pendingAdmin\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"MAXIMUM_DELAY\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"cancelTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"acceptAdmin\",\"inputs\":[],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"GRACE_PERIOD\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"delay\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"executeTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes\"}],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"function\",\"name\":\"queuedTransactions\",\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"setDelay\",\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"queueTransaction\",\"inputs\":[{\"name\":\"target\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"signature\",\"type\":\"string\"},{\"name\":\"data\",\"type\":\"bytes\"},{\"name\":\"eta\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"setPendingAdmin\",\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"receive\"}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -148,55 +148,17 @@ pub mod i_compound_timelock_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `MAXIMUM_DELAY():(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn maximum_delay(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([125, 100, 95, 171])
-    }
-    #[doc = "Returns signature for method `queuedTransactions(bytes32):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn queued_transactions(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 32]>,), bool>
-    {
-      self::ethcontract::contract::Signature::new([242, 176, 101, 55])
-    }
-    #[doc = "Returns signature for method `setDelay(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn set_delay(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), ()> {
-      self::ethcontract::contract::Signature::new([225, 119, 36, 110])
-    }
-    #[doc = "Returns signature for method `setPendingAdmin(address)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn set_pending_admin(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
-      self::ethcontract::contract::Signature::new([77, 209, 139, 245])
-    }
-    #[doc = "Returns signature for method `executeTransaction(address,uint256,string,bytes,uint256):(bytes)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn execute_transaction(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (
-        self::ethcontract::Address,
-        self::ethcontract::U256,
-        String,
-        self::ethcontract::tokens::Bytes<Vec<u8>>,
-        self::ethcontract::U256,
-      ),
-      self::ethcontract::tokens::Bytes<Vec<u8>>,
-    > {
-      self::ethcontract::contract::Signature::new([8, 37, 243, 143])
-    }
     #[doc = "Returns signature for method `admin():(address)`."]
     #[allow(clippy::type_complexity)]
     pub fn admin(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
       self::ethcontract::contract::Signature::new([248, 81, 164, 64])
+    }
+    #[doc = "Returns signature for method `MINIMUM_DELAY():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn minimum_delay(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([177, 180, 58, 229])
     }
     #[doc = "Returns signature for method `pendingAdmin():(address)`."]
     #[allow(clippy::type_complexity)]
@@ -204,6 +166,13 @@ pub mod i_compound_timelock_upgradeable {
       &self,
     ) -> self::ethcontract::contract::Signature<(), self::ethcontract::Address> {
       self::ethcontract::contract::Signature::new([38, 120, 34, 71])
+    }
+    #[doc = "Returns signature for method `MAXIMUM_DELAY():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn maximum_delay(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([125, 100, 95, 171])
     }
     #[doc = "Returns signature for method `cancelTransaction(address,uint256,string,bytes,uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -221,6 +190,54 @@ pub mod i_compound_timelock_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([89, 31, 205, 254])
     }
+    #[doc = "Returns signature for method `acceptAdmin()`."]
+    #[allow(clippy::type_complexity)]
+    pub fn accept_admin(&self) -> self::ethcontract::contract::Signature<(), ()> {
+      self::ethcontract::contract::Signature::new([14, 24, 182, 129])
+    }
+    #[doc = "Returns signature for method `GRACE_PERIOD():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn grace_period(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([193, 162, 135, 226])
+    }
+    #[doc = "Returns signature for method `delay():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn delay(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([106, 66, 184, 248])
+    }
+    #[doc = "Returns signature for method `executeTransaction(address,uint256,string,bytes,uint256):(bytes)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn execute_transaction(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (
+        self::ethcontract::Address,
+        self::ethcontract::U256,
+        String,
+        self::ethcontract::tokens::Bytes<Vec<u8>>,
+        self::ethcontract::U256,
+      ),
+      self::ethcontract::tokens::Bytes<Vec<u8>>,
+    > {
+      self::ethcontract::contract::Signature::new([8, 37, 243, 143])
+    }
+    #[doc = "Returns signature for method `queuedTransactions(bytes32):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn queued_transactions(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::tokens::Bytes<[u8; 32]>,), bool>
+    {
+      self::ethcontract::contract::Signature::new([242, 176, 101, 55])
+    }
+    #[doc = "Returns signature for method `setDelay(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn set_delay(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), ()> {
+      self::ethcontract::contract::Signature::new([225, 119, 36, 110])
+    }
     #[doc = "Returns signature for method `queueTransaction(address,uint256,string,bytes,uint256):(bytes32)`."]
     #[allow(clippy::type_complexity)]
     pub fn queue_transaction(
@@ -237,29 +254,12 @@ pub mod i_compound_timelock_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([58, 102, 249, 1])
     }
-    #[doc = "Returns signature for method `GRACE_PERIOD():(uint256)`."]
+    #[doc = "Returns signature for method `setPendingAdmin(address)`."]
     #[allow(clippy::type_complexity)]
-    pub fn grace_period(
+    pub fn set_pending_admin(
       &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([193, 162, 135, 226])
-    }
-    #[doc = "Returns signature for method `MINIMUM_DELAY():(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn minimum_delay(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([177, 180, 58, 229])
-    }
-    #[doc = "Returns signature for method `acceptAdmin()`."]
-    #[allow(clippy::type_complexity)]
-    pub fn accept_admin(&self) -> self::ethcontract::contract::Signature<(), ()> {
-      self::ethcontract::contract::Signature::new([14, 24, 182, 129])
-    }
-    #[doc = "Returns signature for method `delay():(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn delay(&self) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([106, 66, 184, 248])
+    ) -> self::ethcontract::contract::Signature<(self::ethcontract::Address,), ()> {
+      self::ethcontract::contract::Signature::new([77, 209, 139, 245])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -270,12 +270,90 @@ pub mod i_compound_timelock_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
+    pub fn admin(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([248, 81, 164, 64], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn minimum_delay(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([177, 180, 58, 229], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn pending_admin(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
+      self
+        .instance
+        .view_method([38, 120, 34, 71], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn maximum_delay(
       &self,
     ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
         .view_method([125, 100, 95, 171], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn cancel_transaction(
+      &self,
+      target: self::ethcontract::Address,
+      value: self::ethcontract::U256,
+      signature: String,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+      eta: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([89, 31, 205, 254], (target, value, signature, data, eta))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn accept_admin(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([14, 24, 182, 129], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn grace_period(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([193, 162, 135, 226], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn delay(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([106, 66, 184, 248], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn execute_transaction(
+      &self,
+      target: self::ethcontract::Address,
+      value: self::ethcontract::U256,
+      signature: String,
+      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
+      eta: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::tokens::Bytes<Vec<u8>>> {
+      self
+        .instance
+        .method([8, 37, 243, 143], (target, value, signature, data, eta))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -299,62 +377,6 @@ pub mod i_compound_timelock_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn set_pending_admin(
-      &self,
-      p0: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([77, 209, 139, 245], (p0,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn execute_transaction(
-      &self,
-      target: self::ethcontract::Address,
-      value: self::ethcontract::U256,
-      signature: String,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-      eta: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<self::ethcontract::tokens::Bytes<Vec<u8>>> {
-      self
-        .instance
-        .method([8, 37, 243, 143], (target, value, signature, data, eta))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn admin(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([248, 81, 164, 64], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn pending_admin(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::Address> {
-      self
-        .instance
-        .view_method([38, 120, 34, 71], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn cancel_transaction(
-      &self,
-      target: self::ethcontract::Address,
-      value: self::ethcontract::U256,
-      signature: String,
-      data: self::ethcontract::tokens::Bytes<Vec<u8>>,
-      eta: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([89, 31, 205, 254], (target, value, signature, data, eta))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
     pub fn queue_transaction(
       &self,
       target: self::ethcontract::Address,
@@ -369,35 +391,13 @@ pub mod i_compound_timelock_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn grace_period(
+    pub fn set_pending_admin(
       &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      p0: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
       self
         .instance
-        .view_method([193, 162, 135, 226], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn minimum_delay(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([177, 180, 58, 229], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn accept_admin(&self) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([14, 24, 182, 129], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn delay(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([106, 66, 184, 248], ())
+        .method([77, 209, 139, 245], (p0,))
         .expect("generated call")
     }
   }

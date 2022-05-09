@@ -15,7 +15,7 @@ pub mod erc20_preset_fixed_supply_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20PresetFixedSupplyUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"initialSupply\",\"type\":\"uint256\"},{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"burn\",\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"burnFrom\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"608060405234801561001057600080fd5b50611089806100206000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c806370a082311161008c578063a457c2d711610066578063a457c2d7146101ba578063a9059cbb146101cd578063bd3a13f6146101e0578063dd62ed3e146101f3576100ea565b806370a082311461018c57806379cc67901461019f57806395d89b41146101b2576100ea565b806323b872dd116100c857806323b872dd14610142578063313ce56714610155578063395093511461016457806342966c6814610177576100ea565b806306fdde03146100ef578063095ea7b31461010d57806318160ddd14610130575b600080fd5b6100f761022c565b6040516101049190610f1c565b60405180910390f35b61012061011b366004610e60565b6102be565b6040519015158152602001610104565b6035545b604051908152602001610104565b610120610150366004610e25565b6102d4565b60405160128152602001610104565b610120610172366004610e60565b610383565b61018a610185366004610f04565b6103bf565b005b61013461019a366004610dd2565b6103cc565b61018a6101ad366004610e60565b6103eb565b6100f7610471565b6101206101c8366004610e60565b610480565b6101206101db366004610e60565b610519565b61018a6101ee366004610e89565b610526565b610134610201366004610df3565b6001600160a01b03918216600090815260346020908152604080832093909416825291909152205490565b60606036805461023b90610fec565b80601f016020809104026020016040519081016040528092919081815260200182805461026790610fec565b80156102b45780601f10610289576101008083540402835291602001916102b4565b820191906000526020600020905b81548152906001019060200180831161029757829003601f168201915b5050505050905090565b60006102cb3384846105a2565b50600192915050565b60006102e18484846106c6565b6001600160a01b03841660009081526034602090815260408083203384529091529020548281101561036b5760405162461bcd60e51b815260206004820152602860248201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616044820152676c6c6f77616e636560c01b60648201526084015b60405180910390fd5b61037885338584036105a2565b506001949350505050565b3360008181526034602090815260408083206001600160a01b038716845290915281205490916102cb9185906103ba908690610fbd565b6105a2565b6103c93382610895565b50565b6001600160a01b0381166000908152603360205260409020545b919050565b60006103f78333610201565b9050818110156104555760405162461bcd60e51b8152602060048201526024808201527f45524332303a206275726e20616d6f756e74206578636565647320616c6c6f77604482015263616e636560e01b6064820152608401610362565b61046283338484036105a2565b61046c8383610895565b505050565b60606037805461023b90610fec565b3360009081526034602090815260408083206001600160a01b0386168452909152812054828110156105025760405162461bcd60e51b815260206004820152602560248201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604482015264207a65726f60d81b6064820152608401610362565b61050f33858584036105a2565b5060019392505050565b60006102cb3384846106c6565b600054610100900460ff168061053f575060005460ff16155b61055b5760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff1615801561057d576000805461ffff19166101011790555b610589858585856109e3565b801561059b576000805461ff00191690555b5050505050565b6001600160a01b0383166106045760405162461bcd60e51b8152602060048201526024808201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646044820152637265737360e01b6064820152608401610362565b6001600160a01b0382166106655760405162461bcd60e51b815260206004820152602260248201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604482015261737360f01b6064820152608401610362565b6001600160a01b0383811660008181526034602090815260408083209487168084529482529182902085905590518481527f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925910160405180910390a3505050565b6001600160a01b03831661072a5760405162461bcd60e51b815260206004820152602560248201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604482015264647265737360d81b6064820152608401610362565b6001600160a01b03821661078c5760405162461bcd60e51b815260206004820152602360248201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260448201526265737360e81b6064820152608401610362565b6001600160a01b038316600090815260336020526040902054818110156108045760405162461bcd60e51b815260206004820152602660248201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604482015265616c616e636560d01b6064820152608401610362565b6001600160a01b0380851660009081526033602052604080822085850390559185168152908120805484929061083b908490610fbd565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef8460405161088791815260200190565b60405180910390a350505050565b6001600160a01b0382166108f55760405162461bcd60e51b815260206004820152602160248201527f45524332303a206275726e2066726f6d20746865207a65726f206164647265736044820152607360f81b6064820152608401610362565b6001600160a01b038216600090815260336020526040902054818110156109695760405162461bcd60e51b815260206004820152602260248201527f45524332303a206275726e20616d6f756e7420657863656564732062616c616e604482015261636560f01b6064820152608401610362565b6001600160a01b0383166000908152603360205260408120838303905560358054849290610998908490610fd5565b90915550506040518281526000906001600160a01b038516907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9060200160405180910390a361046c565b600054610100900460ff16806109fc575060005460ff16155b610a185760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610a3a576000805461ffff19166101011790555b610a42610a60565b610a4c8585610acb565b610a54610a60565b61058985858585610b60565b600054610100900460ff1680610a79575060005460ff16155b610a955760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610ab7576000805461ffff19166101011790555b80156103c9576000805461ff001916905550565b600054610100900460ff1680610ae4575060005460ff16155b610b005760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610b22576000805461ffff19166101011790555b8251610b35906036906020860190610c9b565b508151610b49906037906020850190610c9b565b50801561046c576000805461ff0019169055505050565b600054610100900460ff1680610b79575060005460ff16155b610b955760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610bb7576000805461ffff19166101011790555b61058982846001600160a01b038216610c125760405162461bcd60e51b815260206004820152601f60248201527f45524332303a206d696e7420746f20746865207a65726f2061646472657373006044820152606401610362565b8060356000828254610c249190610fbd565b90915550506001600160a01b03821660009081526033602052604081208054839290610c51908490610fbd565b90915550506040518181526001600160a01b038316906000907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9060200160405180910390a35050565b828054610ca790610fec565b90600052602060002090601f016020900481019282610cc95760008555610d0f565b82601f10610ce257805160ff1916838001178555610d0f565b82800160010185558215610d0f579182015b82811115610d0f578251825591602001919060010190610cf4565b50610d1b929150610d1f565b5090565b5b80821115610d1b5760008155600101610d20565b80356001600160a01b03811681146103e657600080fd5b600082601f830112610d5b578081fd5b813567ffffffffffffffff80821115610d7657610d7661103d565b604051601f8301601f19908116603f01168101908282118183101715610d9e57610d9e61103d565b81604052838152866020858801011115610db6578485fd5b8360208701602083013792830160200193909352509392505050565b600060208284031215610de3578081fd5b610dec82610d34565b9392505050565b60008060408385031215610e05578081fd5b610e0e83610d34565b9150610e1c60208401610d34565b90509250929050565b600080600060608486031215610e39578081fd5b610e4284610d34565b9250610e5060208501610d34565b9150604084013590509250925092565b60008060408385031215610e72578182fd5b610e7b83610d34565b946020939093013593505050565b60008060008060808587031215610e9e578081fd5b843567ffffffffffffffff80821115610eb5578283fd5b610ec188838901610d4b565b95506020870135915080821115610ed6578283fd5b50610ee387828801610d4b565b93505060408501359150610ef960608601610d34565b905092959194509250565b600060208284031215610f15578081fd5b5035919050565b6000602080835283518082850152825b81811015610f4857858101830151858201604001528201610f2c565b81811115610f595783604083870101525b50601f01601f1916929092016040019392505050565b6020808252602e908201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160408201526d191e481a5b9a5d1a585b1a5e995960921b606082015260800190565b60008219821115610fd057610fd0611027565b500190565b600082821015610fe757610fe7611027565b500390565b600181811c9082168061100057607f821691505b6020821081141561102157634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052604160045260246000fdfea264697066735822122036028bef71256eb8069c31f57ac0bef923e701ee930f61264f283deea072f24664736f6c63430008030033\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"ERC20PresetFixedSupplyUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"name\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"decreaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"subtractedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"decimals\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"burn\",\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"totalSupply\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"burnFrom\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"increaseAllowance\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"addedValue\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"initialize\",\"inputs\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"symbol\",\"type\":\"string\"},{\"name\":\"initialSupply\",\"type\":\"uint256\"},{\"name\":\"owner\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"symbol\",\"inputs\":[],\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"transfer\",\"inputs\":[{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"transferFrom\",\"inputs\":[{\"name\":\"sender\",\"type\":\"address\"},{\"name\":\"recipient\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"allowance\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"balanceOf\",\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"constant\":false,\"stateMutability\":\"view\"},{\"type\":\"function\",\"name\":\"approve\",\"inputs\":[{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"event\",\"name\":\"Approval\",\"inputs\":[{\"name\":\"owner\",\"type\":\"address\",\"indexed\":true},{\"name\":\"spender\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Transfer\",\"inputs\":[{\"name\":\"from\",\"type\":\"address\",\"indexed\":true},{\"name\":\"to\",\"type\":\"address\",\"indexed\":true},{\"name\":\"value\",\"type\":\"uint256\",\"indexed\":false}],\"anonymous\":false}],\"bytecode\":\"608060405234801561001057600080fd5b50611089806100206000396000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c806370a082311161008c578063a457c2d711610066578063a457c2d7146101ba578063a9059cbb146101cd578063bd3a13f6146101e0578063dd62ed3e146101f3576100ea565b806370a082311461018c57806379cc67901461019f57806395d89b41146101b2576100ea565b806323b872dd116100c857806323b872dd14610142578063313ce56714610155578063395093511461016457806342966c6814610177576100ea565b806306fdde03146100ef578063095ea7b31461010d57806318160ddd14610130575b600080fd5b6100f761022c565b6040516101049190610f1c565b60405180910390f35b61012061011b366004610e60565b6102be565b6040519015158152602001610104565b6035545b604051908152602001610104565b610120610150366004610e25565b6102d4565b60405160128152602001610104565b610120610172366004610e60565b610383565b61018a610185366004610f04565b6103bf565b005b61013461019a366004610dd2565b6103cc565b61018a6101ad366004610e60565b6103eb565b6100f7610471565b6101206101c8366004610e60565b610480565b6101206101db366004610e60565b610519565b61018a6101ee366004610e89565b610526565b610134610201366004610df3565b6001600160a01b03918216600090815260346020908152604080832093909416825291909152205490565b60606036805461023b90610fec565b80601f016020809104026020016040519081016040528092919081815260200182805461026790610fec565b80156102b45780601f10610289576101008083540402835291602001916102b4565b820191906000526020600020905b81548152906001019060200180831161029757829003601f168201915b5050505050905090565b60006102cb3384846105a2565b50600192915050565b60006102e18484846106c6565b6001600160a01b03841660009081526034602090815260408083203384529091529020548281101561036b5760405162461bcd60e51b815260206004820152602860248201527f45524332303a207472616e7366657220616d6f756e74206578636565647320616044820152676c6c6f77616e636560c01b60648201526084015b60405180910390fd5b61037885338584036105a2565b506001949350505050565b3360008181526034602090815260408083206001600160a01b038716845290915281205490916102cb9185906103ba908690610fbd565b6105a2565b6103c93382610895565b50565b6001600160a01b0381166000908152603360205260409020545b919050565b60006103f78333610201565b9050818110156104555760405162461bcd60e51b8152602060048201526024808201527f45524332303a206275726e20616d6f756e74206578636565647320616c6c6f77604482015263616e636560e01b6064820152608401610362565b61046283338484036105a2565b61046c8383610895565b505050565b60606037805461023b90610fec565b3360009081526034602090815260408083206001600160a01b0386168452909152812054828110156105025760405162461bcd60e51b815260206004820152602560248201527f45524332303a2064656372656173656420616c6c6f77616e63652062656c6f77604482015264207a65726f60d81b6064820152608401610362565b61050f33858584036105a2565b5060019392505050565b60006102cb3384846106c6565b600054610100900460ff168061053f575060005460ff16155b61055b5760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff1615801561057d576000805461ffff19166101011790555b610589858585856109e3565b801561059b576000805461ff00191690555b5050505050565b6001600160a01b0383166106045760405162461bcd60e51b8152602060048201526024808201527f45524332303a20617070726f76652066726f6d20746865207a65726f206164646044820152637265737360e01b6064820152608401610362565b6001600160a01b0382166106655760405162461bcd60e51b815260206004820152602260248201527f45524332303a20617070726f766520746f20746865207a65726f206164647265604482015261737360f01b6064820152608401610362565b6001600160a01b0383811660008181526034602090815260408083209487168084529482529182902085905590518481527f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925910160405180910390a3505050565b6001600160a01b03831661072a5760405162461bcd60e51b815260206004820152602560248201527f45524332303a207472616e736665722066726f6d20746865207a65726f206164604482015264647265737360d81b6064820152608401610362565b6001600160a01b03821661078c5760405162461bcd60e51b815260206004820152602360248201527f45524332303a207472616e7366657220746f20746865207a65726f206164647260448201526265737360e81b6064820152608401610362565b6001600160a01b038316600090815260336020526040902054818110156108045760405162461bcd60e51b815260206004820152602660248201527f45524332303a207472616e7366657220616d6f756e7420657863656564732062604482015265616c616e636560d01b6064820152608401610362565b6001600160a01b0380851660009081526033602052604080822085850390559185168152908120805484929061083b908490610fbd565b92505081905550826001600160a01b0316846001600160a01b03167fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef8460405161088791815260200190565b60405180910390a350505050565b6001600160a01b0382166108f55760405162461bcd60e51b815260206004820152602160248201527f45524332303a206275726e2066726f6d20746865207a65726f206164647265736044820152607360f81b6064820152608401610362565b6001600160a01b038216600090815260336020526040902054818110156109695760405162461bcd60e51b815260206004820152602260248201527f45524332303a206275726e20616d6f756e7420657863656564732062616c616e604482015261636560f01b6064820152608401610362565b6001600160a01b0383166000908152603360205260408120838303905560358054849290610998908490610fd5565b90915550506040518281526000906001600160a01b038516907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9060200160405180910390a361046c565b600054610100900460ff16806109fc575060005460ff16155b610a185760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610a3a576000805461ffff19166101011790555b610a42610a60565b610a4c8585610acb565b610a54610a60565b61058985858585610b60565b600054610100900460ff1680610a79575060005460ff16155b610a955760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610ab7576000805461ffff19166101011790555b80156103c9576000805461ff001916905550565b600054610100900460ff1680610ae4575060005460ff16155b610b005760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610b22576000805461ffff19166101011790555b8251610b35906036906020860190610c9b565b508151610b49906037906020850190610c9b565b50801561046c576000805461ff0019169055505050565b600054610100900460ff1680610b79575060005460ff16155b610b955760405162461bcd60e51b815260040161036290610f6f565b600054610100900460ff16158015610bb7576000805461ffff19166101011790555b61058982846001600160a01b038216610c125760405162461bcd60e51b815260206004820152601f60248201527f45524332303a206d696e7420746f20746865207a65726f2061646472657373006044820152606401610362565b8060356000828254610c249190610fbd565b90915550506001600160a01b03821660009081526033602052604081208054839290610c51908490610fbd565b90915550506040518181526001600160a01b038316906000907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef9060200160405180910390a35050565b828054610ca790610fec565b90600052602060002090601f016020900481019282610cc95760008555610d0f565b82601f10610ce257805160ff1916838001178555610d0f565b82800160010185558215610d0f579182015b82811115610d0f578251825591602001919060010190610cf4565b50610d1b929150610d1f565b5090565b5b80821115610d1b5760008155600101610d20565b80356001600160a01b03811681146103e657600080fd5b600082601f830112610d5b578081fd5b813567ffffffffffffffff80821115610d7657610d7661103d565b604051601f8301601f19908116603f01168101908282118183101715610d9e57610d9e61103d565b81604052838152866020858801011115610db6578485fd5b8360208701602083013792830160200193909352509392505050565b600060208284031215610de3578081fd5b610dec82610d34565b9392505050565b60008060408385031215610e05578081fd5b610e0e83610d34565b9150610e1c60208401610d34565b90509250929050565b600080600060608486031215610e39578081fd5b610e4284610d34565b9250610e5060208501610d34565b9150604084013590509250925092565b60008060408385031215610e72578182fd5b610e7b83610d34565b946020939093013593505050565b60008060008060808587031215610e9e578081fd5b843567ffffffffffffffff80821115610eb5578283fd5b610ec188838901610d4b565b95506020870135915080821115610ed6578283fd5b50610ee387828801610d4b565b93505060408501359150610ef960608601610d34565b905092959194509250565b600060208284031215610f15578081fd5b5035919050565b6000602080835283518082850152825b81811015610f4857858101830151858201604001528201610f2c565b81811115610f595783604083870101525b50601f01601f1916929092016040019392505050565b6020808252602e908201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160408201526d191e481a5b9a5d1a585b1a5e995960921b606082015260800190565b60008219821115610fd057610fd0611027565b500190565b600082821015610fe757610fe7611027565b500390565b600181811c9082168061100057607f821691505b6020821081141561102157634e487b7160e01b600052602260045260246000fd5b50919050565b634e487b7160e01b600052601160045260246000fd5b634e487b7160e01b600052604160045260246000fdfea264697066735822122036028bef71256eb8069c31f57ac0bef923e701ee930f61264f283deea072f24664736f6c63430008030033\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -198,15 +198,57 @@ pub mod erc20_preset_fixed_supply_upgradeable {
   #[derive(Clone, Copy)]
   pub struct Signatures;
   impl Signatures {
-    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
+    #[doc = "Returns signature for method `name():(string)`."]
     #[allow(clippy::type_complexity)]
-    pub fn approve(
+    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+    }
+    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decrease_allowance(
       &self,
     ) -> self::ethcontract::contract::Signature<
       (self::ethcontract::Address, self::ethcontract::U256),
       bool,
     > {
-      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
+      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
+    }
+    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
+      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    }
+    #[doc = "Returns signature for method `burn(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn burn(&self) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), ()> {
+      self::ethcontract::contract::Signature::new([66, 150, 108, 104])
+    }
+    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
+      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
+    }
+    #[doc = "Returns signature for method `burnFrom(address,uint256)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn burn_from(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      (),
+    > {
+      self::ethcontract::contract::Signature::new([121, 204, 103, 144])
+    }
+    #[doc = "Returns signature for method `increaseAllowance(address,uint256):(bool)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn increase_allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::U256),
+      bool,
+    > {
+      self::ethcontract::contract::Signature::new([57, 80, 147, 81])
     }
     #[doc = "Returns signature for method `initialize(string,string,uint256,address)`."]
     #[allow(clippy::type_complexity)]
@@ -223,6 +265,11 @@ pub mod erc20_preset_fixed_supply_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([189, 58, 19, 246])
     }
+    #[doc = "Returns signature for method `symbol():(string)`."]
+    #[allow(clippy::type_complexity)]
+    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
+      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
+    }
     #[doc = "Returns signature for method `transfer(address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
     pub fn transfer(
@@ -232,41 +279,6 @@ pub mod erc20_preset_fixed_supply_upgradeable {
       bool,
     > {
       self::ethcontract::contract::Signature::new([169, 5, 156, 187])
-    }
-    #[doc = "Returns signature for method `burn(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn burn(&self) -> self::ethcontract::contract::Signature<(self::ethcontract::U256,), ()> {
-      self::ethcontract::contract::Signature::new([66, 150, 108, 104])
-    }
-    #[doc = "Returns signature for method `increaseAllowance(address,uint256):(bool)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn increase_allowance(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      bool,
-    > {
-      self::ethcontract::contract::Signature::new([57, 80, 147, 81])
-    }
-    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn allowance(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::Address),
-      self::ethcontract::U256,
-    > {
-      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
-    }
-    #[doc = "Returns signature for method `burnFrom(address,uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn burn_from(
-      &self,
-    ) -> self::ethcontract::contract::Signature<
-      (self::ethcontract::Address, self::ethcontract::U256),
-      (),
-    > {
-      self::ethcontract::contract::Signature::new([121, 204, 103, 144])
     }
     #[doc = "Returns signature for method `transferFrom(address,address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
@@ -282,10 +294,15 @@ pub mod erc20_preset_fixed_supply_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([35, 184, 114, 221])
     }
-    #[doc = "Returns signature for method `decimals():(uint8)`."]
+    #[doc = "Returns signature for method `allowance(address,address):(uint256)`."]
     #[allow(clippy::type_complexity)]
-    pub fn decimals(&self) -> self::ethcontract::contract::Signature<(), u8> {
-      self::ethcontract::contract::Signature::new([49, 60, 229, 103])
+    pub fn allowance(
+      &self,
+    ) -> self::ethcontract::contract::Signature<
+      (self::ethcontract::Address, self::ethcontract::Address),
+      self::ethcontract::U256,
+    > {
+      self::ethcontract::contract::Signature::new([221, 98, 237, 62])
     }
     #[doc = "Returns signature for method `balanceOf(address):(uint256)`."]
     #[allow(clippy::type_complexity)]
@@ -297,32 +314,15 @@ pub mod erc20_preset_fixed_supply_upgradeable {
     > {
       self::ethcontract::contract::Signature::new([112, 160, 130, 49])
     }
-    #[doc = "Returns signature for method `decreaseAllowance(address,uint256):(bool)`."]
+    #[doc = "Returns signature for method `approve(address,uint256):(bool)`."]
     #[allow(clippy::type_complexity)]
-    pub fn decrease_allowance(
+    pub fn approve(
       &self,
     ) -> self::ethcontract::contract::Signature<
       (self::ethcontract::Address, self::ethcontract::U256),
       bool,
     > {
-      self::ethcontract::contract::Signature::new([164, 87, 194, 215])
-    }
-    #[doc = "Returns signature for method `symbol():(string)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn symbol(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([149, 216, 155, 65])
-    }
-    #[doc = "Returns signature for method `totalSupply():(uint256)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::contract::Signature<(), self::ethcontract::U256> {
-      self::ethcontract::contract::Signature::new([24, 22, 13, 221])
-    }
-    #[doc = "Returns signature for method `name():(string)`."]
-    #[allow(clippy::type_complexity)]
-    pub fn name(&self) -> self::ethcontract::contract::Signature<(), String> {
-      self::ethcontract::contract::Signature::new([6, 253, 222, 3])
+      self::ethcontract::contract::Signature::new([9, 94, 167, 179])
     }
   }
   #[doc = r" Type containing all contract methods for generated contract type."]
@@ -333,14 +333,69 @@ pub mod erc20_preset_fixed_supply_upgradeable {
   #[allow(clippy::too_many_arguments, clippy::type_complexity)]
   impl Methods {
     #[doc = "Generated by `ethcontract`"]
-    pub fn approve(
+    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([6, 253, 222, 3], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn decrease_allowance(
       &self,
       spender: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
+      subtracted_value: self::ethcontract::U256,
     ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
       self
         .instance
-        .method([9, 94, 167, 179], (spender, amount))
+        .method([164, 87, 194, 215], (spender, subtracted_value))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+      self
+        .instance
+        .view_method([49, 60, 229, 103], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn burn(
+      &self,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([66, 150, 108, 104], (amount,))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn total_supply(
+      &self,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
+      self
+        .instance
+        .view_method([24, 22, 13, 221], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn burn_from(
+      &self,
+      account: self::ethcontract::Address,
+      amount: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
+      self
+        .instance
+        .method([121, 204, 103, 144], (account, amount))
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
+    pub fn increase_allowance(
+      &self,
+      spender: self::ethcontract::Address,
+      added_value: self::ethcontract::U256,
+    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
+      self
+        .instance
+        .method([57, 80, 147, 81], (spender, added_value))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -357,6 +412,13 @@ pub mod erc20_preset_fixed_supply_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
+    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
+      self
+        .instance
+        .view_method([149, 216, 155, 65], ())
+        .expect("generated call")
+    }
+    #[doc = "Generated by `ethcontract`"]
     pub fn transfer(
       &self,
       recipient: self::ethcontract::Address,
@@ -365,49 +427,6 @@ pub mod erc20_preset_fixed_supply_upgradeable {
       self
         .instance
         .method([169, 5, 156, 187], (recipient, amount))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn burn(
-      &self,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([66, 150, 108, 104], (amount,))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn increase_allowance(
-      &self,
-      spender: self::ethcontract::Address,
-      added_value: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
-      self
-        .instance
-        .method([57, 80, 147, 81], (spender, added_value))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn allowance(
-      &self,
-      owner: self::ethcontract::Address,
-      spender: self::ethcontract::Address,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([221, 98, 237, 62], (owner, spender))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn burn_from(
-      &self,
-      account: self::ethcontract::Address,
-      amount: self::ethcontract::U256,
-    ) -> self::ethcontract::dyns::DynMethodBuilder<()> {
-      self
-        .instance
-        .method([121, 204, 103, 144], (account, amount))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -423,10 +442,14 @@ pub mod erc20_preset_fixed_supply_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn decimals(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<u8> {
+    pub fn allowance(
+      &self,
+      owner: self::ethcontract::Address,
+      spender: self::ethcontract::Address,
+    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
       self
         .instance
-        .view_method([49, 60, 229, 103], ())
+        .view_method([221, 98, 237, 62], (owner, spender))
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
@@ -440,37 +463,14 @@ pub mod erc20_preset_fixed_supply_upgradeable {
         .expect("generated call")
     }
     #[doc = "Generated by `ethcontract`"]
-    pub fn decrease_allowance(
+    pub fn approve(
       &self,
       spender: self::ethcontract::Address,
-      subtracted_value: self::ethcontract::U256,
+      amount: self::ethcontract::U256,
     ) -> self::ethcontract::dyns::DynMethodBuilder<bool> {
       self
         .instance
-        .method([164, 87, 194, 215], (spender, subtracted_value))
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn symbol(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([149, 216, 155, 65], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn total_supply(
-      &self,
-    ) -> self::ethcontract::dyns::DynViewMethodBuilder<self::ethcontract::U256> {
-      self
-        .instance
-        .view_method([24, 22, 13, 221], ())
-        .expect("generated call")
-    }
-    #[doc = "Generated by `ethcontract`"]
-    pub fn name(&self) -> self::ethcontract::dyns::DynViewMethodBuilder<String> {
-      self
-        .instance
-        .view_method([6, 253, 222, 3], ())
+        .method([9, 94, 167, 179], (spender, amount))
         .expect("generated call")
     }
   }

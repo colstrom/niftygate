@@ -1,6 +1,6 @@
 [package]
 name = "niftygate"
-version = "0.7.0"
+version = "0.8.0"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
 edition = "2018"
 license = "MIT"
@@ -8,21 +8,52 @@ repository = "https://github.com/colstrom/niftygate/"
 documentation = "https://docs.rs/niftygate/"
 description = "Drop-in Proxy for Access Control via NFT Ownership"
 
+[features]
+default = ["demo-application", "default-commands"]
+default-commands = ["guide-command", "certificate-command"]
+all-commands = [
+  "guide-command",
+  "certificate-command",
+  "bindgen-command",
+  "contract-command",
+  "web3-command",
+]
+guide-command = []
+certificate-command = []
+bindgen-command = []
+contract-command = []
+web3-command = []
+demo-application = []
+
 [dependencies]
-async-std = { version = "1.10.0", features = ["attributes"] }
+anyhow = "1.0.57"
+async-std = { version = "1.11.0", features = ["attributes"] }
 base64 = "0.13.0"
-console = "0.14.1"
-dialoguer = "0.8.0"
-ethcontract = { version = "0.15.3", default-features = false, features = ["derive"] }
+ethcontract = { version = "0.17.0", default-features = false, features = [
+  "derive",
+] }
 hex = "0.4.3"
-niftygate-bindings = { path = "../niftygate-bindings", version = "0.7.0" }
-niftygate-certificate  = { path = "../niftygate-certificate", version = "0.7.0" }
-secp256k1 = "0.20.3"
-serde = { version = "1.0.130", features = ["derive"] }
-serde_json = "1.0.67"
-structopt = "0.3.23"
-strum = { version = "0.21.0", features = ["derive"] }
-surf = { version = "2.3.1", default-features = false, features = ["middleware-logger", "encoding", "h1-client-rustls"] }
+niftygate-asset = { path = "../niftygate-asset", version = "0.8.0" }
+niftygate-bindings = { path = "../niftygate-bindings", version = "0.8.0" }
+niftygate-certificate = { path = "../niftygate-certificate", version = "0.8.0" }
+niftygate-contract = { path = "../niftygate-contract", version = "0.8.0" }
+niftygate-guide = { path = "../niftygate-guide", version = "0.8.0" }
+secp256k1 = "0.21.3"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+structopt = "0.3.26"
+strum = { version = "0.24.0", features = ["derive"] }
+surf = { version = "2.3.2", default-features = false, features = [
+  "middleware-logger",
+  "encoding",
+  "h1-client-rustls",
+] }
 tide = "0.16.0"
 tide-rustls = "0.3.0"
-web3 = { version = "0.17.0", default-features = false, features = ["signing", "ws-async-std", "url", "base64", "eip-1193"] }
+web3 = { version = "0.18.0", default-features = false, features = [
+  "signing",
+  "ws-async-std",
+  "url",
+  "base64",
+  "eip-1193",
+] }

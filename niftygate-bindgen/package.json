@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/colstrom/niftygate#readme",
   "devDependencies": {
+    "@openzeppelin/contracts-v2": "npm:@openzeppelin/contracts@^2.5.1",
+    "@openzeppelin/contracts-v3": "npm:@openzeppelin/contracts@^3.4.2",
     "@openzeppelin/contracts": "^4.3.1",
     "@openzeppelin/contracts-upgradeable": "^4.3.1"
   },

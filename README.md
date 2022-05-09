@@ -8,16 +8,16 @@ Gate access to anything on the web, using any smart contract, deployed to any bl
 
 If you think of a token like a ticket to your club, NiftyGate would be the bouncer at the door.
 
-  - Compatible with the typical token standards, both fungible and not (ERC20, ERC721, ERC777, and ERC1155).
-  - Plays nice with any blockchain that speaks Web3 via WebSockets.
-  - Sits in front of anything that speaks HTTP.
-  - Has an embedded mode for use with client applications.
-  - Integrates with any auth system that supports HTTP headers.
-  - Comes with tools for choosing, deploying, debugging, and auditing compatible smart contracts.
-  - All shipped as  single, self-contained binary.
+- Compatible with the typical token standards, both fungible and not (ERC20, ERC721, ERC777, and ERC1155).
+- Plays nice with any blockchain that speaks Web3 via WebSockets.
+- Sits in front of anything that speaks HTTP.
+- Has an embedded mode for use with client applications.
+- Integrates with any auth system that supports HTTP headers.
+- Comes with tools for choosing, deploying, debugging, and auditing compatible smart contracts.
+- All shipped as single, self-contained binary.
 
-  - Cross-platform (tested on Linux and macOS, should work elsewhere).
-  - Open Source (MIT licensed), and written in Rust.
+- Cross-platform (tested on Linux and macOS, should work elsewhere).
+- Open Source (MIT licensed), and written in Rust.
 
 ## What is it?
 
@@ -30,12 +30,13 @@ automatically injecting signatures into requests.
 As of `0.2`, Smart Contracts are supported. These allow using tokens as transferrable licenses to gated services.
 
 Some examples:
-  - An OCI Registry that allowed licensed users to download an asset.
-  - An Issue Tracker that allowed project supporters to get priority support.
-  - A Project Roadmap that allowed customers proportional voting rights on feature development.
-  - A Deployment Pipeline that required at N-of-M authorized users to release to production.
-  - An App Store with decentralized licenses, where authors retain licensing control, not platforms.
-  - A Digital Library where lending is managed by tokens, and returns are enforced by Smart Contracts.
+
+- An OCI Registry that allowed licensed users to download an asset.
+- An Issue Tracker that allowed project supporters to get priority support.
+- A Project Roadmap that allowed customers proportional voting rights on feature development.
+- A Deployment Pipeline that required at N-of-M authorized users to release to production.
+- An App Store with decentralized licenses, where authors retain licensing control, not platforms.
+- A Digital Library where lending is managed by tokens, and returns are enforced by Smart Contracts.
 
 ## Why does this exist?
 
@@ -45,13 +46,13 @@ This is really two questions, so let's break that down...
 
 Signature-based authentication avoids many of the pitfalls of password-based
 authentication. The server only needs to know public keys, and if those are
-leaked... who cares? They're *public* keys.
+leaked... who cares? They're _public_ keys.
 
 Assuming a reasonable UI in both cases, users can rotate keys just as easily as
 passwords. They can delegate a subset of permissions to other keys (just as we
 do with access tokens elsewhere).
 
-Keys are things users *generate*, not things users *memorize*. This removes
+Keys are things users _generate_, not things users _memorize_. This removes
 problems like password reuse entirely.
 
 ### Why is this approach practical?
@@ -107,11 +108,13 @@ Then, find the private key for this address:
 Add this private key to the environment:
 
 Using `fish`:
+
 ```shell
 set -x SECRET_KEY_DATA PUT_THE_DATA_HERE
 ```
 
 Using vintage shells like `bash`:
+
 ```shell
 export SECRET_KEY_DATA=PUT_THE_DATA_HERE
 ```
@@ -223,7 +226,7 @@ isahc::agent agent took 313.524µs to start up
 tide::server Server listening on http://0.0.0.0:8000
 ```
 
-By default, this doesn't care *what* the balance is, it just adds it to the
+By default, this doesn't care _what_ the balance is, it just adds it to the
 header given by `--balance-header`. However, there are a few options to restrict
 access based on the balance.
 
@@ -255,6 +258,7 @@ application, if you were to query each with `curl`, you'd see something like the
 following:
 
 Querying the demo app directly:
+
 ```shell
 $ curl -s http://127.0.0.1:8080 | sort
 accept: ["*/*"]
@@ -263,6 +267,7 @@ user-agent: ["curl/7.64.1"]
 ```
 
 Querying through the proxy:
+
 ```shell
 $ curl -s http://127.0.0.1:8000 | sort
 accept-encoding: ["deflate, gzip"]
@@ -304,22 +309,29 @@ simple questions, and present you with a recommendation.
 - 0.5 - Support Upgradeable Smart Contracts
 - 0.6 - Renamed from sig-proxy to NiftyGate
 - 0.7 - TLS Support
+- 0.8 - Asset Management and (experimental) marketplace support
 
 ## Wishlist (in no particular order)
 
+Infura Integration
+
 Support for [RFC-7486 (HTTP Origin-Bound Authentication)](https://tools.ietf.org/html/rfc7486)
-  - Replacing fixed messages with random challenges, adding nonces and expiration, etc.
+
+- Replacing fixed messages with random challenges, adding nonces and expiration, etc.
 
 Optional endpoint to serve an embedded script for in-browser support.
-  - Use [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) for key generation and signing.
-  - Use [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) for key storage.
-  - Use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for header manipulation and auth flow.
+
+- Use [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) for key generation and signing.
+- Use [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) for key storage.
+- Use [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for header manipulation and auth flow.
 
 X509 Support
-  - This would provide an alternative where a chain-of-trust model is preferred.
+
+- This would provide an alternative where a chain-of-trust model is preferred.
 
 PGP Support
-  - This would provide an alternative where a web-of-trust model is preferred.
+
+- This would provide an alternative where a web-of-trust model is preferred.
 
 ## License
 
@@ -327,3 +339,54 @@ PGP Support
 
 `niftygate` embeds contract ABI specs, and documentation excerpts from [OpenZeppelin Contracts](https://github.com/OpenZeppelin/openzeppelin-contracts).
 These are also distributed under the terms of the MIT License [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.1.0/LICENSE).
+
+## How can NiftyGate help me?
+
+### I already have a Site, and a Smart Contract
+
+Run niftygate in server mode, give it the address of your site, and the address of your contract.
+
+### I have a site, but I don't want to use Smart Contracts
+
+Run niftygate in server mode, Give niftygate the address to your site, and it will let users log in with their Wallet.
+
+### I have a non-web application, and I want to interface with Smart Contracts
+
+Compile niftygate as a library, and embed it in your application.
+
+### I have a non-web application, and I don't want to modify my code.
+
+Run niftygate in client mode, and point your application at it.
+
+### I'm using a container platform, like Docker or Kubernetes.
+
+Run niftygate in either client or server mode, deployed as a sidecar container.
+
+### I'm using Kubernetes, and I want to integrate Smart Contracts into a Controller.
+
+Use the `contract events --stream` mode. This will output matching events as compact JSON on STDOUT.
+
+### I don't have a Smart Contract, but I want one.
+
+Deploy one of the built-in contracts that comes with niftygate, no code required!
+
+### I don't know what kind of Smart Contract I need.
+
+Use the interactive guide built into niftygate.
+
+### I don't have an Ethereum node to connect to.
+
+Sign up for an account at infura.io, and point niftygate at it. Free accounts
+allow up to 100k daily requests, and if you need more than that, they have paid
+plans available.
+
+### I want to use a private blockchain.
+
+Go for it. Most of the development of niftygate is done on a private blockchain.
+As long as it speaks JSON-RPC + Web3 over WebSockets, it should be fine.
+
+Ganache and geth are good options for this, depending on your needs.
+
+### I want to use my own identity platform.
+
+Run niftygate in server mode, and tell it which headers it should pass along.

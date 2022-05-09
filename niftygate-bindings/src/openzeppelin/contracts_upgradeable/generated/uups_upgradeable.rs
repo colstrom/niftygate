@@ -15,7 +15,7 @@ pub mod uups_upgradeable {
       use self::ethcontract::Contract;
       lazy_static! {
         pub static ref CONTRACT: Contract = {
-          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"UUPSUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"upgradeTo\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"upgradeToAndCall\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"event\",\"name\":\"BeaconUpgraded\",\"inputs\":[{\"name\":\"beacon\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"AdminChanged\",\"inputs\":[{\"name\":\"previousAdmin\",\"type\":\"address\",\"indexed\":false},{\"name\":\"newAdmin\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
+          # [allow (unused_mut)] let mut contract = TruffleLoader :: new () . load_contract_from_str ("{\"contractName\":\"UUPSUpgradeable\",\"abi\":[{\"type\":\"function\",\"name\":\"upgradeTo\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"nonpayable\"},{\"type\":\"function\",\"name\":\"upgradeToAndCall\",\"inputs\":[{\"name\":\"newImplementation\",\"type\":\"address\"},{\"name\":\"data\",\"type\":\"bytes\"}],\"outputs\":[],\"constant\":false,\"stateMutability\":\"payable\"},{\"type\":\"event\",\"name\":\"Upgraded\",\"inputs\":[{\"name\":\"implementation\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"AdminChanged\",\"inputs\":[{\"name\":\"previousAdmin\",\"type\":\"address\",\"indexed\":false},{\"name\":\"newAdmin\",\"type\":\"address\",\"indexed\":false}],\"anonymous\":false},{\"type\":\"event\",\"name\":\"BeaconUpgraded\",\"inputs\":[{\"name\":\"beacon\",\"type\":\"address\",\"indexed\":true}],\"anonymous\":false}],\"bytecode\":\"\",\"networks\":{},\"devdoc\":{\"details\":null,\"methods\":{}},\"userdoc\":{\"details\":null,\"methods\":{}}}") . expect ("valid contract JSON") ;
           contract
         };
       }
@@ -209,33 +209,33 @@ pub mod uups_upgradeable {
   pub mod event_data {
     use super::ethcontract;
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct BeaconUpgraded {
-      pub beacon: self::ethcontract::Address,
+    pub struct Upgraded {
+      pub implementation: self::ethcontract::Address,
     }
-    impl BeaconUpgraded {
+    impl Upgraded {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`BeaconUpgraded(address)`"]
+      #[doc = "`Upgraded(address)`"]
       pub fn abi_signature() -> &'static str {
-        "BeaconUpgraded(address)"
+        "Upgraded(address)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
+    impl self::ethcontract::tokens::Tokenize for Upgraded {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(BeaconUpgraded { beacon })
+        let (implementation,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(Upgraded { implementation })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -279,33 +279,33 @@ pub mod uups_upgradeable {
       }
     }
     #[derive(Clone, Debug, Default, Eq, PartialEq, serde :: Deserialize, serde :: Serialize)]
-    pub struct Upgraded {
-      pub implementation: self::ethcontract::Address,
+    pub struct BeaconUpgraded {
+      pub beacon: self::ethcontract::Address,
     }
-    impl Upgraded {
+    impl BeaconUpgraded {
       #[doc = r" Retrieves the signature for the event this data corresponds to."]
       #[doc = r" This signature is the Keccak-256 hash of the ABI signature of"]
       #[doc = r" this event."]
       pub fn signature() -> self::ethcontract::H256 {
         self::ethcontract::H256([
-          188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-          107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+          28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+          127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
         ])
       }
       #[doc = r" Retrieves the ABI signature for the event this data corresponds"]
       #[doc = r" to. For this event the value should always be:"]
       #[doc = r""]
-      #[doc = "`Upgraded(address)`"]
+      #[doc = "`BeaconUpgraded(address)`"]
       pub fn abi_signature() -> &'static str {
-        "Upgraded(address)"
+        "BeaconUpgraded(address)"
       }
     }
-    impl self::ethcontract::tokens::Tokenize for Upgraded {
+    impl self::ethcontract::tokens::Tokenize for BeaconUpgraded {
       fn from_token(
         token: self::ethcontract::common::abi::Token,
       ) -> Result<Self, self::ethcontract::tokens::Error> {
-        let (implementation,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
-        Ok(Upgraded { implementation })
+        let (beacon,) = self::ethcontract::tokens::Tokenize::from_token(token)?;
+        Ok(BeaconUpgraded { beacon })
       }
       fn into_token(self) -> self::ethcontract::common::abi::Token {
         unimplemented!("events are only decoded, not encoded")
@@ -326,13 +326,13 @@ pub mod uups_upgradeable {
   }
   impl Events<'_> {
     #[doc = r" Generated by `ethcontract`."]
-    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
-      self::event_builders::BeaconUpgradedBuilder(
+    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
+      self::event_builders::UpgradedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
-            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
+            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
+            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
           ]))
           .expect("generated event filter"),
       )
@@ -350,13 +350,13 @@ pub mod uups_upgradeable {
       )
     }
     #[doc = r" Generated by `ethcontract`."]
-    pub fn upgraded(&self) -> self::event_builders::UpgradedBuilder {
-      self::event_builders::UpgradedBuilder(
+    pub fn beacon_upgraded(&self) -> self::event_builders::BeaconUpgradedBuilder {
+      self::event_builders::BeaconUpgradedBuilder(
         self
           .instance
           .event(self::ethcontract::H256([
-            188, 124, 215, 90, 32, 238, 39, 253, 154, 222, 186, 179, 32, 65, 247, 85, 33, 77, 188,
-            107, 255, 169, 12, 192, 34, 91, 57, 218, 46, 92, 45, 59,
+            28, 243, 176, 58, 108, 241, 159, 162, 186, 186, 77, 241, 72, 233, 220, 171, 237, 234,
+            127, 138, 92, 7, 132, 14, 32, 126, 92, 8, 155, 233, 93, 62,
           ]))
           .expect("generated event filter"),
       )
@@ -367,12 +367,12 @@ pub mod uups_upgradeable {
   pub mod event_builders {
     use super::ethcontract;
     use super::event_data;
-    #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
-    pub struct BeaconUpgradedBuilder(
+    #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
+    pub struct UpgradedBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::BeaconUpgraded>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Upgraded>,
     );
-    impl BeaconUpgradedBuilder {
+    impl UpgradedBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -402,8 +402,11 @@ pub mod uups_upgradeable {
         self.0 = (self.0).poll_interval(value);
         self
       }
-      #[doc = "Adds a filter for the beacon event parameter."]
-      pub fn beacon(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
+      #[doc = "Adds a filter for the implementation event parameter."]
+      pub fn implementation(
+        mut self,
+        topic: self::ethcontract::Topic<self::ethcontract::Address>,
+      ) -> Self {
         self.0 = (self.0).topic0(topic);
         self
       }
@@ -412,7 +415,7 @@ pub mod uups_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::BeaconUpgraded>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::Upgraded>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -422,7 +425,7 @@ pub mod uups_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::BeaconUpgraded>,
+          self::ethcontract::StreamEvent<self::event_data::Upgraded>,
           self::ethcontract::errors::EventError,
         >,
       > {
@@ -486,12 +489,12 @@ pub mod uups_upgradeable {
         (self.0).stream()
       }
     }
-    #[doc = "A builder for creating a filtered stream of `Upgraded` events."]
-    pub struct UpgradedBuilder(
+    #[doc = "A builder for creating a filtered stream of `BeaconUpgraded` events."]
+    pub struct BeaconUpgradedBuilder(
       #[doc = r" The inner event builder."]
-      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::Upgraded>,
+      pub  self::ethcontract::dyns::DynEventBuilder<self::event_data::BeaconUpgraded>,
     );
-    impl UpgradedBuilder {
+    impl BeaconUpgradedBuilder {
       #[doc = r" Sets the starting block from which to stream logs for."]
       #[doc = r""]
       #[doc = r" If left unset defaults to the latest block."]
@@ -521,11 +524,8 @@ pub mod uups_upgradeable {
         self.0 = (self.0).poll_interval(value);
         self
       }
-      #[doc = "Adds a filter for the implementation event parameter."]
-      pub fn implementation(
-        mut self,
-        topic: self::ethcontract::Topic<self::ethcontract::Address>,
-      ) -> Self {
+      #[doc = "Adds a filter for the beacon event parameter."]
+      pub fn beacon(mut self, topic: self::ethcontract::Topic<self::ethcontract::Address>) -> Self {
         self.0 = (self.0).topic0(topic);
         self
       }
@@ -534,7 +534,7 @@ pub mod uups_upgradeable {
       pub async fn query(
         self,
       ) -> std::result::Result<
-        std::vec::Vec<self::ethcontract::Event<self::event_data::Upgraded>>,
+        std::vec::Vec<self::ethcontract::Event<self::event_data::BeaconUpgraded>>,
         self::ethcontract::errors::EventError,
       > {
         (self.0).query().await
@@ -544,7 +544,7 @@ pub mod uups_upgradeable {
         self,
       ) -> impl self::ethcontract::futures::stream::Stream<
         Item = std::result::Result<
-          self::ethcontract::StreamEvent<self::event_data::Upgraded>,
+          self::ethcontract::StreamEvent<self::event_data::BeaconUpgraded>,
           self::ethcontract::errors::EventError,
         >,
       > {

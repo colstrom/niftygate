@@ -7,7 +7,7 @@
 use anyhow::Result;
 use ethcontract::Contract;
 use ethcontract_generate::{loaders::TruffleLoader, ContractBindings, ContractBuilder};
-use heck::SnakeCase;
+use heck::ToSnakeCase;
 use std::{
   ffi::OsStr,
   path::{Path, PathBuf},
@@ -47,6 +47,8 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> Result<Vec<(Contract, Pat
     let source = TruffleLoader::new().load_contract_from_file(source.clone())?;
     let path = if file_stem.eq("create2") {
       output_dir.join("create_2.rs")
+    } else if file_stem.eq("create2_impl") {
+      output_dir.join("create_2_impl.rs")
     } else {
       output_dir.join(format!("{}.rs", file_stem))
     };
@@ -62,6 +64,51 @@ fn plan(sources: Vec<PathBuf>, output_dir: PathBuf) -> Result<Vec<(Contract, Pat
 // since it's not even run at build time, but manually when needed.
 fn contract_bindings(contract: Contract) -> Result<ContractBindings> {
   if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
+    .add_method_alias(
+      String::from("computeAddress(bytes32,bytes,address)"),
+      String::from("compute_address_with_deployer"),
+    )
+    .generate(&contract)
+  {
+    Ok(bindings)
+  } else if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
+    .add_method_alias(
+      String::from("burn(address,uint256)"),
+      String::from("burn_with_owner"),
+    )
+    .add_method_alias(
+      String::from("safeMint(address,uint256,bytes)"),
+      String::from("safe_mint_with_data"),
+    )
+    .add_method_alias(
+      String::from("safeTransferFrom(address,address,uint256,bytes)"),
+      String::from("safe_transfer_from_with_data"),
+    )
+    .generate(&contract)
+  {
+    Ok(bindings)
+  } else if let Ok(bindings) = ContractBuilder::new()
+    .visibility_modifier("pub")
+    .add_event_derive("serde::Deserialize")
+    .add_event_derive("serde::Serialize")
+    .add_method_alias(
+      String::from("safeMint(address,uint256,bytes)"),
+      String::from("safe_mint_with_data"),
+    )
+    .add_method_alias(
+      String::from("safeTransferFrom(address,address,uint256,bytes)"),
+      String::from("safe_transfer_from_with_data"),
+    )
+    .generate(&contract)
+  {
+    Ok(bindings)
+  } else if let Ok(bindings) = ContractBuilder::new()
     .visibility_modifier("pub")
     .add_event_derive("serde::Deserialize")
     .add_event_derive("serde::Serialize")
@@ -197,6 +244,14 @@ fn main() -> Result<()> {
     "niftygate-bindgen/node_modules/@openzeppelin/contracts/build/contracts",
     "niftygate-bindings/src/openzeppelin/contracts",
   )?;
+  // generate(
+  //   "niftygate-bindgen/node_modules/@openzeppelin/contracts-v3/build/contracts",
+  //   "niftygate-bindings/src/openzeppelin/contracts_v3",
+  // )?;
+  generate(
+    "niftygate-bindgen/node_modules/@openzeppelin/contracts-v2/build/contracts",
+    "niftygate-bindings/src/openzeppelin/contracts_legacy",
+  )?;
   generate(
     "niftygate-bindgen/node_modules/@openzeppelin/contracts-upgradeable/build/contracts",
     "niftygate-bindings/src/openzeppelin/contracts_upgradeable",
@@ -204,3 +259,9 @@ fn main() -> Result<()> {
 
   Ok(())
 }
+
+// use structopt::StructOpt;
+
+// fn main() -> Result<()> {
+//   niftygate_bindgen::Command::from_args().execute()
+// }
