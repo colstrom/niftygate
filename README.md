@@ -78,7 +78,7 @@ cargo install niftygate
 Or, if you prefer Docker:
 
 ```shell
-docker pull colstrom/sig-proxy:0.3.1
+docker pull colstrom/niftygate:0.8.0
 ```
 
 ## How do I use it?
