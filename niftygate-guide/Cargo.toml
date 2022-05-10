@@ -2,7 +2,7 @@
 name = "niftygate-guide"
 version = "0.8.0"
 authors = ["Chris Olstrom <chris@olstrom.com>"]
-edition = "2018"
+edition = "2021"
 license = "MIT"
 repository = "https://github.com/colstrom/niftygate/"
 documentation = "https://docs.rs/niftygate-guide/"
