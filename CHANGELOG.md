@@ -1,3 +1,10 @@
+# 0.x (unreleased)
+
+- (internal) update rust edition to 2021
+- (dependency) camino 1.0.7 -> 1.0.8
+- (dockerfile) added aarch64 support
+- (dockerfile) added static linking
+
 # 0.8.0
 
 - (feature) crowdfunding support (experimental)

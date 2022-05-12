@@ -16,7 +16,7 @@ js-runtime = ["quick-js"]
 anyhow = "1.0.57"
 base64 = "0.13.0"
 brotli = "3.3.4"
-camino = { version = "1.0.7", features = ["serde1"] }
+camino = { version = "1.0.8", features = ["serde1"] }
 dialoguer = "0.10.1"
 digest = "0.10.3"
 directories = "4.0.1"
